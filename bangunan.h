@@ -1,7 +1,7 @@
 typedef struct {
 	char jenis;
 	int pemilik;
-    int jumlah_pasukan;
+    int jumpas;
     int level; 
     int A;
     int M;
@@ -10,3 +10,7 @@ typedef struct {
     POINT lokasi;
 } BANGUNAN;
 
+#define jenis(B)   (B).jenis
+#define pemilik(B)   (B).jenis
+#define jumpas(B)   (B).jenis
+#define level(B)   (B).jenis
