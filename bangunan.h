@@ -7,5 +7,6 @@ typedef struct {
     int M;
     int P;
     int U;
+    POINT lokasi;
 } BANGUNAN;
 

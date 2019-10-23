@@ -10,7 +10,7 @@
 #include "boolean.h"
 
 /*  Kamus Umum */
-#define IdxMax 100
+#define IdxMax 29
 /* Indeks maksimum array, sekaligus ukuran maksimum array dalam C */
 #define IdxMin 1
 /* Indeks minimum array */
@@ -19,7 +19,7 @@
 
 /* Definisi elemen dan koleksi objek */
 typedef int IdxType;  /* type indeks */
-typedef int ElType;   /* type elemen tabel */
+typedef BANGUNAN ElType;   /* type elemen tabel */
 typedef struct { 
   ElType TI[IdxMax+1]; /* memori tempat penyimpan elemen (container) */
   int Neff; /* >=0, banyaknya elemen efektif */
