@@ -1,4 +1,8 @@
-#include "matriks.h"
-CetakMap(MATRIKS M);
+#ifndef CONSOLE_H
+#define CONSOLE_H
 
-outln();
+#include "matriks.h"
+void CetakMap(MATRIKS M);
+void outln();
+void CetakCommad();
+#endif

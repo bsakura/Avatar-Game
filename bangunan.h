@@ -1,3 +1,6 @@
+
+#include "point.h"
+
 typedef struct {
 	char jenis;
 	int pemilik;
@@ -11,6 +14,7 @@ typedef struct {
 } BANGUNAN;
 
 #define jenis(B)   (B).jenis
-#define pemilik(B)   (B).jenis
-#define jumpas(B)   (B).jenis
-#define level(B)   (B).jenis
+#define pemilik(B)   (B).pemilik
+#define jumpas(B)   (B).jumpas
+#define level(B)   (B).level
+#define lokasi(B)   (B).lokasi
