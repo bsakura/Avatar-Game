@@ -10,17 +10,17 @@ int EOP;
 static FILE * pita;
 static int retval;
 
-void START() {
-/* Mesin siap dioperasikan. Pita disiapkan untuk dibaca.
-   Karakter pertama yang ada pada pita posisinya adalah pada jendela.
-   I.S. : sembarang
-   F.S. : CC adalah karakter pertama pada pita. Jika CC != MARK maka EOP akan padam (false).
-          Jika CC = MARK maka EOP akan menyala (true) */
+// void START() {
+// /* Mesin siap dioperasikan. Pita disiapkan untuk dibaca.
+//    Karakter pertama yang ada pada pita posisinya adalah pada jendela.
+//    I.S. : sembarang
+//    F.S. : CC adalah karakter pertama pada pita. Jika CC != MARK maka EOP akan padam (false).
+//           Jika CC = MARK maka EOP akan menyala (true) */
 
-    /* Algoritma */
-    pita = fopen("input.txt","r");
-    ADV();
-}
+//     /* Algoritma */
+//     pita = fopen("input.txt","r");
+//     ADV();
+// }
 
 void ADV() {
 /* Pita dimajukan satu karakter.
@@ -31,7 +31,7 @@ void ADV() {
           Jika  CC = MARK maka EOP akan menyala (true) */
 
     /* Algoritma */
-    retval = fscanf(pita,"%c",&CC);
+    retval = scanf(pita,"%c",&CC);
     EOP = retval;
     if (EOP==-1) {
        fclose(pita);

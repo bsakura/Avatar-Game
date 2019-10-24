@@ -37,3 +37,8 @@ void print_cyan(char c) {
     printf("%s%c", MAGENTA, c);
     printf("%s", NORMAL);
 }
+
+// int main(){
+//     print_red('A');
+//     return 0;
+// }
