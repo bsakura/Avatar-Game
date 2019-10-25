@@ -1,0 +1,4 @@
+input cmd nya gimana kan pake mesin kata??
+undo stackt gimana?
+adt graph gimana?
+usul pembagian tugasnya??
