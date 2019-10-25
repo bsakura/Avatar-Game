@@ -18,3 +18,6 @@ typedef struct {
 #define jumpas(B)   (B).jumpas
 #define level(B)   (B).level
 #define lokasi(B)   (B).lokasi
+
+
+void MakeBangunan(BANGUNAN *B,char jenis, int pemilik);
