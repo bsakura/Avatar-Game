@@ -10,7 +10,7 @@ typedef int Pemain;
 typedef char Jenis;
 typedef struct { 
     Jenis J;
-    Pemain K;
+    Pemain P;
     int L;
     int A;
     int M;
@@ -19,7 +19,7 @@ typedef struct {
 
 /* ************  SELEKTOR   ************ */
 #define Jenis(B) (B).J
-#define Kepemilikan(B) (B).K
+#define Kepemilikan(B) (B).P
 #define Level(B) (B).L
 #define Pasukan(B) (B).A
 #define Maksimum(B) (B).M
@@ -27,7 +27,7 @@ typedef struct {
 
 /* ************  PROTOTYPE  ************ */
 /* ************ KONSTRUKTOR ************ */
-void CreateBuilding (BANGUNAN *B);
+void SetBuilding (BANGUNAN *B, Jenis J, Pemain P);
 void MakeCastle (BANGUNAN *B);
 void MakeTower (BANGUNAN *B);
 void MakeFort (BANGUNAN *B);

@@ -3,13 +3,25 @@
 #include "boolean.h"
 #include "bangunan.h"
 
-void CreateBuilding (BANGUNAN *B) {
-    Kepemilikan(*B) = Nil;
+void SetBuilding (BANGUNAN *B, Jenis J, Pemain P) {
+    Kepemilikan(*B) = P;
+    Level(*B) = 1;
+    if (J == 'C') {
+        MakeCastle(B);
+    }
+    else if (J == 'T') {
+        MakeTower(B);
+    }
+    else if (J == 'F') {
+        MakeFort(B);
+    }
+    else if (J == 'V') {
+        MakeVillage(B);
+    }
 }
 
 void MakeCastle (BANGUNAN *B) {
     Jenis(*B) = 'C';
-    Level(*B) = 1;
     SetMaksimum(B);
     if (Kepemilikan(*B) == Nil) {
         PasukanAwal(*B) = 40;
@@ -23,7 +35,6 @@ void MakeCastle (BANGUNAN *B) {
 
 void MakeTower (BANGUNAN *B) {
     Jenis(*B) = 'T';
-    Level(*B) = 1;
     SetMaksimum(B);
     if (Kepemilikan(*B) == Nil) {
         PasukanAwal(*B) = 30;
@@ -37,7 +48,6 @@ void MakeTower (BANGUNAN *B) {
 
 void MakeFort (BANGUNAN *B) {
     Jenis(*B) = 'F';
-    Level(*B) = 1;
     SetMaksimum(B);
     if (Kepemilikan(*B) == Nil) {
         PasukanAwal(*B) = 80;
@@ -51,7 +61,6 @@ void MakeFort (BANGUNAN *B) {
 
 void MakeVillage (BANGUNAN *B) {
     Jenis(*B) = 'V';
-    Level(*B) = 1;
     SetMaksimum(B);
     if (Kepemilikan(*B) == Nil) {
         PasukanAwal(*B) = 20;

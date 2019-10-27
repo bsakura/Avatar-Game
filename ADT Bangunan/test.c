@@ -6,17 +6,14 @@
 
 int main () {
     int i;
-    BANGUNAN C, F, T1, T2, V;
+    BANGUNAN C, T1, T2;
     Pemain P1, P2;
     P1 = 1;
     P2 = 2;
-    CreateBuilding(&C);
-    MakeCastle(&C);
+    CreateBuilding(&C, 'C', Nil);
     PrintStatus(C);
-    SetKepemilikan(&T1, P1);
-    SetKepemilikan(&T2, P2);
-    MakeTower(&T1);
-    MakeTower(&T2);
+    CreateBuilding(&T1, 'T', 1);
+    CreateBuilding(&T2, 'T', 2);
     PrintStatus(T1);
     PrintStatus(T2);
     for (i = 1; i <= 5; i++) {
