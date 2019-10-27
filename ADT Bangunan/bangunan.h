@@ -27,7 +27,7 @@ typedef struct {
 
 /* ************  PROTOTYPE  ************ */
 /* ************ KONSTRUKTOR ************ */
-void SetBuilding (BANGUNAN *B, Jenis J, Pemain P);
+BANGUNAN SetBangunan (Jenis J, Pemain P);
 void MakeCastle (BANGUNAN *B);
 void MakeTower (BANGUNAN *B);
 void MakeFort (BANGUNAN *B);

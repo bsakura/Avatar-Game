@@ -3,21 +3,23 @@
 #include "boolean.h"
 #include "bangunan.h"
 
-void SetBuilding (BANGUNAN *B, Jenis J, Pemain P) {
-    Kepemilikan(*B) = P;
-    Level(*B) = 1;
+BANGUNAN SetBangunan (Jenis J, Pemain P) {
+    BANGUNAN B;
+    Kepemilikan(B) = P;
+    Level(B) = 1;
     if (J == 'C') {
-        MakeCastle(B);
+        MakeCastle(&B);
     }
     else if (J == 'T') {
-        MakeTower(B);
+        MakeTower(&B);
     }
     else if (J == 'F') {
-        MakeFort(B);
+        MakeFort(&B);
     }
     else if (J == 'V') {
-        MakeVillage(B);
+        MakeVillage(&B);
     }
+    return B;
 }
 
 void MakeCastle (BANGUNAN *B) {
