@@ -18,6 +18,11 @@ typedef struct {
     lokasi POINT;
 } BANGUNAN;
 
+typedef struct {
+    BANGUNAN arrB[30];
+    int N;
+} ARRAYB;
+
 /* ************  SELEKTOR   ************ */
 #define Jenis(B) (B).J
 #define Kepemilikan(B) (B).P
@@ -25,6 +30,9 @@ typedef struct {
 #define Pasukan(B) (B).A
 #define Maksimum(B) (B).M
 #define PasukanAwal(B) (B).U
+
+#define Bangunan(A, i) (A).arrB[(i)]
+#define NBBangunan(A) (A).N
 
 /* ************  PROTOTYPE  ************ */
 /* ************ KONSTRUKTOR ************ */
@@ -41,8 +49,8 @@ void TambahPasukanManual (BANGUNAN *B, int Pasukan);
 void SerangBangunan (BANGUNAN *B1, BANGUNAN *B2, int Pasukan);
 void LevelUp (BANGUNAN *B);
 void SetMaksimum (BANGUNAN *B);
-
-/* ************   TESTING   ************ */
 void PrintStatus (BANGUNAN B);
+void PrintArrayB (ARRAYB A);
+void PrintArraySerang (ARRAYB A, Pemain P);
 
 #endif
