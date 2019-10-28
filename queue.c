@@ -1,14 +1,6 @@
-
-//Nama: Naufal Arfananda Ghifari
-//NIM: 13518096
-//Tanggal: 2 Oktober 2019
-/* File : queue.c */
-/* Implementasi queue.h */
-
-
-
 #include "boolean.h"
 #include "queue.h"
+#include "mesinkata.h"
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -41,8 +33,8 @@ void CreateEmpty (Queue * Q, int Max){
 /* Proses : Melakukan alokasi, membuat sebuah Q kosong */
     (*Q).T = (int*) malloc ((Max+1) * sizeof(int));
     MaxEl(*Q) = Max;
-    Head(*Q) =0;
-    Tail(*Q) =0;
+    Head(*Q) = 0;
+    Tail(*Q) = 0;
 }
 /* *** Destruktor *** */
 void DeAlokasi(Queue * Q){
@@ -51,8 +43,8 @@ void DeAlokasi(Queue * Q){
 /* F.S. Q menjadi tidak terdefinisi lagi, MaxEl(Q) diset 0 */
     free((*Q).T);
     MaxEl(*Q) = 0;
-    Head(*Q) =0;
-    Tail(*Q) =0;
+    Head(*Q) = 0;
+    Tail(*Q) = 0;
 }
 /* *** Primitif Add/Delete *** */
 void Add (Queue * Q, infotype X){
@@ -60,8 +52,8 @@ void Add (Queue * Q, infotype X){
 /* I.S. Q mungkin kosong, tabel penampung elemen Q TIDAK penuh */
 /* F.S. X menjadi TAIL yang baru, TAIL "maju" dengan mekanisme circular buffer */
     if (IsEmpty(*Q)){
-        Tail(*Q)=1;
-        Head(*Q)=1;
+        Tail(*Q)= 1;
+        Head(*Q)= 1;
     } else{
         Tail(*Q) = Tail(*Q) == MaxEl(*Q) ? 1  : (Tail(*Q) +1);
     }

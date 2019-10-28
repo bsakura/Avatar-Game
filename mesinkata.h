@@ -5,7 +5,7 @@
 #define __MESINKATA_H__
 
 #include "boolean.h"
-#include "mesinkar.h"
+#include "input.h"
 
 #define NMax 50
 #define BLANK ' '
