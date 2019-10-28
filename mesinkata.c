@@ -10,8 +10,14 @@ void IgnoreBlank(){
 /* Mengabaikan satu atau beberapa BLANK
    I.S. : CC sembarang
    F.S. : CC ≠ BLANK atau CC = MARK */
-   while (CC== BLANK){
-       ADV();
+   if (useFile){
+        while (CC== BLANK || CC == '\n'){
+            ADV();   
+        } 
+   }else{
+        while (CC== BLANK ){
+            ADV();
+   }
    }
 }
 void STARTKATA(){
@@ -20,7 +26,7 @@ void STARTKATA(){
           atau EndKata = false, CKata adalah kata yang sudah diakuisisi,
           CC karakter pertama sesudah karakter terakhir kata */
     START();
-    IgnoreBlank();
+    //IgnoreBlank();
     if (CC == MARK) {
         EndKata = true;
     } else /* CC != MARK */ {
@@ -37,15 +43,10 @@ void ADVKATA()
    Proses : Akuisisi kata menggunakan procedure SalinKata */
 {
     IgnoreBlank();
-    switch (CC)
-    {
-        case MARK:
-            EndKata =true;
-            break;
-    
-        default:
-            SalinKata();
-            break;
+    if (CC == MARK) {
+        EndKata = true;
+    } else /* CC != MARK */ {
+        SalinKata();
     }
     IgnoreBlank();
 }
@@ -68,3 +69,8 @@ void SalinKata(){
     } /* CC = MARK or CC = BLANK */
     CKata.Length = i-1;
 }
+
+// int main(){
+//     set(true);
+//     STARTKATA();
+// }

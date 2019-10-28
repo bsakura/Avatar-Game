@@ -3,7 +3,7 @@
 #define BANGUNAN_H
 
 #include "boolean.h"
-
+#include "point.h"
 #define Nil 0
 
 typedef int Pemain; 
@@ -15,6 +15,7 @@ typedef struct {
     int A;
     int M;
     int U;
+    lokasi POINT;
 } BANGUNAN;
 
 /* ************  SELEKTOR   ************ */

@@ -1,136 +1,240 @@
+/* ADT Bangunan */
+
+#include "boolean.h"
 #include "bangunan.h"
 
-
-void MakeBangunan(BANGUNAN *B,char jenis, int pemilik, POINT lok){
-    jenis(*B)= jenis;
-    pemilik(*B) = pemilik;
-    level(*B)= 1;
-    lokasi(*B) = lok;
-    switch (jenis(*B))
-    {
-    case 'C':
-        A(*B) = 10;
-        M(*B) = 40;
-        P(*B) = false;
-        U(*B) = 40;
-        break;
-    case 'T':
-        A(*B) = 5;
-        M(*B) = 20;
-        P(*B) = true;
-        U(*B) = 30;
-        break;
-    case 'F':
-        A(*B) = 10;
-        M(*B) = 20;
-        P(*B) = false;
-        U(*B) = 80;
-        break;
-    default:
-        A(*B) = 5;
-        M(*B) = 20;
-        P(*B) = false;
-        U(*B) = 20;
-        break;
-    } 
+BANGUNAN SetBangunan (Jenis J, Pemain P) {
+    BANGUNAN B;
+    Kepemilikan(B) = P;
+    Level(B) = 1;
+    if (J == 'C') {
+        MakeCastle(&B);
+    }
+    else if (J == 'T') {
+        MakeTower(&B);
+    }
+    else if (J == 'F') {
+        MakeFort(&B);
+    }
+    else if (J == 'V') {
+        MakeVillage(&B);
+    }
+    return B;
 }
 
-void SetAMP(BANGUNAN *B, int A, int M, boolean P){}
-    P(*B) = ; 
-}
-
-void AddPas(BANGUNAN *B, int X){
-    jumpas(*B) += X;
-}
-
-void AutoAddPas(BANGUNAN *B){
-    if (P(*B)> M(*B)){
-        AddPas(B, A(*B));
+void MakeCastle (BANGUNAN *B) {
+    Jenis(*B) = 'C';
+    SetMaksimum(B);
+    if (Kepemilikan(*B) == Nil) {
+        PasukanAwal(*B) = 40;
+        Pasukan(*B) = PasukanAwal(*B);
+    }
+    else {
+        PasukanAwal(*B) = Nil;
+        Pasukan(*B) = Nil;
     }
 }
 
-void Level_Up(BANGUNAN *B){
-    switch (jenis(*B))
-    {
-    case 'C':
-        Level_UpC(B);
-        break;
-    case 'T':
-        Level_UpT(B);
-        break;
-    case 'F':
-        Level_UpF(B);
-        break;  
-    default:
-        Level_UpV(B);
-        break;
+void MakeTower (BANGUNAN *B) {
+    Jenis(*B) = 'T';
+    SetMaksimum(B);
+    if (Kepemilikan(*B) == Nil) {
+        PasukanAwal(*B) = 30;
+        Pasukan(*B) = PasukanAwal(*B);
+    }
+    else {
+        PasukanAwal(*B) = Nil;
+        Pasukan(*B) = Nil;
     }
 }
-void Level_UpC(BANGUNAN *B){
-    switch (level(*B))
-    {
-    case 1:
-        level(*B) +=1;
-        SetAMP(B, 15, 60, false);
-        break;
-    case 2:
-        level(*B) +=1;
-        SetAMP(B, 20, 80, false);
-        break;  
-    default:
-        level(*B) +=1;
-        SetAMP(B, 25, 100, false);
-        break;
+
+void MakeFort (BANGUNAN *B) {
+    Jenis(*B) = 'F';
+    SetMaksimum(B);
+    if (Kepemilikan(*B) == Nil) {
+        PasukanAwal(*B) = 80;
+        Pasukan(*B) = PasukanAwal(*B);
+    }
+    else {
+        PasukanAwal(*B) = Nil;
+        Pasukan(*B) = Nil;
     }
 }
-void Level_UpT(BANGUNAN *B){
-    switch (level(*B))
-    {
-    case 1:
-        level(*B) +=1;
-        SetAMP(B, 10, 30, true);
-        break;
-    case 2:
-        level(*B) +=1;
-        SetAMP(B, 20, 40, true);
-        break;  
-    default:
-        level(*B) +=1;
-        SetAMP(B, 30, 50, true);
-        break;
+
+void MakeVillage (BANGUNAN *B) {
+    Jenis(*B) = 'V';
+    SetMaksimum(B);
+    if (Kepemilikan(*B) == Nil) {
+        PasukanAwal(*B) = 20;
+        Pasukan(*B) = PasukanAwal(*B);
+    }
+    else {
+        PasukanAwal(*B) = Nil;
+        Pasukan(*B) = Nil;
     }
 }
-void Level_UpF(BANGUNAN *B){
-    switch (level(*B))
-    {
-    case 1:
-        level(*B) +=1;
-        SetAMP(B, 20, 40, false);
-        break;
-    case 2:
-        level(*B) +=1;
-        SetAMP(B, 30, 60, true);
-        break;  
-    default:
-        level(*B) +=1;
-        SetAMP(B, 40, 80, false);
-        break;
+
+boolean IsPertahanan (BANGUNAN B) {
+    // if (Jenis(B) == 'C') {
+    //     return false;
+    // }
+    // else 
+    if (Jenis(B) == 'T') {
+        return true;
+    }
+    else if (Jenis(B) == 'F') {
+        if (Level(B) >= 3) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    else {
+        return false;
     }
 }
-void Level_UpV(BANGUNAN *B){
-    switch (level(*B))
-    {
-    case 1:
-        level(*B) +=1;
-        SetAMP(B, 10, 30, false);
-        break;
-    case 2:
-        level(*B) +=1;
-        SetAMP(B, 15, 40, false);
-        break;  
-    default:
-        level(*B) +=1;
-        SetAMP(B, 20, 50, false);
-        break;
+
+void SetKepemilikan (BANGUNAN *B, Pemain P) {
+    Kepemilikan(*B) = P;
+}
+
+boolean IsKepemilikan (BANGUNAN B, Pemain P) {
+    if (Kepemilikan(B) == P) {
+        return true;
     }
+    else {
+        return false;
+    }
+}
+
+void TambahPasukanAuto (BANGUNAN *B) {
+    int PasukanAwal, Selisih;
+    PasukanAwal = Pasukan(*B);
+    if (Level(*B) == 1) {
+        if (Jenis(*B) == 'C') {
+            Pasukan(*B) += 10;
+        }
+        else if (Jenis(*B) == 'T') {
+            Pasukan(*B) += 5;
+        }
+        else if (Jenis(*B) == 'F') {
+            Pasukan(*B) += 10;
+        }
+        else if (Jenis(*B) == 'V') {
+            Pasukan(*B) += 5;
+        }
+    }
+    else if (Level(*B) == 2) {
+        if (Jenis(*B) == 'C') {
+            Pasukan(*B) += 15;
+        }
+        else if (Jenis(*B) == 'T') {
+            Pasukan(*B) += 10;
+        }
+        else if (Jenis(*B) == 'F') {
+            Pasukan(*B) += 20;
+        }
+        else if (Jenis(*B) == 'V') {
+            Pasukan(*B) += 10;
+        }
+    }
+    else if (Level(*B) == 3) {
+        if (Jenis(*B) == 'C') {
+            Pasukan(*B) += 20;
+        }
+        else if (Jenis(*B) == 'T') {
+            Pasukan(*B) += 20;
+        }
+        else if (Jenis(*B) == 'F') {
+            Pasukan(*B) += 30;
+        }
+        else if (Jenis(*B) == 'V') {
+            Pasukan(*B) += 15;
+        }
+    }
+    else if (Level(*B) == 4) {
+        if (Jenis(*B) == 'C') {
+            Pasukan(*B) += 25;
+        }
+        else if (Jenis(*B) == 'T') {
+            Pasukan(*B) += 30;
+        }
+        else if (Jenis(*B) == 'F') {
+            Pasukan(*B) += 40;
+        }
+        else if (Jenis(*B) == 'V') {
+            Pasukan(*B) += 20;
+        }
+    }
+    Selisih = Pasukan(*B) - PasukanAwal;
+    if (Pasukan(*B) > Maksimum(*B)) {
+        Pasukan(*B) -= Selisih;
+    }
+}
+
+void TambahPasukanManual (BANGUNAN *B, int Pasukan) {
+    Pasukan(*B) += Pasukan;
+}
+
+void SerangBangunan (BANGUNAN *B1, BANGUNAN *B2, int Pasukan) {
+    if (Pasukan <= Pasukan(*B1)) {
+        Pasukan(*B1) -= Pasukan;
+        if (IsPertahanan(*B2)) {
+            Pasukan = (Pasukan * 3) / 4;
+        }
+        Pasukan(*B2) -= Pasukan;
+        if (Pasukan(*B2) < 0) {
+            Pasukan(*B2) *= -1;
+            Level(*B2) = 1;
+            SetMaksimum(B2);
+            SetKepemilikan(B2, Kepemilikan(*B1));
+        }
+    }
+}
+
+void LevelUp (BANGUNAN *B) {
+    if (Pasukan(*B) >= (Maksimum(*B) / 2)) {
+        if (Level(*B) < 4) {
+            Level(*B) += 1;
+            Pasukan(*B) -= (Maksimum(*B) / 2);
+            SetMaksimum(B);
+        }
+    }
+}
+
+void SetMaksimum (BANGUNAN *B) {
+    if (Jenis(*B) == 'C') {
+        Maksimum(*B) = 40 + (20 * (Level(*B) - 1));
+    }
+    else if (Jenis(*B) == 'T') {
+        Maksimum(*B) = 20 + (10 * (Level(*B) - 1));
+    }
+    else if (Jenis(*B) == 'F') {
+        Maksimum(*B) = 20 + (20 * (Level(*B) - 1));
+    }
+    else {
+        Maksimum(*B) = 20 + (10 * (Level(*B) - 1));
+    }
+}
+
+/* ************   TESTING   ************ */
+void PrintStatus (BANGUNAN B) {
+    if (Jenis(B) == 'C') {
+        printf("CASTLE\n");
+    }
+    else if (Jenis(B) == 'T') {
+        printf("TOWER\n");
+    }
+    else if (Jenis(B) == 'F') {
+        printf("FORT\n");
+    }
+    else {
+        printf("VILLAGE\n");
+    }
+    printf("%d\n", Level(B));
+    printf("%d\n", Pasukan(B));
+    printf("%d\n", Maksimum(B));
+    printf("%d\n", Kepemilikan(B));
+    printf("\n");
 }

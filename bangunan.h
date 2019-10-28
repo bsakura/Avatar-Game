@@ -1,39 +1,48 @@
-
+/* ADT Bangunan */
 #ifndef BANGUNAN_H
 #define BANGUNAN_H
-#include "point.h"
+
 #include "boolean.h"
-typedef struct {
-	char jenis;
-	int pemilik;
-    int jumpas;
-    int level; 
+#include "point.h"
+#define Nil 0
+
+typedef int Pemain; 
+typedef char Jenis;
+typedef struct { 
+    Jenis J;
+    Pemain P;
+    int L;
     int A;
     int M;
-    boolean P;
     int U;
-    POINT lokasi;
+    lokasi POINT;
 } BANGUNAN;
 
-#define jenis(B)   (B).jenis
-#define pemilik(B)   (B).pemilik
-#define jumpas(B)   (B).jumpas
-#define level(B)   (B).level
-#define lokasi(B)   (B).lokasi
-#define A(B)   (A).lokasi
-#define M(B)   (M).lokasi
-#define P(B)   (P).lokasi
-#define U(B)   (U).lokasi
+/* ************  SELEKTOR   ************ */
+#define Jenis(B) (B).J
+#define Kepemilikan(B) (B).P
+#define Level(B) (B).L
+#define Pasukan(B) (B).A
+#define Maksimum(B) (B).M
+#define PasukanAwal(B) (B).U
 
-void MakeBangunan(BANGUNAN *B,char jenis, int pemilik);
+/* ************  PROTOTYPE  ************ */
+/* ************ KONSTRUKTOR ************ */
+BANGUNAN SetBangunan (Jenis J, Pemain P);
+void MakeCastle (BANGUNAN *B);
+void MakeTower (BANGUNAN *B);
+void MakeFort (BANGUNAN *B);
+void MakeVillage (BANGUNAN *B);
+boolean IsPertahanan (BANGUNAN B);
+void SetKepemilikan (BANGUNAN *B, Pemain P);
+boolean IsKepemilikan (BANGUNAN B, Pemain P);
+void TambahPasukanAuto (BANGUNAN *B);
+void TambahPasukanManual (BANGUNAN *B, int Pasukan);
+void SerangBangunan (BANGUNAN *B1, BANGUNAN *B2, int Pasukan);
+void LevelUp (BANGUNAN *B);
+void SetMaksimum (BANGUNAN *B);
 
-void SetAMP(BANGUNAN *B, int A, int M, boolean P);
-void AddPas(BANGUNAN *B, int X);
-void AutoAddPas(BANGUNAN *B);
-void Level_Up(BANGUNAN *B);
-void Level_UpC(BANGUNAN *B);
-void Level_UpT(BANGUNAN *B);
-void Level_UpF(BANGUNAN *B);
-void Level_UpV(BANGUNAN *B);
+/* ************   TESTING   ************ */
+void PrintStatus (BANGUNAN B);
 
 #endif

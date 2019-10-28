@@ -1,8 +1,9 @@
 #ifndef CONSOLE_H
 #define CONSOLE_H
 
-#include "matriks.h"
-void CetakMap(MATRIKS M);
+#include "mesinkata.h"
 void outln();
-void CetakCommad();
+int toInt(Kata K);
+void CetakKata(Kata K);
+char toChar(Kata K);
 #endif

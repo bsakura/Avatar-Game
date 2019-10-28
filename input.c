@@ -1,16 +1,24 @@
 #include <stdio.h>
-#include "mesinkar2.h"
 #include "bangunan.h"
 #include <stdio.h>
 #include "input.h"
+
 char CC;
 int EOP;
-
+char MARK;
+boolean useFile;
 static FILE * pita;
 static int retval;
-static char S [256];
 
-void START(boolean useFile) {
+void set(boolean use){
+    useFile = use;
+    if (use){
+        MARK = '\0';
+    }else{
+        MARK = '\n';
+    }
+}
+void START() {
 /* Mesin siap dioperasikan. Pita disiapkan untuk dibaca.
    Karakter pertama yang ada pada pita posisinya adalah pada jendela.
    I.S. : sembarang
@@ -23,10 +31,10 @@ void START(boolean useFile) {
     } else{
         pita= stdin;
     }
-    ADV(useFile);
+    ADV();
 }
 
-void ADV(boolean useFile) {
+void ADV() {
 /* Pita dimajukan satu karakter.
    I.S. : Karakter pada jendela =
           CC, CC != MARK
@@ -46,24 +54,25 @@ void ADV(boolean useFile) {
 }
 
 
-int main(){
-    START(false);
-     char C;
-    // int N= CC;
-    // ADV();
-    // ADV();
-    // int M= CC;
-    // ADV());
-    while (EOP!=-1){
-        C= CC;
-        if (CC=='\n'){
-            printf("\n.\n");
-        }else{
-            printf("%c", CC);
-        }
-        ADV(false);
-    }
+// int main(){
+//     set(true);
+//     START();
+//      char C;
+//     // int N= CC;
+//     // ADV();
+//     // ADV();
+//     // int M= CC;
+//     // ADV());
+//     while (EOP!=-1){
+//         C= CC;
+//         if (CC=='\n'){
+//             printf("\n.\n");
+//         }else{
+//             printf("%c", CC);
+//         }
+//         ADV();
+//     }
 
-    return 0;
-}
+//     return 0;
+// }
 

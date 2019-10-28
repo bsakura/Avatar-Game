@@ -1,78 +1,36 @@
-#include "console.h"
 #include <stdio.h>
-#include "listlinier.h"
-
+#include "console.h"
+#include "input.h"
 void outln(){
     printf("\n");
 }
-void CetakMap(MATRIKS M){
-    int i,j;
-    for (i=1;i<=NKolEff(M) +2; i++){
-        printf("*");
-    }
-    outln();
-    for (i=1;i<=NBrsEff(M); i++){
-        printf("*");
-        for (j=1; j<=NKolEff(M);j++){
-            printf("%c", jenis(Elmt(M,i,j)));
-        }
-        outln();
-    }
-    for (i=1;i<=NKolEff(M) +2; i++){
-        printf("*");
-    }
-    outln();
+int toInt(Kata K){
+    int i, kali, res;
+    res=0;
+    kali = 1;
+    for (i= K.Length; i>= 1; i--){
+        res += ((int) K.TabKata[i] -'0')* kali;
+        kali *= 10;
+    }   
+    return res;
 }
 
-void CetakCommand(){
-    printf("ENTER COMMAND: ");
-    //BELUM BACANYA 
-}
-void CetakSkill(Queue Q){
-    printf("Skill Available: ");
-    //CetakKata(InfoHead(Q));
-    //BELUM BACANYA 
-}
-
-void CetakBangunanP(List P){
-        address a;
-        a= First(L);
-        int index = 1;
-        do{
-            printf("%d. ", index);
-            Cetak1Bangunan(Info(a));
-            index++;
-            a= Next(a);        
-        }
-        while (Next(a)!= Nil);
-}
-
-void Cetak1Bangunan(BANGUNAN B){
-    switch (jenis(B))
-    {
-    case C:
-        printf("Castle ")
-        TulisPOINT(lokasi(B));
-        printf(" %d lv. %d", jumpas(B), level(B));
-        ountln();
-        break;
-    case T:
-        printf("Tower ")
-        TulisPOINT(lokasi(B));
-        printf(" %d lv. %d", jumpas(B), level(B));
-        ountln();
-        break;
-    case F:
-        printf("Fort ")
-        TulisPOINT(lokasi(B));
-        printf(" %d lv. %d", jumpas(B), level(B));
-        ountln();
-        break;
-    default:
-        printf("Village ")
-        TulisPOINT(lokasi(B));
-        printf(" %d lv. %d", jumpas(B), level(B));
-        ountln();
-        break;
+void CetakKata(Kata K){
+    int i;
+    for(i=1; i<= K.Length; i++){
+        printf("%c", K.TabKata[i]);
     }
+}
+char toChar(Kata K){
+    return K.TabKata[1];
+}
+int main(){
+    set(true);
+    STARTKATA();
+    // ADVKATA();
+    // printf("%d", CKata.Length);
+    // CetakKata(CKata);
+    int M= toInt(CKata);
+    printf("%d", M);
+    return 0;
 }
