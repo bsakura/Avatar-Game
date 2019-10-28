@@ -15,7 +15,7 @@ typedef struct {
     int A;
     int M;
     int U;
-    lokasi POINT;
+    POINT lokasi;
 } BANGUNAN;
 
 typedef struct {
@@ -30,7 +30,7 @@ typedef struct {
 #define Pasukan(B) (B).A
 #define Maksimum(B) (B).M
 #define PasukanAwal(B) (B).U
-
+#define lokasi(B) (B).lokasi
 #define Bangunan(A, i) (A).arrB[(i)]
 #define NBBangunan(A) (A).N
 

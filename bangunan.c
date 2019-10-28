@@ -3,7 +3,7 @@
 #include "boolean.h"
 #include "bangunan.h"
 
-BANGUNAN SetBangunan (Jenis J, Pemain P) {
+BANGUNAN SetBangunan (Jenis J, Pemain P, POINT lokasi) {
     BANGUNAN B;
     Kepemilikan(B) = P;
     Level(B) = 1;
@@ -20,57 +20,58 @@ BANGUNAN SetBangunan (Jenis J, Pemain P) {
         MakeVillage(&B);
     }
     return B;
+    lokasi(B) = lokasi;
 }
 
 void MakeCastle (BANGUNAN *B) {
     Jenis(*B) = 'C';
     SetMaksimum(B);
-    if (Kepemilikan(*B) == Nil) {
+    if (Kepemilikan(*B) ==0) {
         PasukanAwal(*B) = 40;
         Pasukan(*B) = PasukanAwal(*B);
     }
     else {
-        PasukanAwal(*B) = Nil;
-        Pasukan(*B) = Nil;
+        PasukanAwal(*B) =0;
+        Pasukan(*B) =0;
     }
 }
 
 void MakeTower (BANGUNAN *B) {
     Jenis(*B) = 'T';
     SetMaksimum(B);
-    if (Kepemilikan(*B) == Nil) {
+    if (Kepemilikan(*B) ==0) {
         PasukanAwal(*B) = 30;
         Pasukan(*B) = PasukanAwal(*B);
     }
     else {
-        PasukanAwal(*B) = Nil;
-        Pasukan(*B) = Nil;
+        PasukanAwal(*B) =0;
+        Pasukan(*B) =0;
     }
 }
 
 void MakeFort (BANGUNAN *B) {
     Jenis(*B) = 'F';
     SetMaksimum(B);
-    if (Kepemilikan(*B) == Nil) {
+    if (Kepemilikan(*B) ==0) {
         PasukanAwal(*B) = 80;
         Pasukan(*B) = PasukanAwal(*B);
     }
     else {
-        PasukanAwal(*B) = Nil;
-        Pasukan(*B) = Nil;
+        PasukanAwal(*B) =0;
+        Pasukan(*B) =0;
     }
 }
 
 void MakeVillage (BANGUNAN *B) {
     Jenis(*B) = 'V';
     SetMaksimum(B);
-    if (Kepemilikan(*B) == Nil) {
+    if (Kepemilikan(*B) ==0) {
         PasukanAwal(*B) = 20;
         Pasukan(*B) = PasukanAwal(*B);
     }
     else {
-        PasukanAwal(*B) = Nil;
-        Pasukan(*B) = Nil;
+        PasukanAwal(*B) =0;
+        Pasukan(*B) =0;
     }
 }
 
@@ -245,7 +246,7 @@ void PrintArraySerang (ARRAYB A, Pemain P) {
     int i, j;
     j = 1;
     for (i = 1; i <= NBBangunan(A); i++) {
-        if ((!IsKepemilikan(Bangunan(A, i), P)) && (!IsKepemilikan(Bangunan(A, i), Nil))) {
+        if ((!IsKepemilikan(Bangunan(A, i), P)) && (!IsKepemilikan(Bangunan(A, i),0))) {
             Bangunan(B, j) = Bangunan(A, i);
             j++;
         }
