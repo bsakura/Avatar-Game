@@ -75,10 +75,11 @@ void MakeVillage (BANGUNAN *B) {
 }
 
 boolean IsPertahanan (BANGUNAN B) {
-    if (Jenis(B) == 'C') {
-        return false;
-    }
-    else if (Jenis(B) == 'T') {
+    // if (Jenis(B) == 'C') {
+    //     return false;
+    // }
+    // else 
+    if (Jenis(B) == 'T') {
         return true;
     }
     else if (Jenis(B) == 'F') {

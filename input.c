@@ -1,9 +1,54 @@
 #include <stdio.h>
 #include "mesinkar2.h"
 #include "bangunan.h"
+#include <stdio.h>
+#include "input.h"
+char CC;
+int EOP;
+
+static FILE * pita;
+static int retval;
+static char S [256];
+
+void START(boolean useFile) {
+/* Mesin siap dioperasikan. Pita disiapkan untuk dibaca.
+   Karakter pertama yang ada pada pita posisinya adalah pada jendela.
+   I.S. : sembarang
+   F.S. : CC adalah karakter pertama pada pita. Jika CC != MARK maka EOP akan padam (false).
+          Jika CC = MARK maka EOP akan menyala (true) */
+
+    /* Algoritma */
+    if (useFile){
+        pita = fopen("input.txt","r");
+    } else{
+        pita= stdin;
+    }
+    ADV(useFile);
+}
+
+void ADV(boolean useFile) {
+/* Pita dimajukan satu karakter.
+   I.S. : Karakter pada jendela =
+          CC, CC != MARK
+   F.S. : CC adalah karakter berikutnya dari CC yang lama,
+          CC mungkin = MARK.
+          Jika  CC = MARK maka EOP akan menyala (true) */
+
+    /* Algoritma */
+    retval = fscanf(pita,"%c",&CC);
+    EOP = retval;
+    if (!useFile && CC=='\n'){
+        EOP = -1;
+    }
+    if (EOP==-1) {
+       fclose(pita);
+    }
+}
+
+
 int main(){
-    START();
-    // char C;
+    START(false);
+     char C;
     // int N= CC;
     // ADV();
     // ADV();
@@ -16,7 +61,7 @@ int main(){
         }else{
             printf("%c", CC);
         }
-        ADV();
+        ADV(false);
     }
 
     return 0;

@@ -10,7 +10,7 @@
 
 #define Nil NULL
 
-typedef BANGUNAN infotype;
+typedef int infotype;
 typedef struct tElmtlist *address;
 typedef struct tElmtlist {
 	infotype info;
