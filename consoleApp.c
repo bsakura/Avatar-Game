@@ -116,6 +116,7 @@
             P = MakePOINT(x,y);
             B = SetBangunan(C,2, P);
             //A[i] = B;
+            //M[lokasi(B).x][lokasi(B).y]=B;
             ADVKATA();
         }
     }
