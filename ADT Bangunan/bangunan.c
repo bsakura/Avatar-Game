@@ -75,10 +75,6 @@ void MakeVillage (BANGUNAN *B) {
 }
 
 boolean IsPertahanan (BANGUNAN B) {
-    // if (Jenis(B) == 'C') {
-    //     return false;
-    // }
-    // else 
     if (Jenis(B) == 'T') {
         return true;
     }
@@ -218,23 +214,41 @@ void SetMaksimum (BANGUNAN *B) {
     }
 }
 
-/* ************   TESTING   ************ */
 void PrintStatus (BANGUNAN B) {
     if (Jenis(B) == 'C') {
-        printf("CASTLE\n");
+        printf("Castle");
     }
     else if (Jenis(B) == 'T') {
-        printf("TOWER\n");
+        printf("Tower");
     }
     else if (Jenis(B) == 'F') {
-        printf("FORT\n");
+        printf("Fort");
     }
-    else {
-        printf("VILLAGE\n");
+    else if (Jenis(B) == 'V') {
+        printf("Village");
     }
-    printf("%d\n", Level(B));
-    printf("%d\n", Pasukan(B));
-    printf("%d\n", Maksimum(B));
-    printf("%d\n", Kepemilikan(B));
-    printf("\n");
+    printf(" %d", Pasukan(B));
+    printf(" lv. %d", Level(B));
+}
+
+void PrintArrayB (ARRAYB A) {
+    int i;
+    for (i = 1; i <= NBBangunan(A); i++) {
+        printf("%d. ", i);
+        PrintStatus(Bangunan(A, i));
+        printf("\n");
+    }
+}
+
+void PrintArraySerang (ARRAYB A, Pemain P) {
+    ARRAYB B;
+    int i, j;
+    j = 1;
+    for (i = 1; i <= NBBangunan(A); i++) {
+        if ((!IsKepemilikan(Bangunan(A, i), P)) && (!IsKepemilikan(Bangunan(A, i), Nil))) {
+            Bangunan(B, j) = Bangunan(A, i);
+            j++;
+        }
+    }
+    PrintArrayB (B);
 }
