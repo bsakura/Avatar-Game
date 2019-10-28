@@ -5,6 +5,7 @@
 #include "listlinier.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include "bangunan.h"
 
 
 /* PROTOTYPE */
