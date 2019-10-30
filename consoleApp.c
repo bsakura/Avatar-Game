@@ -4,6 +4,8 @@
 #include "listlinier.h"
 #include "input.h"
 #include "matriks.h"
+#include "bangunan.h"
+#include "boolean.h"
 
 
 // void CetakMap(MATRIKS M){
@@ -82,7 +84,10 @@
         int N, x, y, i;
         char C;
         POINT P;
-        Bangunan B;
+        BANGUNAN B;
+        ARRAYB A;
+        List L1, L2, LS;
+        i = 1;
         set(true);
         STARTKATA();
         NBrsEff(M) = toInt(CKata);
@@ -90,6 +95,8 @@
         NKolEff(M) = toInt(CKata);
         ADVKATA();
         N = toInt(CKata);
+        NBBangunan(A) = N;
+        MakeEmpty(&A, NBBangunan(A));
         ADVKATA();
         C= toChar(CKata);
         ADVKATA();
@@ -98,6 +105,8 @@
         y= toInt(CKata);
         P = MakePOINT(x,y);
         B = SetBangunan(C,1, P);
+        Bangunan(A, i) = B;
+        i++;
         ADVKATA();
         C= toChar(CKata);
         ADVKATA();
@@ -106,6 +115,7 @@
         y= toInt(CKata);
         P = MakePOINT(x,y);
         B = SetBangunan(C,2, P);
+        Bangunan(A, i) = B;
         ADVKATA();
         for (i=3; i <= N; i++){
             C= toChar(CKata);
@@ -114,10 +124,21 @@
             ADVKATA();
             y= toInt(CKata);
             P = MakePOINT(x,y);
-            B = SetBangunan(C,2, P);
+            B = SetBangunan(C,0, P);
+            Bangunan(A, i) = B;
             //A[i] = B;
             //M[lokasi(B).x][lokasi(B).y]=B;
             ADVKATA();
         }
+        CreateEmpty(&L1);
+        ListBangunan(&L1, A, 1);
+        PrintListBangunan(L1);
+        printf("\n");
+        CreateEmpty(&L2);
+        ListBangunan(&L2, A, 2);
+        PrintListBangunan(L2);
+        printf("\n");
+        CreateEmpty(&LS);
+        ListBangunanSerang(&LS, A, 1);
+        PrintListBangunan(LS);
     }
-}

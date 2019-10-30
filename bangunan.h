@@ -4,7 +4,6 @@
 
 #include "boolean.h"
 #include "point.h"
-#define Nil 0
 
 typedef int Pemain; 
 typedef char Jenis;
@@ -36,7 +35,8 @@ typedef struct {
 
 /* ************  PROTOTYPE  ************ */
 /* ************ KONSTRUKTOR ************ */
-BANGUNAN SetBangunan (Jenis J, Pemain P);
+void MakeEmpty (ARRAYB *A, int N);
+BANGUNAN SetBangunan (Jenis J, Pemain P, POINT lokasi);
 void MakeCastle (BANGUNAN *B);
 void MakeTower (BANGUNAN *B);
 void MakeFort (BANGUNAN *B);
@@ -50,7 +50,5 @@ void SerangBangunan (BANGUNAN *B1, BANGUNAN *B2, int Pasukan);
 void LevelUp (BANGUNAN *B);
 void SetMaksimum (BANGUNAN *B);
 void PrintStatus (BANGUNAN B);
-void PrintArrayB (ARRAYB A);
-void PrintArraySerang (ARRAYB A, Pemain P);
 
 #endif

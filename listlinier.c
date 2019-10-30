@@ -45,11 +45,11 @@ void Dealokasi (address *P){
 }
 
 /****************** PENCARIAN SEBUAH ELEMEN LIST ******************/
-address Search (List L, infotype X){
+address Search (List L, infotype X);//{
 /* Mencari apakah ada elemen list dengan Info(P)= X */
 /* Jika ada, mengirimkan address elemen tersebut. */
 /* Jika tidak ada, mengirimkan Nil */
-    if (IsEmpty(L)){
+/*    if (IsEmpty(L)){
         return Nil;
     } else{
         address a;
@@ -63,7 +63,7 @@ address Search (List L, infotype X){
             return Nil;
         }
     }
-}
+}*/
 
 /****************** PRIMITIF BERDASARKAN NILAI ******************/
 /*** PENAMBAHAN ELEMEN ***/
@@ -148,7 +148,7 @@ void DelFirst (List *L, address *P){
     *P = First(*L);
     First(*L) = Next(First(*L));
 }
-void DelP (List *L, infotype X){
+void DelP (List *L, infotype X);//{
 /* I.S. Sembarang */
 /* F.S. Jika ada elemen list beraddress P, dengan Info(P)=X  */
 /* Maka P dihapus dari list dan di-dealokasi */
@@ -156,7 +156,7 @@ void DelP (List *L, infotype X){
 /* maka yang dihapus hanya elemen pertama dengan Info = X */
 /* Jika tidak ada elemen list dengan Info(P)=X, maka list tetap */
 /* List mungkin menjadi kosong karena penghapusan */
-    if (Search(*L, X) != Nil){
+/*    if (Search(*L, X) != Nil){
         address a;
         address P;
         a = First(*L);
@@ -173,7 +173,7 @@ void DelP (List *L, infotype X){
 
     }
 
-}
+}*/
 void DelLast (List *L, address *P){
 /* I.S. List tidak kosong */
 /* F.S. P adalah alamat elemen terakhir list sebelum penghapusan  */
@@ -206,13 +206,13 @@ void DelAfter (List *L, address *Pdel, address Prec){
     Next(a) = Next(Next(a));
 }
 /****************** PROSES SEMUA ELEMEN LIST ******************/
-void PrintInfo (List L)
+void PrintInfo (List L);
 /* I.S. List mungkin kosong */
 /* F.S. Jika list tidak kosong, iai list dicetak ke kanan: [e1,e2,...,en] */
 /* Contoh : jika ada tiga elemen bernilai 1, 20, 30 akan dicetak: [1,20,30] */
 /* Jika list kosong : menulis [] */
 /* Tidak ada tambahan karakter apa pun di awal, akhir, atau di tengah */
-{
+/*{
     printf("[");
     if (!(IsEmpty(L))){
         address a;
@@ -225,7 +225,7 @@ void PrintInfo (List L)
         printf("%d", Info(a));
     }
     printf("]");
-}
+}*/
 int NbElmt (List L){
 /* Mengirimkan banyaknya elemen list; mengirimkan 0 jika list kosong */
 
@@ -245,9 +245,9 @@ int NbElmt (List L){
         return count;
     }
 }
-infotype Max (List L){
+infotype Max (List L);//{
 /* Mengirimkan nilai Info(P) yang maksimum */
-    infotype Max;
+/*    infotype Max;
     if (IsEmpty(L)){
         return Nil;
     } else{
@@ -266,7 +266,7 @@ infotype Max (List L){
             return Max;
         }
     }
-}
+}*/
 
 /****************** PROSES TERHADAP LIST ******************/
 void Konkat1 (List *L1, List *L2, List *L3){
@@ -291,6 +291,48 @@ void Konkat1 (List *L1, List *L2, List *L3){
     CreateEmpty(L2);
 }
 
+void ListBangunan (List *L, ARRAYB A, Pemain P) {
+    int i;
+    for (i = 1; i <= NBBangunan(A); i++) {
+        if (Kepemilikan(Bangunan(A, i)) == P) {
+            if (IsEmpty(*L)) {
+                InsVFirst(L, Bangunan(A, i));
+            }
+            else {
+                InsVLast(L, Bangunan(A, i));
+            }
+        }
+    }
+}
+
+void ListBangunanSerang (List *L, ARRAYB A, Pemain P) {
+    int i;
+    List L1, L2;
+    CreateEmpty(&L1);
+    CreateEmpty(&L2);
+    ListBangunan (&L1, A, 0);
+    if (P == 1) {
+        ListBangunan (&L2, A, 2);
+    }
+    else {
+        ListBangunan (&L2, A, 1);
+    }
+    Konkat1 (&L1, &L2, L);
+}
+
+void PrintListBangunan (List L) {
+    address a;
+    int i;
+    a = First(L);
+    i = 1;
+    while (a != Nil) {
+        printf("%d. ", i);
+        PrintStatus(Info(a));
+        printf("\n");
+        i++;
+        a = Next(a);
+    }
+}
 
 // int main(){
 //     List L;

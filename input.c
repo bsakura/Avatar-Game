@@ -13,7 +13,7 @@ static int retval;
 void set(boolean use){
     useFile = use;
     if (use){
-        MARK = '\0';
+        MARK = '\n';
     }else{
         MARK = '\n';
     }

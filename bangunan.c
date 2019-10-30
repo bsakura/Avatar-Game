@@ -3,6 +3,18 @@
 #include "boolean.h"
 #include "bangunan.h"
 
+void MakeEmpty (ARRAYB *A, int N) {
+    int i;
+    for (i = 1; i <= NBBangunan(*A); i++) {
+        Jenis(Bangunan(*A, i)) = 'X';
+        Kepemilikan(Bangunan(*A, i)) = 0; 
+        Level(Bangunan(*A, i)) = 0;
+        Pasukan(Bangunan(*A, i)) = 0;
+        Maksimum(Bangunan(*A, i)) = 0;
+        PasukanAwal(Bangunan(*A, i)) = 0;
+    }
+}
+
 BANGUNAN SetBangunan (Jenis J, Pemain P, POINT lokasi) {
     BANGUNAN B;
     Kepemilikan(B) = P;
@@ -19,8 +31,8 @@ BANGUNAN SetBangunan (Jenis J, Pemain P, POINT lokasi) {
     else if (J == 'V') {
         MakeVillage(&B);
     }
-    return B;
     lokasi(B) = lokasi;
+    return B;
 }
 
 void MakeCastle (BANGUNAN *B) {
@@ -230,26 +242,4 @@ void PrintStatus (BANGUNAN B) {
     }
     printf(" %d", Pasukan(B));
     printf(" lv. %d", Level(B));
-}
-
-void PrintArrayB (ARRAYB A) {
-    int i;
-    for (i = 1; i <= NBBangunan(A); i++) {
-        printf("%d. ", i);
-        PrintStatus(Bangunan(A, i));
-        printf("\n");
-    }
-}
-
-void PrintArraySerang (ARRAYB A, Pemain P) {
-    ARRAYB B;
-    int i, j;
-    j = 1;
-    for (i = 1; i <= NBBangunan(A); i++) {
-        if ((!IsKepemilikan(Bangunan(A, i), P)) && (!IsKepemilikan(Bangunan(A, i),0))) {
-            Bangunan(B, j) = Bangunan(A, i);
-            j++;
-        }
-    }
-    PrintArrayB (B);
 }

@@ -24,7 +24,7 @@ void CetakKata(Kata K){
 char toChar(Kata K){
     return K.TabKata[1];
 }
-int main(){
+/*int main(){
     set(true);
     STARTKATA();
     // ADVKATA();
@@ -33,4 +33,4 @@ int main(){
     int M= toInt(CKata);
     printf("%d", M);
     return 0;
-}
+}*/

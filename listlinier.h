@@ -11,7 +11,7 @@
 
 #define Nil NULL
 
-typedef struct BANGUNAN infotype;
+typedef BANGUNAN infotype;
 typedef struct tElmtlist *address;
 typedef struct tElmtlist {
 	infotype info;
@@ -139,5 +139,11 @@ void Konkat1 (List *L1, List *L2, List *L3);
 /* menghasilkan L3 yang baru (dengan elemen list L1 dan L2) */
 /* dan L1 serta L2 menjadi list kosong.*/
 /* Tidak ada alokasi/dealokasi pada prosedur ini */
+
+void ListBangunan (List *L, ARRAYB A, Pemain P);
+
+void ListBangunanSerang (List *L, ARRAYB A, Pemain P);
+
+void PrintListBangunan (List L);
 
 #endif
