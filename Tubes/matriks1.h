@@ -67,7 +67,7 @@ void MakeMATRIKSS (int NB, int NK, MATRIKSS * M);
 // 4 5 6
 // 8 9 10
 // */
-// void TulisMATRIKS (MATRIKS M);
+void TulisMATRIKSS (MATRIKSS M);
 // /* I.S. M terdefinisi */
 // /* F.S. Nilai M(i,j) ditulis ke layar per baris per kolom, masing-masing elemen per baris
 //    dipisahkan sebuah spasi */

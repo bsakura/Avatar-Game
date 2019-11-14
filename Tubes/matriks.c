@@ -5,7 +5,8 @@
 #include <stdio.h>
 #include "boolean.h"
 #include "matriks.h"
-
+#include "point.h"
+#include "bangunan.h"
 /* ********** DEFINISI PROTOTIPE PRIMITIF ********** */
 /* *** Konstruktor membentuk MATRIKS *** */
  void MakeMATRIKS (int NB, int NK, MATRIKS * M){
@@ -14,6 +15,12 @@
 /* F.S. Matriks M sesuai dengan definisi di atas terbentuk */
     NBrsEff(*M) = NB;
     NKolEff(*M) = NK;
+    
+    for(int i = 1; i<= NB; i++){
+        for(int j=1 ; j<= NK; j++){
+            Elmt(*M,i,j)= SetBangunan('C', 3, MakePOINT(i,j));
+        }
+    }
 }
 // /* *** Selektor "DUNIA MATRIKS" *** */
 // boolean IsIdxValid (int i, int j){

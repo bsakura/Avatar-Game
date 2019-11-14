@@ -70,7 +70,7 @@
 //         }
 //     }
 // }
-// void TulisMATRIKS (MATRIKS M){
+void TulisMATRIKSS (MATRIKSS M){
 // /* I.S. M terdefinisi */
 // /* F.S. Nilai M(i,j) ditulis ke layar per baris per kolom, masing-masing elemen per baris
 //    dipisahkan sebuah spasi */
@@ -80,18 +80,18 @@
 // 4 5 6
 // 8 9 10
 // */
-//     for (int i=GetFirstIdxBrs(M); i<=GetLastIdxBrs(M);i++){
-//         for (int j=GetFirstIdxKol(M) ; j<=GetLastIdxKol(M); j++){
-//             printf("%d",Elmt(M,i,j));
-//             if (j!=GetLastIdxKol(M)){
-//                 printf(" ");
-//             }
-//         }
-//         if (i!=GetLastIdxBrs(M)){
-//             printf("\n");
-//         }
-//     }
-// }
+    for (int i=BrsMin; i<=BrsMin + NBrsEfff(M) -1;i++){
+        for (int j=KolMin ; j<=KolMin + NKolEfff(M) -1; j++){
+            printf("%d",Elmnt(M,i,j));
+            if (j!=KolMin+NKolEfff(M) -1 ){
+                printf(" ");
+            }
+        }
+        if (i!=NBrsEfff(M) +BrsMin -1){
+            printf("\n");
+        }
+    }
+}
 // /* ********** KELOMPOK OPERASI ARITMATIKA TERHADAP TYPE ********** */
 // MATRIKS TambahMATRIKS (MATRIKS M1, MATRIKS M2){
 // /* Prekondisi : M1  berukuran sama dengan M2 */

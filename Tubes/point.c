@@ -28,7 +28,7 @@ void BacaPOINT (POINT * P){}
    akan membentuk POINT <1,2> */
 /* I.S. Sembarang */
 /* F.S. P terdefinisi */
-void TulisPOINT (POINT P){}
+void TulisPOINT (POINT P){printf("(%0.0f,%0.0f)", Absis(P), Ordinat(P));}
 /* Nilai P ditulis ke layar dengan format "(X,Y)"
    tanpa spasi, enter, atau karakter lain di depan, belakang,
    atau di antaranya

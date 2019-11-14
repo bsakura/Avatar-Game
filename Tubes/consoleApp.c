@@ -7,25 +7,38 @@
 #include "bangunan.h"
 #include "boolean.h"
 #include "matriks1.h"
+#include "pcolor.h"
 
-// void CetakMap(MATRIKS M){
-//     int i,j;
-//     for (i=1;i<=NKolEff(M) +2; i++){
-//         printf("*");
-//     }
-//     outln();
-//     for (i=1;i<=NBrsEff(M); i++){
-//         printf("*");
-//         for (j=1; j<=NKolEff(M);j++){
-//             printf("%c", jenis(Elmt(M,i,j)));
-//         }
-//         outln();
-//     }
-//     for (i=1;i<=NKolEff(M) +2; i++){
-//         printf("*");
-//     }
-//     outln();
-// }
+void CetakMap(MATRIKS M){
+    int i,j;
+    for (i=1;i<=NKolEff(M) +2; i++){
+        printf("*");
+    }
+    outln();
+    for (i=1;i<=NBrsEff(M); i++){
+        printf("*");
+        for (j=1; j<=NKolEff(M);j++){
+            if (Kepemilikan(Elmt(M,i,j))==0){
+                printf("%c", Jenis(Elmt(M,i,j)));
+            } else if  (Kepemilikan(Elmt(M,i,j))==1)
+            {
+                print_blue(Jenis(Elmt(M,i,j)));
+            }
+            else if(Kepemilikan(Elmt(M,i,j))==2){
+                print_red(Jenis(Elmt(M,i,j)));
+            }
+            else{
+                printf(" ");
+            }
+        }
+        printf("*");
+        outln();
+    }
+    for (i=1;i<=NKolEff(M) +2; i++){
+        printf("*");
+    }
+    outln();
+}
 
 // void CetakCommand(){
 //     printf("ENTER COMMAND: ");
@@ -92,9 +105,12 @@ void StartGame(){
         set(true);
         STARTKATA();
         NBrsEff(M) = toInt(CKata);
+        printf("%d", NBrsEff(M));
         ADVKATA();
         NKolEff(M) = toInt(CKata);
+        printf("%d",NKolEff(M));
         ADVKATA();
+        MakeMATRIKS(NBrsEff(M), NKolEff(M),&M);
         N = toInt(CKata);
         NBBangunan(A) = N;
         MakeEmpty(&A, NBBangunan(A));
@@ -135,6 +151,8 @@ void StartGame(){
             ADVKATA();
         }
         MATRIKSS M1;
+        MakeMATRIKSS( N, N, &M1 );
+
         for (i=1; i<=NBBangunan(A); i++){
             for(j=1; j<=NBBangunan(A);j++){
                 Elmnt(M1,i,j)= toInt(CKata);
@@ -153,6 +171,9 @@ void StartGame(){
         CreateEmpty(&LS);
         ListBangunanSerang(&LS, A, 1);
         PrintListBangunan(LS);
+        TulisMATRIKSS(M1);
+        outln();
+        CetakMap(M);
     }
 
 int main(){

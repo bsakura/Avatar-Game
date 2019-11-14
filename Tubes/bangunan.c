@@ -2,6 +2,7 @@
 
 #include "boolean.h"
 #include "bangunan.h"
+#include "point.h"
 
 void MakeEmpty (ARRAYB *A, int N) {
     int i;
@@ -229,17 +230,18 @@ void SetMaksimum (BANGUNAN *B) {
 
 void PrintStatus (BANGUNAN B) {
     if (Jenis(B) == 'C') {
-        printf("Castle");
+        printf("Castle ");
     }
     else if (Jenis(B) == 'T') {
-        printf("Tower");
+        printf("Tower ");
     }
     else if (Jenis(B) == 'F') {
-        printf("Fort");
+        printf("Fort ");
     }
     else if (Jenis(B) == 'V') {
-        printf("Village");
+        printf("Village ");
     }
+    TulisPOINT(lokasi(B));
     printf(" %d", Pasukan(B));
     printf(" lv. %d", Level(B));
 }
