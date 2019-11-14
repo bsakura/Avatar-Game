@@ -4,18 +4,6 @@
 #include "bangunan.h"
 #include "point.h"
 
-void MakeEmpty (ARRAYB *A, int N) {
-    int i;
-    for (i = 1; i <= NBBangunan(*A); i++) {
-        Jenis(Bangunan(*A, i)) = 'X';
-        Kepemilikan(Bangunan(*A, i)) = 0; 
-        Level(Bangunan(*A, i)) = 0;
-        Pasukan(Bangunan(*A, i)) = 0;
-        Maksimum(Bangunan(*A, i)) = 0;
-        PasukanAwal(Bangunan(*A, i)) = 0;
-    }
-}
-
 BANGUNAN SetBangunan (Jenis J, Pemain P, POINT lokasi) {
     BANGUNAN B;
     Kepemilikan(B) = P;
