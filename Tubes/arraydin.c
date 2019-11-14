@@ -16,10 +16,20 @@
 void MakeEmpty(TabInt *T, int maxel){
     /* I.S. T sembarang, maxel > 0 */
     /* F.S. Terbentuk tabel T kosong dengan kapasitas maxel + 1 */
-    TI(*T) = (int*) malloc ((maxel+1) * sizeof(int));
+    TI(*T) = (BANGUNAN*) malloc ((maxel+1) * sizeof(BANGUNAN));
     Neff(*T) = 0;
     MaxEl(*T) = maxel;
 }
+
+// void PrintBangunan(TabInt A, int pemain) {
+//     int i;
+//     for (i = 1; i <= MaxEl(A); i++) {
+//         if (Kepemilikan(Bangunan(A, i)) == pemain) {
+//             print("%d. ", i);
+//             PrintStatus(Bangunan(A, i));
+//         }
+//     }
+// }
 
 // void Dealokasi(TabInt *T){
 //     /* I.S. T terdefinisi; */

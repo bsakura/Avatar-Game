@@ -4,7 +4,6 @@
 
 #include "boolean.h"
 #include "point.h"
-#include "arraydin.h"
 
 typedef int Pemain; 
 typedef char Jenis;

@@ -8,6 +8,8 @@
 #include "boolean.h"
 #include "pcolor.h"
 #include "arraydin.h"
+#include "mesinkata.h"
+#include "point.h"
 
 // void CetakMap(MATRIKS M, ARRAYB A){
 //     int i,j;
@@ -145,24 +147,28 @@ void StartGame(){
         MATRIKS M1;
         MakeMATRIKS( N, N, &M1 );
 
-        for (i=1; i<=NBBangunan(A); i++){
-            for(j=1; j<=NBBangunan(A);j++){
+        for (i=1; i<=N; i++){
+            for(j=1; j<=N; j++){
                 Elmt(M1,i,j)= toInt(CKata);
                 ADVKATA();
             }
         }
         
         CreateEmpty(&L1);
-        ListBangunan(&L1, A, 1);
-        PrintListBangunan(L1);
+        //ListBangunan(&L1, A, 1);
+        //PrintListBangunan(L1);
+        for (i = 1; i<= N; i++) {
+            PrintStatus(Bangunan(A, i));
+            outln();
+        }
         printf("\n");
         CreateEmpty(&L2);
-        ListBangunan(&L2, A, 2);
-        PrintListBangunan(L2);
+        //ListBangunan(&L2, A, 2);
+        //PrintListBangunan(L2);
         printf("\n");
         CreateEmpty(&LS);
-        ListBangunanSerang(&LS, A, 1);
-        PrintListBangunan(LS);
+        //ListBangunanSerang(&LS, A, 1);
+        //PrintListBangunan(LS);
         TulisMATRIKS(M1);
         outln();
         //CetakMap(M);

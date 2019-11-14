@@ -17,11 +17,11 @@
 /* Indeks tak terdefinisi*/
 
 /* Definisi elemen dan koleksi objek */
-typedef int IdxType; /* type indeks */
-typedef BANGUNAN ElType;  /* type elemen tabel */
+// typedef int IdxType; /* type indeks */
+// typedef BANGUNAN ElType;  /* type elemen tabel */
 typedef struct
 {
-  ElType *TI; /* memori tempat penyimpan elemen (container) */
+  BANGUNAN *TI; /* memori tempat penyimpan elemen (container) */
   int Neff;   /* >=0, banyaknya elemen efektif */
   int MaxEl;  /* ukuran elemen */
 } TabInt;
@@ -49,6 +49,7 @@ void MakeEmpty(TabInt *T, int maxel);
 /* I.S. T sembarang, maxel > 0 */
 /* F.S. Terbentuk tabel T kosong dengan kapasitas maxel + 1 */
 
+// void PrintBangunan(TabInt T, int pemain);
 // void Dealokasi(TabInt *T);
 // /* I.S. T terdefinisi; */
 // /* F.S. TI(T) dikembalikan ke system, MaxEl(T)=0; Neff(T)=0 */
