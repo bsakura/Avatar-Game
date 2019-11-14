@@ -6,6 +6,7 @@
 #include "boolean.h"
 #include <stdio.h>
 #include "arraydin.h"
+#include "bangunan.h"
 
 #include <stdlib.h>
 
