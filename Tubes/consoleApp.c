@@ -6,39 +6,31 @@
 #include "matriks.h"
 #include "bangunan.h"
 #include "boolean.h"
-#include "matriks1.h"
 #include "pcolor.h"
 
-void CetakMap(MATRIKS M){
-    int i,j;
-    for (i=1;i<=NKolEff(M) +2; i++){
-        printf("*");
-    }
-    outln();
-    for (i=1;i<=NBrsEff(M); i++){
-        printf("*");
-        for (j=1; j<=NKolEff(M);j++){
-            if (Kepemilikan(Elmt(M,i,j))==0){
-                printf("%c", Jenis(Elmt(M,i,j)));
-            } else if  (Kepemilikan(Elmt(M,i,j))==1)
-            {
-                print_blue(Jenis(Elmt(M,i,j)));
-            }
-            else if(Kepemilikan(Elmt(M,i,j))==2){
-                print_red(Jenis(Elmt(M,i,j)));
-            }
-            else{
-                printf(" ");
-            }
-        }
-        printf("*");
-        outln();
-    }
-    for (i=1;i<=NKolEff(M) +2; i++){
-        printf("*");
-    }
-    outln();
-}
+// void CetakMap(MATRIKS M, ARRAYB A){
+//     int i,j;
+//     for (i=1;i<=NKolEff(M) +2; i++){
+//         printf("*");
+//     }
+//     outln();
+//     for (i=1;i<=NBrsEff(M); i++){
+//         printf("*");
+//         for (j=1; j<=NKolEff(M);j++){
+//             if (Elmt(M,i,j) ==0){
+//                 printf(" ");
+//             }else{
+//                 BANGUNAN B = 
+//             }
+//         }
+//         printf("*");
+//         outln();
+//     }
+//     for (i=1;i<=NKolEff(M) +2; i++){
+//         printf("*");
+//     }
+//     outln();
+//}
 
 // void CetakCommand(){
 //     printf("ENTER COMMAND: ");
@@ -123,7 +115,7 @@ void StartGame(){
         P = MakePOINT(x,y);
         B = SetBangunan(C,1, P);
         Bangunan(A, i) = B;
-        Elmt(M,x,y) = B;
+        Elmt(M,x,y) = i;
         i++;
         ADVKATA();
         C= toChar(CKata);
@@ -134,7 +126,7 @@ void StartGame(){
         P = MakePOINT(x,y);
         B = SetBangunan(C,2, P);
         Bangunan(A, i) = B;
-        Elmt(M,x,y) = B;
+        Elmt(M,x,y) = i;
         ADVKATA();
         for (i=3; i <= N; i++){
             C= toChar(CKata);
@@ -145,17 +137,17 @@ void StartGame(){
             P = MakePOINT(x,y);
             B = SetBangunan(C,0, P);
             Bangunan(A, i) = B;
-            Elmt(M,x,y) = B;
+            Elmt(M,x,y) = i;
             //A[i] = B;
             //M[lokasi(B).x][lokasi(B).y]=B;
             ADVKATA();
         }
-        MATRIKSS M1;
-        MakeMATRIKSS( N, N, &M1 );
+        MATRIKS M1;
+        MakeMATRIKS( N, N, &M1 );
 
         for (i=1; i<=NBBangunan(A); i++){
             for(j=1; j<=NBBangunan(A);j++){
-                Elmnt(M1,i,j)= toInt(CKata);
+                Elmt(M1,i,j)= toInt(CKata);
                 ADVKATA();
             }
         }
@@ -171,9 +163,9 @@ void StartGame(){
         CreateEmpty(&LS);
         ListBangunanSerang(&LS, A, 1);
         PrintListBangunan(LS);
-        TulisMATRIKSS(M1);
+        TulisMATRIKS(M1);
         outln();
-        CetakMap(M);
+        //CetakMap(M);
     }
 
 int main(){

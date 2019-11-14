@@ -7,12 +7,12 @@
 #include "bangunan.h"
 /* Ukuran minimum dan maksimum baris dan kolom */
 #define BrsMin 1
-#define BrsMax 100
+#define BrsMax 20
 #define KolMin 1
-#define KolMax 100
+#define KolMax 30
 
 typedef int indeks; /* indeks baris, kolom */
-typedef BANGUNAN ElType;
+typedef int ElType;
 typedef struct {
     ElType Mem[BrsMax+1][KolMax+1];
     int NBrsEff; /* banyaknya/ukuran baris yg terdefinisi */
@@ -38,19 +38,19 @@ void MakeMATRIKS (int NB, int NK, MATRIKS * M);
 // boolean IsIdxValid (int i, int j);
 // /* Mengirimkan true jika i, j adalah indeks yang valid untuk matriks apa pun */
 
-// /* *** Selektor: Untuk sebuah matriks M yang terdefinisi: *** */
-// indeks GetFirstIdxBrs (MATRIKS M);
-// /* Mengirimkan indeks baris terkecil M */
-// indeks GetFirstIdxKol (MATRIKS M);
-// /* Mengirimkan indeks kolom terkecil M */
-// indeks GetLastIdxBrs (MATRIKS M);
-// /* Mengirimkan indeks baris terbesar M */
-// indeks GetLastIdxKol (MATRIKS M);
-// /* Mengirimkan indeks kolom terbesar M */
-// boolean IsIdxEff (MATRIKS M, indeks i, indeks j);
-// /* Mengirimkan true jika i, j adalah indeks efektif bagi M */
-// ElType GetElmtDiagonal (MATRIKS M, indeks i);
-// /* Mengirimkan elemen M(i,i) */
+/* *** Selektor: Untuk sebuah matriks M yang terdefinisi: *** */
+indeks GetFirstIdxBrs (MATRIKS M);
+/* Mengirimkan indeks baris terkecil M */
+indeks GetFirstIdxKol (MATRIKS M);
+/* Mengirimkan indeks kolom terkecil M */
+indeks GetLastIdxBrs (MATRIKS M);
+/* Mengirimkan indeks baris terbesar M */
+indeks GetLastIdxKol (MATRIKS M);
+/* Mengirimkan indeks kolom terbesar M */
+boolean IsIdxEff (MATRIKS M, indeks i, indeks j);
+/* Mengirimkan true jika i, j adalah indeks efektif bagi M */
+ElType GetElmtDiagonal (MATRIKS M, indeks i);
+/* Mengirimkan elemen M(i,i) */
 
 // /* ********** Assignment  MATRIKS ********** */
 // void CopyMATRIKS (MATRIKS MIn, MATRIKS * MHsl);
@@ -67,16 +67,16 @@ void MakeMATRIKS (int NB, int NK, MATRIKS * M);
 // 4 5 6
 // 8 9 10
 // */
-// void TulisMATRIKS (MATRIKS M);
-// /* I.S. M terdefinisi */
-// /* F.S. Nilai M(i,j) ditulis ke layar per baris per kolom, masing-masing elemen per baris
-//    dipisahkan sebuah spasi */
-// /* Proses: Menulis nilai setiap elemen M ke layar dengan traversal per baris dan per kolom */
-// /* Contoh: menulis matriks 3x3 (ingat di akhir tiap baris, tidak ada spasi)
-// 1 2 3
-// 4 5 6
-// 8 9 10
-// */
+void TulisMATRIKS (MATRIKS M);
+/* I.S. M terdefinisi */
+/* F.S. Nilai M(i,j) ditulis ke layar per baris per kolom, masing-masing elemen per baris
+   dipisahkan sebuah spasi */
+/* Proses: Menulis nilai setiap elemen M ke layar dengan traversal per baris dan per kolom */
+/* Contoh: menulis matriks 3x3 (ingat di akhir tiap baris, tidak ada spasi)
+1 2 3
+4 5 6
+8 9 10
+*/
 
 // /* ********** KELOMPOK OPERASI ARITMATIKA TERHADAP TYPE ********** */
 // MATRIKS TambahMATRIKS (MATRIKS M1, MATRIKS M2);
