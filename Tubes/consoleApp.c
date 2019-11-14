@@ -8,6 +8,7 @@
 #include "boolean.h"
 #include "matriks1.h"
 #include "pcolor.h"
+#include "arraydin.h"
 
 void CetakMap(MATRIKS M){
     int i,j;
@@ -98,7 +99,7 @@ void StartGame(){
         char C;
         POINT P;
         BANGUNAN B;
-        ARRAYB A;
+        TabInt A;
         List L1, L2, LS;
         i = 1;
 
@@ -112,8 +113,7 @@ void StartGame(){
         ADVKATA();
         MakeMATRIKS(NBrsEff(M), NKolEff(M),&M);
         N = toInt(CKata);
-        NBBangunan(A) = N;
-        MakeEmpty(&A, NBBangunan(A));
+        MakeEmpty(&A, N);
         ADVKATA();
         C= toChar(CKata);
         ADVKATA();

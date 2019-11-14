@@ -4,6 +4,7 @@
 
 #include "boolean.h"
 #include "point.h"
+#include "arraydin.h"
 
 typedef int Pemain; 
 typedef char Jenis;
@@ -17,11 +18,6 @@ typedef struct {
     POINT lokasi;
 } BANGUNAN;
 
-typedef struct {
-    BANGUNAN arrB[30];
-    int N;
-} ARRAYB;
-
 /* ************  SELEKTOR   ************ */
 #define Jenis(B) (B).J
 #define Kepemilikan(B) (B).P
@@ -30,12 +26,9 @@ typedef struct {
 #define Maksimum(B) (B).M
 #define PasukanAwal(B) (B).U
 #define lokasi(B) (B).lokasi
-#define Bangunan(A, i) (A).arrB[(i)]
-#define NBBangunan(A) (A).N
 
 /* ************  PROTOTYPE  ************ */
 /* ************ KONSTRUKTOR ************ */
-void MakeEmpty (ARRAYB *A, int N);
 BANGUNAN SetBangunan (Jenis J, Pemain P, POINT lokasi);
 void MakeCastle (BANGUNAN *B);
 void MakeTower (BANGUNAN *B);
