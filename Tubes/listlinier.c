@@ -291,9 +291,9 @@ void Konkat1 (List *L1, List *L2, List *L3){
     CreateEmpty(L2);
 }
 
-void ListBangunan (List *L, ARRAYB A, Pemain P) {
+void ListBangunan (List *L, TabInt A, Pemain P) {
     int i;
-    for (i = 1; i <= NBBangunan(A); i++) {
+    for (i = 1; i <= Neff(A); i++) {
         if (Kepemilikan(Bangunan(A, i)) == P) {
             if (IsEmpty(*L)) {
                 InsVFirst(L, Bangunan(A, i));
@@ -305,7 +305,7 @@ void ListBangunan (List *L, ARRAYB A, Pemain P) {
     }
 }
 
-void ListBangunanSerang (List *L, ARRAYB A, Pemain P) {
+void ListBangunanSerang (List *L, TabInt A, Pemain P) {
     int i;
     List L1, L2;
     CreateEmpty(&L1);

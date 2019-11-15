@@ -1,1 +1,1 @@
-g++ array.c pcolor.c bangunan.c console.c consoleApp.c input.c listlinier.c matriks.c  mesinkata.c point.c -o a
+g++ arraydin.c pcolor.c bangunan.c console.c consoleApp.c input.c listlinier.c matriks.c  mesinkata.c point.c -o a

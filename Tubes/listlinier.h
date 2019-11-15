@@ -8,7 +8,7 @@
 
 #include "boolean.h"
 #include "bangunan.h"
-
+#include "arraydin.h"
 #define Nil NULL
 
 typedef BANGUNAN infotype;
@@ -140,9 +140,9 @@ void Konkat1 (List *L1, List *L2, List *L3);
 /* dan L1 serta L2 menjadi list kosong.*/
 /* Tidak ada alokasi/dealokasi pada prosedur ini */
 
-void ListBangunan (List *L, ARRAYB A, Pemain P);
+void ListBangunan (List *L, TabInt A, Pemain P);
 
-void ListBangunanSerang (List *L, ARRAYB A, Pemain P);
+void ListBangunanSerang (List *L, TabInt A, Pemain P);
 
 void PrintListBangunan (List L);
 
