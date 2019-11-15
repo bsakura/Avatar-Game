@@ -206,13 +206,13 @@ void DelAfter (List *L, address *Pdel, address Prec){
     Next(a) = Next(Next(a));
 }
 /****************** PROSES SEMUA ELEMEN LIST ******************/
-void PrintInfo (List L);
+void PrintInfo (List L)
 /* I.S. List mungkin kosong */
 /* F.S. Jika list tidak kosong, iai list dicetak ke kanan: [e1,e2,...,en] */
 /* Contoh : jika ada tiga elemen bernilai 1, 20, 30 akan dicetak: [1,20,30] */
 /* Jika list kosong : menulis [] */
 /* Tidak ada tambahan karakter apa pun di awal, akhir, atau di tengah */
-/*{
+{
     printf("[");
     if (!(IsEmpty(L))){
         address a;
@@ -225,7 +225,7 @@ void PrintInfo (List L);
         printf("%d", Info(a));
     }
     printf("]");
-}*/
+}
 int NbElmt (List L){
 /* Mengirimkan banyaknya elemen list; mengirimkan 0 jika list kosong */
 
@@ -291,36 +291,33 @@ void Konkat1 (List *L1, List *L2, List *L3){
     CreateEmpty(L2);
 }
 
-void ListBangunan (List *L, TabInt A, Pemain P) {
+void ListBangunan (List *L, Pemain P) {
     int i;
     for (i = 1; i <= Neff(A); i++) {
+        
         if (Kepemilikan(Bangunan(A, i)) == P) {
-            if (IsEmpty(*L)) {
-                InsVFirst(L,i);
-            }
-            else {
-                InsVLast(L, i);
-            }
+            InsVLast(L, i);
+           // PrintInfo(*L);
         }
     }
 }
 
-void ListBangunanSerang (List *L, TabInt A, Pemain P) {
+void ListBangunanSerang (List *L, Pemain P) {
     int i;
     List L1, L2;
     CreateEmpty(&L1);
     CreateEmpty(&L2);
-    ListBangunan (&L1, A, 0);
+    ListBangunan (&L1, 0);
     if (P == 1) {
-        ListBangunan (&L2, A, 2);
+        ListBangunan (&L2,2);
     }
     else {
-        ListBangunan (&L2, A, 1);
+        ListBangunan (&L2, 1);
     }
     Konkat1 (&L1, &L2, L);
 }
 
-void PrintListBangunan (List L, TabInt A) {
+void PrintListBangunan (List L) {
     address a;
     int i;
     a = First(L);

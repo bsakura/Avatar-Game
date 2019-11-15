@@ -6,7 +6,7 @@
 #include "matriks.h"
 #include "bangunan.h"
 #include "boolean.h"
-
+#include "arraydin.h"
 
 // void CetakMap(MATRIKS M){
 //     int i,j;
@@ -78,14 +78,16 @@
 //         ountln();
 //         break;
 //     }
+
     void StartGame(){
         //Kamus
         MATRIKS M;
+        TURN =1 ;
         int N, x, y, i;
         char C;
         POINT P;
         BANGUNAN B;
-        ARRAYB A;
+        TabInt A;
         List L1, L2, LS;
         i = 1;
         set(true);
@@ -95,7 +97,7 @@
         NKolEff(M) = toInt(CKata);
         ADVKATA();
         N = toInt(CKata);
-        NBBangunan(A) = N;
+        Neff(A) = N;
         MakeEmpty(&A, NBBangunan(A));
         ADVKATA();
         C= toChar(CKata);

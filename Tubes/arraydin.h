@@ -43,6 +43,8 @@ typedef struct
 #define Bangunan(T, i) (T).TI[(i)]
 #define MaxEl(T) (T).MaxEl
 
+extern TabInt A;
+
 /* ********** KONSTRUKTOR ********** */
 /* Konstruktor : create tabel kosong  */
 void MakeEmpty(TabInt *T, int maxel);

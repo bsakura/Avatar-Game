@@ -10,30 +10,42 @@
 #include "arraydin.h"
 #include "mesinkata.h"
 #include "point.h"
-
-// void CetakMap(MATRIKS M, ARRAYB A){
-//     int i,j;
-//     for (i=1;i<=NKolEff(M) +2; i++){
-//         printf("*");
-//     }
-//     outln();
-//     for (i=1;i<=NBrsEff(M); i++){
-//         printf("*");
-//         for (j=1; j<=NKolEff(M);j++){
-//             if (Elmt(M,i,j) ==0){
-//                 printf(" ");
-//             }else{
-//                 BANGUNAN B = 
-//             }
-//         }
-//         printf("*");
-//         outln();
-//     }
-//     for (i=1;i<=NKolEff(M) +2; i++){
-//         printf("*");
-//     }
-//     outln();
-//}
+TabInt A;
+void CetakMap(MATRIKS M){
+    int i,j;
+    for (i=1;i<=NKolEff(M) +2; i++){
+        printf("*");
+    }
+    outln();
+    for (i=1;i<=NBrsEff(M); i++){
+        printf("*");
+        for (j=1; j<=NKolEff(M);j++){
+            if (Elmt(M,i,j) ==0){
+                printf(" ");
+            }else{ 
+                switch (Kepemilikan(Bangunan(A,Elmt(M,i,j))))
+                {
+                case 1:
+                    print_blue(Jenis(Bangunan(A,Elmt(M,i,j))));
+                    break;
+                case 2:
+                    print_red(Jenis(Bangunan(A,Elmt(M,i,j))));
+                    break;
+                default:
+                    printf("%c", Jenis(Bangunan(A,Elmt(M,i,j))));
+                    break;
+                }
+                
+            }
+        }
+        printf("*");
+        outln();
+    }
+    for (i=1;i<=NKolEff(M) +2; i++){
+        printf("*");
+    }
+    outln();
+}
 
 // void CetakCommand(){
 //     printf("ENTER COMMAND: ");
@@ -93,17 +105,20 @@ void StartGame(){
         char C;
         POINT P;
         BANGUNAN B;
-        TabInt A;
         List L1, L2, LS;
+        TURN = 1;
+        // printf("%d", TURN);
+        // NextTurn();
+        // printf("%d", TURN);
         i = 1;
 
         set(true);
         STARTKATA();
         NBrsEff(M) = toInt(CKata);
-        printf("%d", NBrsEff(M));
+        // printf("%d", NBrsEff(M));
         ADVKATA();
         NKolEff(M) = toInt(CKata);
-        printf("%d",NKolEff(M));
+        // printf("%d",NKolEff(M));
         ADVKATA();
         MakeMATRIKS(NBrsEff(M), NKolEff(M),&M);
         N = toInt(CKata);
@@ -138,6 +153,7 @@ void StartGame(){
             y= toInt(CKata);
             P = MakePOINT(x,y);
             B = SetBangunan(C,0, P);
+            Neff(A)= i;
             Bangunan(A, i) = B;
             Elmt(M,x,y) = i;
             //A[i] = B;
@@ -153,25 +169,26 @@ void StartGame(){
                 ADVKATA();
             }
         }
-        
         CreateEmpty(&L1);
-        //ListBangunan(&L1, A, 1);
-        //PrintListBangunan(L1);
-        for (i = 1; i<= N; i++) {
-            PrintStatus(Bangunan(A, i));
-            outln();
-        }
+        // PrintInfo(L1);
+        ListBangunan(&L1,1);
+        //PrintInfo(L1);
+        PrintListBangunan(L1);
+        // for (i = 1; i<= N; i++) {
+        //     PrintStatus(Bangunan(A, i));
+        //     outln();
+        // }
         printf("\n");
         CreateEmpty(&L2);
-        //ListBangunan(&L2, A, 2);
-        //PrintListBangunan(L2);
+        ListBangunan(&L2,2);
+        PrintListBangunan(L2);
         printf("\n");
         CreateEmpty(&LS);
-        //ListBangunanSerang(&LS, A, 1);
-        //PrintListBangunan(LS);
-        TulisMATRIKS(M1);
+        ListBangunanSerang(&LS,1);
+        PrintListBangunan(LS);
+        //TulisMATRIKS(M1);
         outln();
-        //CetakMap(M);
+        CetakMap(M);
     }
 
 int main(){

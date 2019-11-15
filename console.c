@@ -1,6 +1,19 @@
 #include <stdio.h>
 #include "console.h"
 #include "input.h"
+int TURN;
+NextTurn(){
+    switch (TURN)
+    {
+    case 1:
+        TURN = 2;
+        break;
+    
+    default:
+        TURN = 1;
+    }
+}
+
 void outln(){
     printf("\n");
 }
