@@ -296,10 +296,10 @@ void ListBangunan (List *L, TabInt A, Pemain P) {
     for (i = 1; i <= Neff(A); i++) {
         if (Kepemilikan(Bangunan(A, i)) == P) {
             if (IsEmpty(*L)) {
-                InsVFirst(L, Bangunan(A, i));
+                InsVFirst(L,i);
             }
             else {
-                InsVLast(L, Bangunan(A, i));
+                InsVLast(L, i);
             }
         }
     }
@@ -320,14 +320,14 @@ void ListBangunanSerang (List *L, TabInt A, Pemain P) {
     Konkat1 (&L1, &L2, L);
 }
 
-void PrintListBangunan (List L) {
+void PrintListBangunan (List L, TabInt A) {
     address a;
     int i;
     a = First(L);
     i = 1;
     while (a != Nil) {
         printf("%d. ", i);
-        PrintStatus(Info(a));
+        PrintStatus(Bangunan(A, Info(a)));
         printf("\n");
         i++;
         a = Next(a);
