@@ -331,6 +331,13 @@ void PrintListBangunan (List L) {
     }
 }
 
+List GetListP(Pemain P){
+    if (P==1){
+        return L1;
+    }else{
+        return L2;
+    }
+}
 // int main(){
 //     List L;
 //     CreateEmpty(&L);
