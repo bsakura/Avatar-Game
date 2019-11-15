@@ -21,6 +21,7 @@ typedef struct {
 	address First;
 } List;
 
+extern List L1,L2;
 /* Definisi list : */
 /* List kosong : First(L) = Nil */
 /* Setiap elemen dengan address P dapat diacu Info(P), Next(P) */
@@ -145,5 +146,7 @@ void ListBangunan (List *L,  Pemain P);
 void ListBangunanSerang (List *L,  Pemain P);
 
 void PrintListBangunan (List L );
+
+List GetListP(Pemain P);
 
 #endif

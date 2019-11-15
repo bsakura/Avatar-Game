@@ -4,6 +4,8 @@
 #include "matriks.h"
 void CetakMap(MATRIKS M);
 void outln();
-void CetakCommad();
+void CetakCommand();
+void CetakTurn();
 void StartGame();
+void Adjust();
 #endif

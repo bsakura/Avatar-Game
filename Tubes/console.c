@@ -36,6 +36,20 @@ void CetakKata(Kata K){
 char toChar(Kata K){
     return K.TabKata[1];
 }
+
+boolean CMPKata(Kata K1, Kata K2){
+    if (K1.Length!=K2.Length){
+        return false;
+    }else{
+        for(int i=1; i<= K1.Length ; i++){
+            if (K1.TabKata[i]!= K2.TabKata[i]){
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
 /*int main(){
     set(true);
     STARTKATA();
