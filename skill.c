@@ -2,19 +2,23 @@
 #include "bangunan.h"
 #include "listlinier.h"
 #include "skill.h"
+#include "boolean.h"
+#include "arraydin.h"
 
-void InstantUpgrade(List *L)
+void InstantUpgrade(List L, Pemain P, TabInt A)
 //Seluruh bangunan yang dimiliki pemain akan naik 1 level.
 //Pemain tidak akan mendapat skill ini selain dari daftar skill awal.
 {
     address a;
-    a = First(*L);
-    while(Next(a) != Nil)
+    a = First(L);
+    while(Next(a) != NULL)
     {
-        Level(Info(a)) += 1;
+        if(Kepemilikan(Bangunan(A, (Info(a)))) == P)
+        {
+            Level(Bangunan(A, (Info(a)))) += 1;
+        }
         a = Next(a);
     }
-
 }
 
 void Shield(Pemain P);//BONUS
@@ -35,47 +39,53 @@ void AttackUp(Pemain P);//BONUS
 //Pemain mendapat skill ini jika pemain baru saja menyerang Tower lawan dan
 //jumlah towernya menjadi 3.
 
-void CriticalHit(Pemain P);//BONUS
+boolean CriticalHit(Pemain P);//BONUS
 //Pada giliran ini, setelah skill diaktifkan, jumlah pasukan pada bangunan yang
 //melakukan serangan tepat selanjutnya hanya berkurang ½ dari jumlah
 //seharusnya.
 //Pemain mendapat skill ini jika lawan baru saja mengaktifkan skill Extra Turn.
 
-void InstantReinforcement(List *L)
+void InstantReinforcement(List L, Pemain P, TabInt A)
 //Seluruh bangunan mendapatkan tambahan 5 pasukan.
 //Pemain mendapat skill ini di akhir gilirannya bila semua bangunan yang ia miliki
 //memiliki level 4.
 //DENGAN ASUMSI KALO UDAH MAX GA NAMBAH LAGI PASUKANNYA
 {
     address a;
-    a = First(*L);
-    while(Next(a)!=Nil)
+    a = First(L);
+    while(Next(a)!=NULL)
     {
-        if(Pasukan(Info(a)) < Maksimum(Info(a)))
+        if (Kepemilikan(Bangunan(A, (Info(a)))) == P)
         {
-            Pasukan(Info(a)) += 5;
+            if(Pasukan(Bangunan(A, (Info(a)))) < Maksimum(Bangunan(A, (Info(a)))))
+            {
+                Pasukan(Bangunan(A, (Info(a)))) += 5;
+            }
         }
         a = Next(a);
     }
 }
 
-void Barrage(List *L)
+void Barrage(List L, Pemain P, TabInt A)
 //Jumlah pasukan pada seluruh bangunan musuh akan berkurang sebanyak 10
 //pasukan.
 //Pemain mendapat skill ini jika lawan baru saja bertambah bangunannya menjadi
 //10 bangunan.
 {
     address a;
-    a = First(*L);
-    while(Next(a)!=Nil)
+    a = First(L);
+    while(Next(a)!=NULL)
     {
-        if(Pasukan(Info(a)) >= 10)
+        if(Kepemilikan(Bangunan(A, (Info(a)))) == P)
         {
-            Pasukan(Info(a)) -= 10;
-        }
-        else
-        {
-            Pasukan(Info(a)) = 0;
+            if(Pasukan(Bangunan(A, (Info(a)))) >= 10)
+            {
+                Pasukan(Bangunan(A, (Info(a)))) -= 10;
+            }
+            else
+            {
+                Pasukan(Bangunan(A, (Info(a)))) = 0;
+            }
         }
         a = Next(a);
     }
