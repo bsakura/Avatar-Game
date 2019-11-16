@@ -2,7 +2,7 @@
 #define CONSOLEAPP_H
 
 #include "matriks.h"
-void CetakMap(MATRIKS M);
+void CetakMap();
 void outln();
 void CetakCommand();
 void CetakTurn();
