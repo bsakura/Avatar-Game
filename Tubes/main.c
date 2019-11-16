@@ -1,7 +1,7 @@
 #include "consoleApp.h"
 int main(){
     StartGame();
-    CetakMap();
-    CetakTurn();
+    // CetakMap();
+    // CetakTurn();
     return 0;
 }

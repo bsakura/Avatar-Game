@@ -9,7 +9,7 @@ void UNDO();
 void Move();
 void End_turn();
 void Save();
-void Exit();
+void EXIT();
 
 
 #endif

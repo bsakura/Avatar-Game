@@ -5,36 +5,62 @@
 #include "boolean.h"
 #include "arraydin.h"
 #include "console.h"
+#include "queue.h"
+
+
+void useSkill(){
+    Kata skill;
+    Queue Q=GetQueueP(TURN);
+    DelQueue(&Q,&skill);
+    //CetakKata(skill);
+    if (CMPKATATabChar(skill, "IU")){
+        InstantUpgrade();
+    }else if (CMPKATATabChar(skill, "Shield")){
+        Shield();
+    }else if (CMPKATATabChar(skill, "ET")){
+        ExtraTurn();
+    }else if (CMPKATATabChar(skill, "AU")){
+        AttackUp();
+    }else if (CMPKATATabChar(skill, "CH")){
+        CriticalHit();
+    }else if (CMPKATATabChar(skill, "IR")){
+        InstantReinforcement();
+    }else{//Barrage
+        Barrage();
+    }
+}
+
 void InstantUpgrade()
 //Seluruh bangunan yang dimiliki pemain akan naik 1 level.
 //Pemain tidak akan mendapat skill ini selain dari daftar skill awal.
 {
-    a = First(GetListP(TURN));
+    address a = First(GetListP(TURN));
     while(a != NULL)
     {
-        LevelUp(Bangunan(A,info(a)));
+        LevelUp(&(Bangunan(A,Info(a))));
+        a=Next(a);
     }
 }
 
-void Shield(Pemain P);//BONUS
+void Shield(Pemain P){}//BONUS
 //Seluruh bangunan yang dimiliki oleh pemain akan memiliki pertahanan selama 2
 //turn. Apabila skill ini digunakan 2 kali berturut-turut, durasi tidak akan bertambah,
 //namun menjadi nilai maksimum.
 //Pemain mendapat skill ini jika setelah sebuah lawan menyerang, bangunan pemain
 //berkurang 1 menjadi sisa 2.
 
-void ExtraTurn(Pemain P);
+void ExtraTurn(Pemain P){}
 //Setelah giliran pengaktifan skill ini berakhir, pemain selanjutnya tetap pemain
 //yang sama.
 //Pemain mendapat skill ini jika Fort pemain tersebut direbut lawan.
 
-void AttackUp(Pemain P);//BONUS
+void AttackUp(Pemain P){}//BONUS
 //Pada giliran ini, setelah skill ini diaktifkan, pertahanan bangunan musuh tidak akan
 //mempengaruhi penyerangan.
 //Pemain mendapat skill ini jika pemain baru saja menyerang Tower lawan dan
 //jumlah towernya menjadi 3.
 
-boolean CriticalHit(Pemain P);//BONUS
+void CriticalHit(Pemain P){}//BONUS
 //Pada giliran ini, setelah skill diaktifkan, jumlah pasukan pada bangunan yang
 //melakukan serangan tepat selanjutnya hanya berkurang ½ dari jumlah
 //seharusnya.
@@ -48,12 +74,12 @@ void InstantReinforcement()
 {
     address a;
     a = First(GetListP(TURN));
-    while(a!=NULL)
+    while(a!=NULL){
         if(Pasukan(Bangunan(A, Info(a))) < Maksimum(Bangunan(A, Info(a))))
             {
-                TambahPasukanManual(Bangunan(A,info(a)), 5);
+                TambahPasukanManual(&(Bangunan(A,Info(a))), 5);
             }
-        }
+        
         a = Next(a);
     }
 }
@@ -69,9 +95,9 @@ void Barrage()
     while(a!=NULL)
     {
         if(Pasukan(Bangunan(A, (Info(a)))) >= 10){
-            TambahPasukanManual(Bangunan(A,info(a)), -10);
+            TambahPasukanManual(&(Bangunan(A,Info(a))), -10);
         }else{
-            Pasukan(Bangunan(A, (Info(a)))) = 0;
+            SetPasukan(&(Bangunan(A, (Info(a)))),0);
         }
         
         a = Next(a);

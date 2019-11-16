@@ -12,10 +12,7 @@
 #define MaxElS 20
 /* Nil adalah stack dengan elemen kosong . */
 /* Karena indeks dalam bhs C dimulai 0 maka tabel dg indeks 0 tidak dipakai */
-typedef struct
-{
-  TabInt T;
-}content;
+typedef TabInt content;
 
 typedef int index;   /* indeks tabel */
 

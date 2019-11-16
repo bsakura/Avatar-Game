@@ -194,8 +194,8 @@ void SerangBangunan (BANGUNAN *B1, BANGUNAN *B2, int Pasukan) {
 void LevelUp (BANGUNAN *B) {
     if (Pasukan(*B) >= (Maksimum(*B) / 2)) {
         if (Level(*B) < 4) {
-            Level(*B) += 1;
             Pasukan(*B) -= (Maksimum(*B) / 2);
+            Level(*B) += 1;
             SetMaksimum(B);
         }
     }
@@ -233,4 +233,8 @@ void PrintStatus (BANGUNAN B) {
     printf(" %d", Pasukan(B));
     printf(" lv. %d", Level(B));
     //printf(" %d", Kepemilikan(B));
+}
+
+void SetPasukan(BANGUNAN *B, int Pas){
+    Pasukan(*B) = Pas;
 }

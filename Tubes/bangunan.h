@@ -42,5 +42,5 @@ void SerangBangunan (BANGUNAN *B1, BANGUNAN *B2, int Pasukan);
 void LevelUp (BANGUNAN *B);
 void SetMaksimum (BANGUNAN *B);
 void PrintStatus (BANGUNAN B);
-
+void SetPasukan(BANGUNAN *B, int Pas);
 #endif

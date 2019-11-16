@@ -230,6 +230,7 @@ void Adjust(){
 
 void StartGame(){
     Adjust();
-    // CetakMap();
-    // CetakTurn();
+    CetakMap();
+    CetakTurn();
+    //PrintListBangunan(L1);
 }
