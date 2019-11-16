@@ -36,20 +36,20 @@ address Alokasi (infotype X){
     Next(P) = Nil;
     return P;
 }
-void Dealokasi (address *P){
+void Dealokasi (address P){
 /* I.S. P terdefinisi */
 /* F.S. P dikembalikan ke sistem */
 /* Melakukan dealokasi/pengembalian address P */
-    Next(*P) = Nil;
-    free(*P);
+    Next(P) = Nil;
+    free(P);
 }
 
 /****************** PENCARIAN SEBUAH ELEMEN LIST ******************/
-address Search (List L, infotype X);//{
+address Search (List L, infotype X){
 /* Mencari apakah ada elemen list dengan Info(P)= X */
 /* Jika ada, mengirimkan address elemen tersebut. */
 /* Jika tidak ada, mengirimkan Nil */
-/*    if (IsEmpty(L)){
+    if (IsEmpty(L)){
         return Nil;
     } else{
         address a;
@@ -63,7 +63,7 @@ address Search (List L, infotype X);//{
             return Nil;
         }
     }
-}*/
+}
 
 /****************** PRIMITIF BERDASARKAN NILAI ******************/
 /*** PENAMBAHAN ELEMEN ***/
@@ -90,7 +90,7 @@ void DelVFirst (List *L, infotype *X){
     address P;
     *X = Info(First(*L));
     P = Next(First(*L));
-    Dealokasi(&First(*L));
+    Dealokasi(First(*L));
     First(*L)= P;
 }
 void DelVLast (List *L, infotype *X){
@@ -100,7 +100,7 @@ void DelVLast (List *L, infotype *X){
     address P;
     DelLast(L,&P);
     *X = Info(P);
-    Dealokasi(&P);
+    Dealokasi(P);
 }
 /****************** PRIMITIF BERDASARKAN ALAMAT ******************/
 /*** PENAMBAHAN ELEMEN BERDASARKAN ALAMAT ***/

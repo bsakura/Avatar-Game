@@ -12,13 +12,14 @@
 #include "point.h"
 #include "stackt.h"
 #include "queue.h"
-
+#include "graph.h"
 TabInt A;
 List L1, L2;
 MATRIKS Map;
 Kata STDIN;
 Queue Skill1, Skill2;
 Stack Undo;
+Graph GRAPH;
 void CetakMap(){
     int i,j;
     for (i=1;i<=NKolEff(Map) +2; i++){
@@ -132,6 +133,7 @@ void Adjust(){
         BANGUNAN B;
         
         TURN = 1;
+        CreateGraph(&GRAPH);
         // printf("%d", TURN);
         // NextTurn();
         // printf("%d", TURN);
@@ -162,6 +164,7 @@ void Adjust(){
         B = SetBangunan(C,1, P);
         Bangunan(A, i) = B;
         Elmt(Map,x,y) = i;
+        InsertGNode(&GRAPH,i);
         i++;
         ADVKATA();
         C= toChar(CKata);
@@ -173,6 +176,7 @@ void Adjust(){
         B = SetBangunan(C,2, P);
         Bangunan(A, i) = B;
         Elmt(Map,x,y) = i;
+        InsertGNode(&GRAPH,i);
         ADVKATA();
         for (i=3; i <= N; i++){
             C= toChar(CKata);
@@ -185,15 +189,16 @@ void Adjust(){
             Neff(A)= i;
             Bangunan(A, i) = B;
             Elmt(Map,x,y) = i;
+            InsertGNode(&GRAPH,i);
             //A[i] = B;
             //M[lokasi(B).x][lokasi(B).y]=B;
             ADVKATA();
         }
-        MATRIKS Graph;
-        MakeMATRIKS( N, N, &Graph );
-        for (i=1; i<=N; i++){
+        for (i=1; i<=N; i++){   
             for(j=1; j<=N; j++){
-                Elmt(Graph,i,j)= toInt(CKata);
+                if(toInt(CKata)==1){
+                    InsertEdge(&GRAPH,i,j);
+                }
                 ADVKATA();
             }
         }
@@ -227,5 +232,6 @@ void StartGame(){
 }
 int main(){
     StartGame();
+    
     return 0;
 }
