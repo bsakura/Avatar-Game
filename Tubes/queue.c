@@ -3,7 +3,7 @@
 #include "mesinkata.h"
 #include <stdlib.h>
 #include <stdio.h>
-
+#include "console.h"
 /* ********* Prototype ********* */
 boolean IsEmptyQueue (Queue Q){
 /* Mengirim true jika Q kosong: lihat definisi di atas */
@@ -65,12 +65,19 @@ void DelQueue (Queue * Q, Kata * X){
 /* F.S. X = nilai elemen HEAD pd I.S., HEAD "maju" dengan mekanisme circular buffer; 
         Q mungkin kosong */
     *X = InfoHead(*Q);
-    InfoHead(*Q)=Nill;
+    InfoHead(*Q)=TabCHartoKata("");
     if (NBElmtQueue(*Q)==1){
         Head(*Q)=0;
         Tail(*Q)=0;
     }
     else{
         Head(*Q) = Head(*Q) == MaxElQ(*Q) ? 1  : (Head(*Q) +1);
+    }
+}
+Queue GetQueueP(int P){
+    if (P==1){
+        return Skill1;
+    }else{
+        return Skill2;
     }
 }

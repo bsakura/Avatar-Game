@@ -17,6 +17,8 @@ TabInt A;
 List L1, L2;
 MATRIKS Map;
 Kata STDIN;
+Queue Skill1, Skill2;
+Stack Undo;
 void CetakMap(){
     int i,j;
     for (i=1;i<=NKolEff(Map) +2; i++){
@@ -70,8 +72,8 @@ void CetakTurn(){
     outln();
     PrintListBangunan(GetListP(TURN));
     printf("Skill Available: ");
+    CetakKata(InfoHead(GetQueueP(TURN)));
     outln();
-    //belum queue nya
     CetakCommand();
     
 }
@@ -212,6 +214,10 @@ void Adjust(){
         //PrintListBangunan(LS);
         //TulisMATRIKS(Graph);
         //outln();
+        CreateEmptyQueue(&Skill1,20);
+        CreateEmptyQueue(&Skill2,20);
+        AddQueue(&Skill1, TabCHartoKata("IU"));
+        AddQueue(&Skill2, TabCHartoKata("IU"));
     }
 
 void StartGame(){

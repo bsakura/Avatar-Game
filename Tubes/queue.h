@@ -33,9 +33,9 @@ typedef struct { Kata* T;   /* tabel penyimpan elemen */
 #define Tail(Q) (Q).TAIL
 #define InfoHead(Q) (Q).T[(Q).HEAD]
 #define InfoTail(Q) (Q).T[(Q).TAIL]
-#define MaxElQ(Q) (Q).MaxEl
+#define MaxElQ(Q) (Q).MaxElQueue
 
-extern Queue Skill1,SKill2;
+extern Queue Skill1,Skill2;
 /* ********* Prototype ********* */
 boolean IsEmptyQueue (Queue Q);
 /* Mengirim true jika Q kosong: lihat definisi di atas */
@@ -69,5 +69,7 @@ void DelQueue (Queue * Q, Kata * X);
 /* I.S. Q tidak mungkin kosong */
 /* F.S. X = nilai elemen HEAD pd I.S., HEAD "maju" dengan mekanisme circular buffer; 
         Q mungkin kosong */
+
+Queue GetQueueP(int P);
 
 #endif
