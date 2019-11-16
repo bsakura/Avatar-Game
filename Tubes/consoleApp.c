@@ -54,9 +54,12 @@ void CetakCommand(){
     Kata STDIN;
     printf("ENTER COMMAND: ");
     set(false);
+
     STARTKATA();
     STDIN = CKata; 
+    CetakKata(STDIN);
     ADVKATA();
+    
 }
 
 
@@ -67,6 +70,7 @@ void CetakTurn(){
     printf("Skill Available: ");
     outln();
     //belum queue nya
+    CetakCommand();
     CetakCommand();
     
 }
@@ -184,7 +188,6 @@ void Adjust(){
         }
         MATRIKS Graph;
         MakeMATRIKS( N, N, &Graph );
-
         for (i=1; i<=N; i++){
             for(j=1; j<=N; j++){
                 Elmt(Graph,i,j)= toInt(CKata);
@@ -208,7 +211,6 @@ void Adjust(){
         //PrintListBangunan(LS);
         //TulisMATRIKS(Graph);
         //outln();
-        
     }
 
 void StartGame(){

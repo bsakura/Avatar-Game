@@ -13,9 +13,9 @@ static int retval;
 void set(boolean use){
     useFile = use;
     if (use){
-        MARK = '\0';
-    }else{
         MARK = '\n';
+    }else{
+        MARK = '\0';
     }
 }
 void START() {
@@ -41,14 +41,12 @@ void ADV() {
    F.S. : CC adalah karakter berikutnya dari CC yang lama,
           CC mungkin = MARK.
           Jika  CC = MARK maka EOP akan menyala (true) */
-
     /* Algoritma */
     retval = fscanf(pita,"%c",&CC);
     EOP = retval;
     if (!useFile && CC=='\n'){
         EOP = -1;
-    }
-    if (EOP==-1) {
+    }else if(EOP==-1) {
        fclose(pita);
     }
 }
