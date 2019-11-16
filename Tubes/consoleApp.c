@@ -10,6 +10,9 @@
 #include "arraydin.h"
 #include "mesinkata.h"
 #include "point.h"
+#include "stackt.h"
+#include "queue.h"
+
 TabInt A;
 List L1, L2;
 MATRIKS Map;

@@ -12,4 +12,5 @@ void CetakKata(Kata K);
 char toChar(Kata K);
 boolean CMPKata(Kata K1, Kata K2);
 boolean CMPKATATabChar(Kata K, char* str);
+Kata TabCHartoKata(char* str);
 #endif

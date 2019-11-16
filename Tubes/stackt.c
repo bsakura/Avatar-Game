@@ -21,7 +21,7 @@ void CreateEmptyStack (Stack *S){
 /* ************ Predikat Untuk test keadaan KOLEKSI ************ */
 boolean IsEmptyStack (Stack S){
 /* Mengirim true jika Stack kosong: lihat definisi di atas */
-    return (Top(S)==Nil);
+    return (Top(S)==Nill);
 }
 
 boolean IsFullStack (Stack S){

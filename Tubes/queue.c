@@ -65,7 +65,7 @@ void DelQueue (Queue * Q, Kata * X){
 /* F.S. X = nilai elemen HEAD pd I.S., HEAD "maju" dengan mekanisme circular buffer; 
         Q mungkin kosong */
     *X = InfoHead(*Q);
-    InfoHead(*Q)=Nil;
+    InfoHead(*Q)=Nill;
     if (NBElmtQueue(*Q)==1){
         Head(*Q)=0;
         Tail(*Q)=0;

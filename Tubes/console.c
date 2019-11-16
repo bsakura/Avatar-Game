@@ -73,6 +73,18 @@ int lengthTabChar(char* str){
     
 }
 
+Kata TabCHartoKata(char* str){
+    Kata K;
+    int count=0;
+    while (str[count]!='\0')
+    {
+        K.TabKata[count+1]=str[count];
+        count++;
+    }
+    K.Length=count;
+    return K;
+}
+
 boolean CMPKATATabChar(Kata K, char* str){
 	for(int i = 1; i<=K.Length ; i++){
 		if (K.TabKata[i] != str[i-1])
@@ -80,3 +92,11 @@ boolean CMPKATATabChar(Kata K, char* str){
 	}
 	return true;
 }
+
+// int main(){
+//     char* c= "sadsad";
+//     Kata K= TabCHartoKata(c);
+//     printf("%d",K.Length);
+//     CetakKata(K);
+//     return 0;
+// }

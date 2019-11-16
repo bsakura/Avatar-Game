@@ -14,17 +14,16 @@
 /* Karena indeks dalam bhs C dimulai 0 maka tabel dg indeks 0 tidak dipakai */
 typedef struct
 {
-  Queue Q;
   TabInt T;
 }content;
 
-typedef int address;   /* indeks tabel */
+typedef int index;   /* indeks tabel */
 
 /* Contoh deklarasi variabel bertype stack dengan ciri TOP : */
 /* Versi I : dengan menyimpan tabel dan alamat top secara eksplisit*/
 typedef struct {
   content T[MaxElS+1]; /* tabel penyimpan elemen */
-  address TOP;  /* alamat TOP: elemen puncak */
+  index TOP;  /* alamat TOP: elemen puncak */
 } Stack;
 /* Definisi stack S kosong : S.TOP = Nil */
 /* Elemen yang dipakai menyimpan nilai Stack T[1]..T[MaxEl] */
@@ -36,6 +35,8 @@ typedef struct {
 #define Top(S) (S).TOP
 #define InfoTop(S) (S).T[(S).TOP]
 
+
+extern Stack Undo;
 /* ************ Prototype ************ */
 /* *** Konstruktor/Kreator *** */
 void CreateEmptyStack (Stack *S);

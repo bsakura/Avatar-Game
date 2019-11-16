@@ -8,17 +8,20 @@
 #include "boolean.h"
 #include "mesinkata.h"
 
-#define Nil 0
+#define Nill 0
+
+
+
 /* Konstanta untuk mendefinisikan address tak terdefinisi */
 
 /* Definisi elemen dan address */
 
-typedef int address;   /* indeks tabel */
+typedef int index;   /* indeks tabel */
 /* Contoh deklarasi variabel bertype Queue : */
 /* Versi I : tabel dinamik, Head dan Tail eksplisit, ukuran disimpan */
 typedef struct { Kata* T;   /* tabel penyimpan elemen */
-                 address HEAD;  /* alamat penghapusan */
-                 address TAIL;  /* alamat penambahan */
+                 index HEAD;  /* alamat penghapusan */
+                 index TAIL;  /* alamat penambahan */
                  int MaxElQueue;     /* Max elemen queue */
                } Queue;
 /* Definisi Queue kosong: HEAD=Nil; TAIL=Nil. */
@@ -32,6 +35,7 @@ typedef struct { Kata* T;   /* tabel penyimpan elemen */
 #define InfoTail(Q) (Q).T[(Q).TAIL]
 #define MaxElQ(Q) (Q).MaxEl
 
+extern Queue Skill1,SKill2;
 /* ********* Prototype ********* */
 boolean IsEmptyQueue (Queue Q);
 /* Mengirim true jika Q kosong: lihat definisi di atas */
