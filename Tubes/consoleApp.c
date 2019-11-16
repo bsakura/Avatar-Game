@@ -57,7 +57,6 @@ void CetakCommand(){
 
     STARTKATA();
     STDIN = CKata; 
-    CetakKata(STDIN);
     ADVKATA();
     
 }
@@ -70,7 +69,6 @@ void CetakTurn(){
     printf("Skill Available: ");
     outln();
     //belum queue nya
-    CetakCommand();
     CetakCommand();
     
 }

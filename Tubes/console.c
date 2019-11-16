@@ -1,7 +1,20 @@
 #include <stdio.h>
 #include "console.h"
 #include "input.h"
+#include <stdlib.h>
 int TURN;
+
+int ENEMY(){
+    switch (TURN)
+    {
+    case 1:
+        return 2;
+        break;
+    
+    default:
+        return 1;
+    }
+}
 void NextTurn(){
     switch (TURN)
     {
@@ -50,13 +63,20 @@ boolean CMPKata(Kata K1, Kata K2){
     return true;
 }
 
-/*int main(){
-    set(true);
-    STARTKATA();
-    // ADVKATA();
-    // printf("%d", CKata.Length);
-    // CetakKata(CKata);
-    int M= toInt(CKata);
-    printf("%d", M);
-    return 0;
-}*/
+int lengthTabChar(char* str){
+    int count=0;
+    while (str[count]!='\0')
+    {
+        count++;
+    }
+    return count;
+    
+}
+
+boolean CMPKATATabChar(Kata K, char* str){
+	for(int i = 1; i<=K.Length ; i++){
+		if (K.TabKata[i] != str[i-1])
+			return false;
+	}
+	return true;
+}
