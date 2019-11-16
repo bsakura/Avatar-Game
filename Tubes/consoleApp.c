@@ -13,6 +13,8 @@
 #include "stackt.h"
 #include "queue.h"
 #include "graph.h"
+#include "command.h"
+
 TabInt A;
 List L1, L2;
 MATRIKS Map;
@@ -57,13 +59,13 @@ void CetakMap(){
 }
 
 void CetakCommand(){
-    Kata STDIN;
     printf("ENTER COMMAND: ");
     set(false);
 
     STARTKATA();
     STDIN = CKata; 
     ADVKATA();
+    Command();
     
 }
 
@@ -76,6 +78,7 @@ void CetakTurn(){
     CetakKata(InfoHead(GetQueueP(TURN)));
     outln();
     CetakCommand();
+
     
 }
 // void CetakSkill(Queue Q){
@@ -227,11 +230,6 @@ void Adjust(){
 
 void StartGame(){
     Adjust();
-    CetakMap();
-    CetakTurn();
-}
-int main(){
-    StartGame();
-    
-    return 0;
+    // CetakMap();
+    // CetakTurn();
 }

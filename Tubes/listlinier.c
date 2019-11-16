@@ -65,6 +65,18 @@ address Search (List L, infotype X){
     }
 }
 
+address Searchindex(List L,int idx){
+/*List tidak kosong index i terdefinisi pada L*/
+    int i =1;
+    address P = First(L);
+    while (i<idx)
+    {
+        P = Next(P);
+        i++;
+    }
+    return P;
+
+}
 /****************** PRIMITIF BERDASARKAN NILAI ******************/
 /*** PENAMBAHAN ELEMEN ***/
 void InsVFirst (List *L, infotype X){

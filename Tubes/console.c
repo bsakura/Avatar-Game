@@ -93,10 +93,13 @@ boolean CMPKATATabChar(Kata K, char* str){
 	return true;
 }
 
+void CopyKata(Kata *K1,Kata K2){
+    *K1 =K2;
+} 
+
 // int main(){
-//     char* c= "sadsad";
+//     char* c= "MOVE";
 //     Kata K= TabCHartoKata(c);
-//     printf("%d",K.Length);
 //     CetakKata(K);
 //     return 0;
 // }
