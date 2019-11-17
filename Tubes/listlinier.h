@@ -143,7 +143,7 @@ void Konkat1 (List *L1, List *L2, List *L3);
 
 void ListBangunan (List *L,  Pemain P);
 
-void ListBangunanSerang (List *L,  Pemain P);
+List FilterList (List L, Pemain P, boolean eq);
 
 void PrintListBangunan (List L );
 

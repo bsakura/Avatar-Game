@@ -314,19 +314,24 @@ void ListBangunan (List *L, Pemain P) {
     }
 }
 
-void ListBangunanSerang (List *L, Pemain P) {
+List FilterList (List L, Pemain P, boolean eq) {
     int i;
-    List L1, L2;
+    List L1;
     CreateEmpty(&L1);
-    CreateEmpty(&L2);
-    ListBangunan (&L1, 0);
-    if (P == 1) {
-        ListBangunan (&L2,2);
+    address P1= First(L);
+    while(P1!= Nil){
+        if (eq){
+            if (Kepemilikan(Bangunan(A,Info(P1)))==P){
+                InsVLast(&L1,Info(P1));
+            }
+        }else{
+            if (Kepemilikan(Bangunan(A,Info(P1)))!=P){
+                InsVLast(&L1,Info(P1));
+            }
+        }
+        P1=Next(P1);
     }
-    else {
-        ListBangunan (&L2, 1);
-    }
-    Konkat1 (&L1, &L2, L);
+    return L1;
 }
 
 void PrintListBangunan (List L) {

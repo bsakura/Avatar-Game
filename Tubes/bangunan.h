@@ -43,4 +43,5 @@ void LevelUp (BANGUNAN *B);
 void SetMaksimum (BANGUNAN *B);
 void PrintStatus (BANGUNAN B);
 void SetPasukan(BANGUNAN *B, int Pas);
+void PrintJenisPoint(BANGUNAN B);
 #endif

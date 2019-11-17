@@ -238,3 +238,19 @@ void PrintStatus (BANGUNAN B) {
 void SetPasukan(BANGUNAN *B, int Pas){
     Pasukan(*B) = Pas;
 }
+
+void PrintJenisPoint(BANGUNAN B){
+    if (Jenis(B) == 'C') {
+        printf("Castle ");
+    }
+    else if (Jenis(B) == 'T') {
+        printf("Tower ");
+    }
+    else if (Jenis(B) == 'F') {
+        printf("Fort ");
+    }
+    else if (Jenis(B) == 'V') {
+        printf("Village ");
+    }
+    TulisPOINT(lokasi(B));
+}

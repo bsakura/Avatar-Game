@@ -6,6 +6,8 @@
 #include "arraydin.h"
 #include "skill.h"
 #include "listlinier.h"
+#include "graph.h"
+
 void Command(){
     CreateEmptyStack(&Undo);
     Push(&Undo,A);
@@ -66,21 +68,51 @@ void UNDO(){
         A = InfoTop(Undo);
     }else{
         Push(&Undo,T);
-        printf("Tidak ada riwayat command");
+        printf("Tidak ada riwayat command sebelumnya");
         outln();
     }
     
 }
 
 void Move(){
+    int N, X,Y;
     printf("Daftar bangunan:");
     outln();
     PrintListBangunan(GetListP(TURN));
-    //Kalkulasi
-    //gunain selektor d adt bangunan
-
-
-    Push(&Undo, A);
+    outln();
+    printf("Pilih bangunan: ");
+    scanf("%d",&N);
+    address P= Searchindex((GetListP(TURN)),N);
+    X= Info(P);
+    printf("Daftar bangunan terdekat: ");
+    outln();
+    List FL= FilterList(Trail(SearchGNode(GRAPH,Info(P))),TURN,true);
+    if (IsEmpty(FL)){
+        printf("Tidak ada bangunan terdekat");
+        outln();
+    }else{
+        PrintListBangunan(FL);
+        outln();
+        printf("Bangunan yang akan menerima: ");
+        scanf("%d",&N);
+        P = Searchindex(FL,N);
+        Y = Info(P);
+        printf("Jumlah pasukan: ");
+        scanf("%d",&N);
+        if ((Pasukan(Bangunan(A,X))>=N) && ((Pasukan(Bangunan(A,Y))+N)>Maksimum(Bangunan(A,Y)))){
+            TambahPasukanManual(&(Bangunan(A,X)),-1*N);
+            TambahPasukanManual(&(Bangunan(A,Y)),N);
+            printf("%d pasukan dari ",N);
+            PrintJenisPoint(Bangunan(A,X));
+            printf(" telah berpindah ke ");
+            PrintJenisPoint(Bangunan(A,Y));
+            outln();
+        }else{
+            printf("Jumlah pasukan yang akan dipindahkan kurang");
+            outln();
+        }
+        Push(&Undo, A);
+    }
 }
 void End_turn(){//Kayanya mending d console appnya yang ini
 }

@@ -71,5 +71,6 @@ void DelQueue (Queue * Q, Kata * X);
         Q mungkin kosong */
 
 Queue GetQueueP(int P);
+/*HANYA UNTUK SELEKTOR*/
 
 #endif
