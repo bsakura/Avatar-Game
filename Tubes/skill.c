@@ -7,6 +7,12 @@
 #include "console.h"
 #include "queue.h"
 
+//SYARAT SYARAT SKILL BELOM ADA
+//CRIT SAMA ATK UP MASIH BELOM BERES DI COMMAND.C (masalah shield dkk)
+//CRIT NON-AKTIFIN SHIELD SAMA ATK UP SIAPA?
+//ATK UP SATU SERANGAN AJA ATO ENGGA?
+//CRIT SAMA ATK UP BISA DIGABUNG DALAM SATU TURN APA ENGGA (sekarang diset bisa)
+//KURANG KURANGAN KALO PAKE CRIT KAGA PAHAM GUA
 
 void useSkill(){
     Kata skill;
@@ -65,17 +71,23 @@ void ExtraTurn(Pemain P){
     Extra_turn = true;
 }
 
-void AttackUp(Pemain P){}//BONUS
+void AttackUp()//BONUS
 //Pada giliran ini, setelah skill ini diaktifkan, pertahanan bangunan musuh tidak akan
 //mempengaruhi penyerangan.
 //Pemain mendapat skill ini jika pemain baru saja menyerang Tower lawan dan
 //jumlah towernya menjadi 3.
+{
+    Atk_up = true;
+}
 
-void CriticalHit(Pemain P){}//BONUS
+void CriticalHit()//BONUS
 //Pada giliran ini, setelah skill diaktifkan, jumlah pasukan pada bangunan yang
 //melakukan serangan tepat selanjutnya hanya berkurang ½ dari jumlah
 //seharusnya.
 //Pemain mendapat skill ini jika lawan baru saja mengaktifkan skill Extra Turn.
+{
+    Crit = true;
+}
 
 void InstantReinforcement()
 //Seluruh bangunan mendapatkan tambahan 5 pasukan.

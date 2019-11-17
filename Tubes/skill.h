@@ -7,6 +7,8 @@
 #include "bangunan.h"
 #include "arraydin.h"
 
+extern boolean Atk_up, Crit;
+
 void useSkill();
 
 void InstantUpgrade();
