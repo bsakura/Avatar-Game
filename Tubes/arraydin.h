@@ -141,10 +141,10 @@ void MakeEmpty(TabInt *T, int maxel);
 //         Min berisi nilai minimum T */
 
 // /* ********** OPERASI LAIN ********** */
-// void CopyTab(TabInt Tin, TabInt *Tout);
-// /* I.S. Tin terdefinisi tidak kosong, Tout sembarang */
-// /* F.S. Tout berisi salinan dari Tin (identik, Neff dan MaxEl sama) */
-// /* Proses : Menyalin isi Tin ke Tout */
+void CopyTab(TabInt Tin, TabInt *Tout);
+/* I.S. Tin terdefinisi tidak kosong, Tout sembarang */
+/* F.S. Tout berisi salinan dari Tin (identik, Neff dan MaxEl sama) */
+/* Proses : Menyalin isi Tin ke Tout */
 // ElType SumTab(TabInt T);
 // /* Menghasilkan hasil penjumlahan semua elemen T */
 // /* Jika T kosong menghasilkan 0 */

@@ -102,12 +102,18 @@ void CetakTurn(){
     outln();
     CreateEmptyStack(&Undo);
     content con;
-    CreateContent(&con, A, Skill1, Skill2);
+    TabInt T;
+    CopyTab(A, &T);
+    CreateContent(&con, T, Skill1, Skill2);
     Push(&Undo,con);
     NEED =false;
     ENDTURN = false;
     while(!ENDGAME && !ENDTURN){
         CetakCommand();
+        // PrintStatus(Bangunan(A,1));
+        // outln();
+        // PrintStatus(Bangunan(A, 13));
+        // outln();
     }
 }
 // void CetakSkill(Queue Q){

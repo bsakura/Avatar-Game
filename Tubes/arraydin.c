@@ -224,20 +224,20 @@ void MakeEmpty(TabInt *T, int maxel){
 
 // }
 
-// void CopyTab(TabInt Tin, TabInt *Tout){
-//     /* I.S. Tin terdefinisi tidak kosong, Tout sembarang */
-//     /* F.S. Tout berisi salinan dari Tin (identik, Neff dan MaxEl sama) */
-//     /* Proses : Menyalin isi Tin ke Tout */
-//     //kamus lokal
-//     IdxType i;
-//     //algo
-//     MakeEmpty(Tout, NbElmt(Tin));
-//     Neff(*Tout)  = NbElmt(Tin);
-//     for (i=IdxMin; i<= GetLastIdx(*Tout);i++){
-//         Elmt(*Tout,i) = Elmt(Tin,i);
-//     }
+void CopyTab(TabInt Tin, TabInt *Tout){
+    /* I.S. Tin terdefinisi tidak kosong, Tout sembarang */
+    /* F.S. Tout berisi salinan dari Tin (identik, Neff dan MaxEl sama) */
+    /* Proses : Menyalin isi Tin ke Tout */
+    //kamus lokal
+    int i;
+    //algo
+    MakeEmpty(Tout, Neff(Tin));
+    Neff(*Tout)  = Neff(Tin);
+    for (i=IdxMin; i<= Neff(*Tout);i++){
+        Bangunan(*Tout,i) = Bangunan(Tin,i);
+    }
     
-// }
+ }
 
 // ElType SumTab(TabInt T){
 //     /* Menghasilkan hasil penjumlahan semua elemen T */

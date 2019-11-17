@@ -123,8 +123,11 @@ void Attack(){
         }
     }
     content con;
-    CreateContent(&con, A, Skill1, Skill2);
+    TabInt T;
+    CopyTab(A, &T);
+    CreateContent(&con, T, Skill1, Skill2);
     Push(&Undo,con);
+
 }
 void Level_up(){
 	int x;
@@ -170,7 +173,9 @@ void Level_up(){
 	};
     
     content con;
-    CreateContent(&con, A, Skill1, Skill2);
+    TabInt T;
+    CopyTab(A, &T);
+    CreateContent(&con, T, Skill1, Skill2);
     Push(&Undo,con);
 }
 
@@ -184,13 +189,18 @@ void UNDO(){
     Pop(&Undo,&con);
     if(!IsEmptyStack(Undo)){
         con = InfoTop(Undo);
-        A = Tab(con);
+        CopyTab(Tab(con), &A);
         Skill1 = S1(con);
         Skill2 = S2(con);
         CreateEmpty(&L1);
         CreateEmpty(&L2);
         ListBangunan(&L1,1);
         ListBangunan(&L2,2);
+        // PrintStatus(Bangunan(A,1));
+        // outln();
+        // PrintStatus(Bangunan(A, 13));
+        // outln();
+        
     }else{
         Push(&Undo,con);
         printf("Tidak ada riwayat command sebelumnya");
@@ -240,7 +250,9 @@ void Move(){
         
     }
     content con;
-    CreateContent(&con, A, Skill1, Skill2);
+    TabInt T;
+    CopyTab(A, &T);
+    CreateContent(&con, T, Skill1, Skill2);
     Push(&Undo,con);
 }
 void End_turn(){
