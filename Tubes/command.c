@@ -7,10 +7,8 @@
 #include "skill.h"
 #include "listlinier.h"
 #include "graph.h"
-
+#include "queue.h"
 void Command(){
-    CreateEmptyStack(&Undo);
-    Push(&Undo,A);
     if (CMPKATATabChar(STDIN,"ATTACK")){
         Attack();
     }else if(CMPKATATabChar(STDIN,"LEVEL_UP")){
@@ -67,6 +65,18 @@ void Attack(){
         if (N>=M){
             TambahPasukanManual(&(Bangunan(A,X)),-1*N);
             SetPasukan(&(Bangunan(A,Y)), (N-M));
+            if(Jenis(Bangunan(A,Y))=='F' && Kepemilikan(Bangunan(A,Y))==ENEMY()){
+                switch (TURN)
+                {
+                case 1:
+                    AddQueue(&Skill2,TabCHartoKata("ET"));
+                    break;
+                
+                default:
+                    AddQueue(&Skill1,TabCHartoKata("ET"));
+                    break;
+                }
+            }
             switch (TURN)
             {
             case 1:
@@ -83,9 +93,28 @@ void Attack(){
                 InsVLast(&L2, Y);
                 break;
             }
+            if(NbElmt(GetListP(TURN))==10){
+                switch (TURN)
+                {
+                case 1:
+                    AddQueue(&Skill2,TabCHartoKata("BR"));
+                    break;
+                
+                default:
+                    AddQueue(&Skill1,TabCHartoKata("BR"));
+                    break;
+                }
+            }
             SetKepemilikan(&(Bangunan(A, Y)),TURN);
             printf("Bangunan menjadi milikmu!");
             outln();
+            if(IsEmpty(GetListP(ENEMY()))){
+                ENDGAME = true;
+                printf("Game Selesai");
+                outln();
+                printf("Player %d Menang", TURN);
+                outln();
+            }
         }else{
             TambahPasukanManual(&(Bangunan(A,X)),-1*N);
             TambahPasukanManual(&(Bangunan(A,Y)), N*-3/4);
@@ -93,7 +122,9 @@ void Attack(){
             outln();
         }
     }
-    Push(&Undo, A);
+    content con;
+    CreateContent(&con, A, Skill1, Skill2);
+    Push(&Undo,con);
 }
 void Level_up(){
 	int x;
@@ -111,12 +142,36 @@ void Level_up(){
 		LevelUp(&B);
 		printf("Level %c-mu meningkat menjadi %d!", Jenis(B), Level(B));
         outln();
+        P =First(GetListP(TURN));
+        boolean IR = true;
+        while (P!=Nil && IR)
+        {
+            if(Level(Bangunan(A,Info(P)))!=4){
+                IR = false;
+            }
+        }
+        if (IR){
+            switch (TURN)
+            {
+            case 1:
+                AddQueue(&Skill1,TabCHartoKata("IR"));
+                break;
+            
+            default:
+                AddQueue(&Skill2,TabCHartoKata("IR"));
+                break;
+            }
+        }
+        
 	}
 	else{
 		printf("Jumlah pasukan %c kurang untuk level up", Jenis(B));
         outln();
 	};
-    Push(&Undo, A);
+    
+    content con;
+    CreateContent(&con, A, Skill1, Skill2);
+    Push(&Undo,con);
 }
 
 
@@ -125,12 +180,19 @@ void Skill(){
 }
 
 void UNDO(){
-    TabInt T;
-    Pop(&Undo,&T);
-    if(!IsEmptyStack){
-        A = InfoTop(Undo);
+    content con;
+    Pop(&Undo,&con);
+    if(!IsEmptyStack(Undo)){
+        con = InfoTop(Undo);
+        A = Tab(con);
+        Skill1 = S1(con);
+        Skill2 = S2(con);
+        CreateEmpty(&L1);
+        CreateEmpty(&L2);
+        ListBangunan(&L1,1);
+        ListBangunan(&L2,2);
     }else{
-        Push(&Undo,T);
+        Push(&Undo,con);
         printf("Tidak ada riwayat command sebelumnya");
         outln();
     }
@@ -177,7 +239,9 @@ void Move(){
         }
         
     }
-    Push(&Undo, A);
+    content con;
+    CreateContent(&con, A, Skill1, Skill2);
+    Push(&Undo,con);
 }
 void End_turn(){
     ENDTURN = true;

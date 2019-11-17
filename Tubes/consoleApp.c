@@ -100,9 +100,13 @@ void CetakTurn(){
     printf("Skill Available: ");
     CetakKata(InfoHead(GetQueueP(TURN)));
     outln();
+    CreateEmptyStack(&Undo);
+    content con;
+    CreateContent(&con, A, Skill1, Skill2);
+    Push(&Undo,con);
     NEED =false;
     ENDTURN = false;
-    while(!ENDTURN){
+    while(!ENDGAME && !ENDTURN){
         CetakCommand();
     }
 }
@@ -251,8 +255,8 @@ void Adjust(){
         //PrintListBangunan(LS);
         //TulisMATRIKS(Graph);
         //outln();
-        CreateEmptyQueue(&Skill1,20);
-        CreateEmptyQueue(&Skill2,20);
+        CreateEmptyQueue(&Skill1,10);
+        CreateEmptyQueue(&Skill2,10);
         AddQueue(&Skill1, TabCHartoKata("IU"));
         AddQueue(&Skill2, TabCHartoKata("IU"));
     }

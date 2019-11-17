@@ -12,10 +12,19 @@
 #define MaxElS 20
 /* Nil adalah stack dengan elemen kosong . */
 /* Karena indeks dalam bhs C dimulai 0 maka tabel dg indeks 0 tidak dipakai */
-typedef TabInt content;
+
+// typedef struct {
+//   TabInt T;
+//   Queue S1;
+//   Queue S2;
+// } content;
 
 typedef int index;   /* indeks tabel */
-
+typedef struct {
+  TabInt T;
+  Queue S1;
+  Queue S2;
+}content;
 /* Contoh deklarasi variabel bertype stack dengan ciri TOP : */
 /* Versi I : dengan menyimpan tabel dan alamat top secara eksplisit*/
 typedef struct {
@@ -31,7 +40,9 @@ typedef struct {
 /* Definisi akses dengan Selektor : Set dan Get */
 #define Top(S) (S).TOP
 #define InfoTop(S) (S).T[(S).TOP]
-
+#define Tab(C) (C).T
+#define S1(C) (C).S1
+#define S2(C) (C).S2
 
 extern Stack Undo;
 /* ************ Prototype ************ */
@@ -59,5 +70,5 @@ void Pop (Stack * S, content* X);
 /* Menghapus X dari Stack S. */
 /* I.S. S  tidak mungkin kosong */
 /* F.S. X adalah nilai elemen TOP yang lama, TOP berkurang 1 */
-
+void CreateContent(content *C,TabInt T,Queue S1, Queue S2  );
 #endif
