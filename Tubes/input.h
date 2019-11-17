@@ -7,7 +7,7 @@ extern char CC;
 extern int EOP;
 extern boolean useFile;
 extern char MARK;
-void set(boolean useFile);
+void set(boolean use);
 void START();
 /* Mesin siap dioperasikan. Pita disiapkan untuk dibaca.
    Karakter pertama yang ada pada pita posisinya adalah pada jendela.

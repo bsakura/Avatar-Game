@@ -34,14 +34,65 @@ void Command(){
 }
 
 void Attack(){
+    int N,M, X,Y;
     printf("Daftar bangunan:");
     outln();
     PrintListBangunan(GetListP(TURN));
-    //Kalkulasi
-    //di adt bangunan ada fungsinya tapi aku blm baca lgi
-
-
-
+    outln();
+    printf("Bangunan yang digunakan untuk menyerang: ");
+    scanf("%d",&N);
+    NEED = true;
+    address P= Searchindex((GetListP(TURN)),N);
+    X= Info(P);
+    printf("Daftar bangunan yang dapat diserang: ");
+    outln();
+    List FL= FilterList(Trail(SearchGNode(GRAPH,Info(P))),TURN,false);
+    if (IsEmpty(FL)){
+        printf("Tidak ada bangunan yang dapat diserang");
+        outln();
+    }else{
+        PrintListBangunan(FL);
+        outln();
+        printf("Bangunan yang diserang: ");
+        scanf("%d",&N);
+        P = Searchindex(FL,N);
+        Y = Info(P);
+        printf("Jumlah pasukan :");
+        scanf("%d", &N);
+        if (IsPertahanan(Bangunan(A,Y))){
+            M = Pasukan(Bangunan(A,Y)) * 4/3;
+        }else{
+            M= Pasukan(Bangunan(A,Y));
+        }
+        if (N>=M){
+            TambahPasukanManual(&(Bangunan(A,X)),-1*N);
+            SetPasukan(&(Bangunan(A,Y)), (N-M));
+            switch (TURN)
+            {
+            case 1:
+                if (Kepemilikan(Bangunan(A,Y))==2){
+                    DelP(&L2, Y);
+                }
+                InsVLast(&L1, Y);
+                break;
+            
+            default:
+                    if (Kepemilikan(Bangunan(A,Y))==1){
+                    DelP(&L1, Y);
+                }
+                InsVLast(&L2, Y);
+                break;
+            }
+            SetKepemilikan(&(Bangunan(A, Y)),TURN);
+            printf("Bangunan menjadi milikmu!");
+            outln();
+        }else{
+            TambahPasukanManual(&(Bangunan(A,X)),-1*N);
+            TambahPasukanManual(&(Bangunan(A,Y)), N*-3/4);
+            printf("Bangunan gagal direbut.");
+            outln();
+        }
+    }
     Push(&Undo, A);
 }
 void Level_up(){
@@ -82,6 +133,7 @@ void Move(){
     outln();
     printf("Pilih bangunan: ");
     scanf("%d",&N);
+    NEED = true;
     address P= Searchindex((GetListP(TURN)),N);
     X= Info(P);
     printf("Daftar bangunan terdekat: ");
@@ -111,10 +163,12 @@ void Move(){
             printf("Jumlah pasukan yang akan dipindahkan kurang");
             outln();
         }
-        Push(&Undo, A);
+        
     }
+    Push(&Undo, A);
 }
-void End_turn(){//Kayanya mending d console appnya yang ini
+void End_turn(){
+    ENDTURN = true;
 }
 void Save(){
    // printf("%d",2);

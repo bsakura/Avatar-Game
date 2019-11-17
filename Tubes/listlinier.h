@@ -150,4 +150,5 @@ void PrintListBangunan (List L );
 List GetListP(Pemain P);
 address Searchindex(List L,int idx);
 
+void TambahPasukan();
 #endif

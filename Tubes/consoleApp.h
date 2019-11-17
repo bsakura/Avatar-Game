@@ -8,4 +8,5 @@ void CetakCommand();
 void CetakTurn();
 void StartGame();
 void Adjust();
+void setstd();
 #endif

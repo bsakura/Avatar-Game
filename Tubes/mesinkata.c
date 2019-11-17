@@ -20,6 +20,7 @@ void IgnoreBlank(){
    }
    }
 }
+
 void STARTKATA(){
 /* I.S. : CC sembarang
    F.S. : EndKata = true, dan CC = MARK;
@@ -33,7 +34,9 @@ void STARTKATA(){
         EndKata = false;
         SalinKata();
     }
-    IgnoreBlank();
+    if (useFile){
+        IgnoreBlank();
+    }
 }
 void ADVKATA()
 /* I.S. : CC adalah karakter pertama kata yang akan diakuisisi

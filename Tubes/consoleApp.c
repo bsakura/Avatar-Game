@@ -22,6 +22,7 @@ Kata STDIN;
 Queue Skill1, Skill2;
 Stack Undo;
 Graph GRAPH;
+boolean Extra_turn,ENDTURN,ENDGAME, NEED;
 void CetakMap(){
     int i,j;
     for (i=1;i<=NKolEff(Map) +2; i++){
@@ -58,14 +59,36 @@ void CetakMap(){
     outln();
 }
 
+void setstd(){
+    set(false);
+    STARTKATA();
+    STDIN = CKata;
+    // printf("OOOO : "); 
+    // outln();
+    // CetakKata(CKata);
+    // outln();
+    // CetakKata(STDIN);
+    // outln();
+    // printf("OOOO : ");
+    // printf("ini %c ini ", CC);
+    // outln();
+}
+
 void CetakCommand(){
     printf("ENTER COMMAND: ");
-    set(false);
-
-    STARTKATA();
-    STDIN = CKata; 
-    ADVKATA();
+    // set(false);
+    // STARTKATA();
+    // STDIN = CKata; 
+    // CetakKata(CKata);
+    // CetakKata(STDIN);
+    if(NEED){
+        char C;
+        fscanf(stdin,"%c",&C);
+    }//print_blue(C);
+    NEED =false;
+    setstd();
     Command();
+    EndKata =true;
     
 }
 
@@ -77,9 +100,11 @@ void CetakTurn(){
     printf("Skill Available: ");
     CetakKata(InfoHead(GetQueueP(TURN)));
     outln();
-    CetakCommand();
-
-    
+    NEED =false;
+    ENDTURN = false;
+    while(!ENDTURN){
+        CetakCommand();
+    }
 }
 // void CetakSkill(Queue Q){
 //     printf("Skill Available: ");
@@ -136,7 +161,11 @@ void Adjust(){
         BANGUNAN B;
         
         TURN = 1;
+        ENDGAME = false;
+        Extra_turn =false;
+        ENDTURN = false;
         CreateGraph(&GRAPH);
+
         // printf("%d", TURN);
         // NextTurn();
         // printf("%d", TURN);
@@ -230,7 +259,13 @@ void Adjust(){
 
 void StartGame(){
     Adjust();
-    CetakMap();
-    CetakTurn();
+    do{
+        CetakMap();
+        CetakTurn();
+        if(!Extra_turn){
+            NextTurn();
+        }
+        TambahPasukan();
+    }while(!ENDGAME);
     //PrintListBangunan(L1);
 }

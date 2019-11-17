@@ -13,9 +13,9 @@ static int retval;
 void set(boolean use){
     useFile = use;
     if (use){
-        MARK = '\n';
-    }else{
         MARK = '\0';
+    }else{
+        MARK = '\n';
     }
 }
 void START() {
@@ -43,11 +43,14 @@ void ADV() {
           Jika  CC = MARK maka EOP akan menyala (true) */
     /* Algoritma */
     retval = fscanf(pita,"%c",&CC);
-    EOP = retval;
+    //EOP = retval;
     if (!useFile && CC=='\n'){
         EOP = -1;
-    }else if(EOP==-1) {
-       fclose(pita);
+    }else if(useFile) {
+        EOP = retval;
+        if (EOP==-1){
+            fclose(pita);
+        }
     }
 }
 

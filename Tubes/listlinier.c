@@ -160,7 +160,7 @@ void DelFirst (List *L, address *P){
     *P = First(*L);
     First(*L) = Next(First(*L));
 }
-void DelP (List *L, infotype X);//{
+void DelP (List *L, infotype X){
 /* I.S. Sembarang */
 /* F.S. Jika ada elemen list beraddress P, dengan Info(P)=X  */
 /* Maka P dihapus dari list dan di-dealokasi */
@@ -168,7 +168,7 @@ void DelP (List *L, infotype X);//{
 /* maka yang dihapus hanya elemen pertama dengan Info = X */
 /* Jika tidak ada elemen list dengan Info(P)=X, maka list tetap */
 /* List mungkin menjadi kosong karena penghapusan */
-/*    if (Search(*L, X) != Nil){
+    if (Search(*L, X) != Nil){
         address a;
         address P;
         a = First(*L);
@@ -179,13 +179,13 @@ void DelP (List *L, infotype X);//{
                 a = Next(a);
             }
             P = Next(Next(a));
-            Dealokasi(&Next(a));
+            Dealokasi(Next(a));
             Next(a) = P;
         }
 
     }
 
-}*/
+}
 void DelLast (List *L, address *P){
 /* I.S. List tidak kosong */
 /* F.S. P adalah alamat elemen terakhir list sebelum penghapusan  */
@@ -354,6 +354,23 @@ List GetListP(Pemain P){
     }else{
         return L2;
     }
+}
+
+void TambahPasukan(){
+	address P;
+	P = First(L1);
+	while (P!=Nil)
+	{
+		TambahPasukanAuto(&(Bangunan(A,Info(P))));
+		P = Next(P);
+	}
+	P = First(L2);
+	while (P!=Nil)
+	{
+		TambahPasukanAuto(&(Bangunan(A,Info(P))));
+		P = Next(P);
+	}
+	
 }
 // int main(){
 //     List L;

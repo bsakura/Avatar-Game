@@ -4,6 +4,8 @@
 #include "mesinkata.h"
 
 extern int TURN;
+extern boolean ENDTURN, Extra_turn, ENDGAME,NEED;
+
 int ENEMY();
 void NextTurn();
 void outln();

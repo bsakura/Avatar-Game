@@ -24,6 +24,10 @@ BANGUNAN SetBangunan (Jenis J, Pemain P, POINT lokasi) {
     return B;
 }
 
+void CopyBangunan(BANGUNAN *B, BANGUNAN Bin){
+    *B = Bin;
+}
+
 void MakeCastle (BANGUNAN *B) {
     Jenis(*B) = 'C';
     SetMaksimum(B);

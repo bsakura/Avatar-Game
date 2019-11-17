@@ -28,7 +28,10 @@ typedef struct {
 
 /* ************  PROTOTYPE  ************ */
 /* ************ KONSTRUKTOR ************ */
+
 BANGUNAN SetBangunan (Jenis J, Pemain P, POINT lokasi);
+
+void CopyBangunan(BANGUNAN *B, BANGUNAN Bin);
 void MakeCastle (BANGUNAN *B);
 void MakeTower (BANGUNAN *B);
 void MakeFort (BANGUNAN *B);
