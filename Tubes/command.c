@@ -7,8 +7,12 @@
 #include "skill.h"
 #include "listlinier.h"
 #include "graph.h"
-#include "queue.h"
+#include "boolean.h"
+
+
 void Command(){
+    CreateEmptyStack(&Undo);
+    Push(&Undo,A);
     if (CMPKATATabChar(STDIN,"ATTACK")){
         Attack();
     }else if(CMPKATATabChar(STDIN,"LEVEL_UP")){
@@ -62,21 +66,17 @@ void Attack(){
         }else{
             M= Pasukan(Bangunan(A,Y));
         }
+        // if (Atk_up)
+        // {
+        //     M = Pasukan(Bangunan(A,Y));
+        // }
+        // if (Crit)
+        // {
+        //    N = N * 2;
+        // }
         if (N>=M){
             TambahPasukanManual(&(Bangunan(A,X)),-1*N);
             SetPasukan(&(Bangunan(A,Y)), (N-M));
-            if(Jenis(Bangunan(A,Y))=='F' && Kepemilikan(Bangunan(A,Y))==ENEMY()){
-                switch (TURN)
-                {
-                case 1:
-                    AddQueue(&Skill2,TabCHartoKata("ET"));
-                    break;
-                
-                default:
-                    AddQueue(&Skill1,TabCHartoKata("ET"));
-                    break;
-                }
-            }
             switch (TURN)
             {
             case 1:
@@ -93,41 +93,28 @@ void Attack(){
                 InsVLast(&L2, Y);
                 break;
             }
-            if(NbElmt(GetListP(TURN))==10){
-                switch (TURN)
-                {
-                case 1:
-                    AddQueue(&Skill2,TabCHartoKata("BR"));
-                    break;
-                
-                default:
-                    AddQueue(&Skill1,TabCHartoKata("BR"));
-                    break;
-                }
-            }
             SetKepemilikan(&(Bangunan(A, Y)),TURN);
             printf("Bangunan menjadi milikmu!");
             outln();
-            if(IsEmpty(GetListP(ENEMY()))){
-                ENDGAME = true;
-                printf("Game Selesai");
-                outln();
-                printf("Player %d Menang", TURN);
-                outln();
-            }
         }else{
             TambahPasukanManual(&(Bangunan(A,X)),-1*N);
             TambahPasukanManual(&(Bangunan(A,Y)), N*-3/4);
             printf("Bangunan gagal direbut.");
             outln();
         }
+        Atk_up = false;
+        Crit = false;
     }
+<<<<<<< HEAD
     content con;
     TabInt T;
     CopyTab(A, &T);
     CreateContent(&con, T, Skill1, Skill2);
     Push(&Undo,con);
 
+=======
+    Push(&Undo, A);
+>>>>>>> f979e96f483104d181ccd89e69f4f5c754015fbc
 }
 void Level_up(){
 	int x;
@@ -145,38 +132,21 @@ void Level_up(){
 		LevelUp(&B);
 		printf("Level %c-mu meningkat menjadi %d!", Jenis(B), Level(B));
         outln();
-        P =First(GetListP(TURN));
-        boolean IR = true;
-        while (P!=Nil && IR)
-        {
-            if(Level(Bangunan(A,Info(P)))!=4){
-                IR = false;
-            }
-        }
-        if (IR){
-            switch (TURN)
-            {
-            case 1:
-                AddQueue(&Skill1,TabCHartoKata("IR"));
-                break;
-            
-            default:
-                AddQueue(&Skill2,TabCHartoKata("IR"));
-                break;
-            }
-        }
-        
 	}
 	else{
 		printf("Jumlah pasukan %c kurang untuk level up", Jenis(B));
         outln();
 	};
+<<<<<<< HEAD
     
     content con;
     TabInt T;
     CopyTab(A, &T);
     CreateContent(&con, T, Skill1, Skill2);
     Push(&Undo,con);
+=======
+    Push(&Undo, A);
+>>>>>>> f979e96f483104d181ccd89e69f4f5c754015fbc
 }
 
 
@@ -185,6 +155,7 @@ void Skill(){
 }
 
 void UNDO(){
+<<<<<<< HEAD
     content con;
     Pop(&Undo,&con);
     if(!IsEmptyStack(Undo)){
@@ -201,8 +172,14 @@ void UNDO(){
         // PrintStatus(Bangunan(A, 13));
         // outln();
         
+=======
+    TabInt T;
+    Pop(&Undo,&T);
+    if(!IsEmptyStack){
+        A = InfoTop(Undo);
+>>>>>>> f979e96f483104d181ccd89e69f4f5c754015fbc
     }else{
-        Push(&Undo,con);
+        Push(&Undo,T);
         printf("Tidak ada riwayat command sebelumnya");
         outln();
     }
@@ -249,13 +226,19 @@ void Move(){
         }
         
     }
+<<<<<<< HEAD
     content con;
     TabInt T;
     CopyTab(A, &T);
     CreateContent(&con, T, Skill1, Skill2);
     Push(&Undo,con);
+=======
+    Push(&Undo, A);
+>>>>>>> f979e96f483104d181ccd89e69f4f5c754015fbc
 }
 void End_turn(){
+    Atk_up = false;
+    Crit = false;
     ENDTURN = true;
 }
 void Save(){}

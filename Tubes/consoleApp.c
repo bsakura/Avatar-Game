@@ -22,7 +22,7 @@ Kata STDIN;
 Queue Skill1, Skill2;
 Stack Undo;
 Graph GRAPH;
-boolean Extra_turn,ENDTURN,ENDGAME, NEED;
+boolean Extra_turn,ENDTURN,ENDGAME, NEED, Atk_up, Crit;
 void CetakMap(){
     int i,j;
     for (i=1;i<=NKolEff(Map) +2; i++){
@@ -108,7 +108,7 @@ void CetakTurn(){
     Push(&Undo,con);
     NEED =false;
     ENDTURN = false;
-    while(!ENDGAME && !ENDTURN){
+    while(!ENDTURN &&!ENDGAME){
         CetakCommand();
         // PrintStatus(Bangunan(A,1));
         // outln();
@@ -261,8 +261,8 @@ void Adjust(){
         //PrintListBangunan(LS);
         //TulisMATRIKS(Graph);
         //outln();
-        CreateEmptyQueue(&Skill1,10);
-        CreateEmptyQueue(&Skill2,10);
+        CreateEmptyQueue(&Skill1,20);
+        CreateEmptyQueue(&Skill2,20);
         AddQueue(&Skill1, TabCHartoKata("IU"));
         AddQueue(&Skill2, TabCHartoKata("IU"));
     }
