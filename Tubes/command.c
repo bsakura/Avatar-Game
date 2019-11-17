@@ -45,14 +45,23 @@ void Attack(){
     Push(&Undo, A);
 }
 void Level_up(){
+	int x;
     printf("Daftar bangunan:");
     outln();
     PrintListBangunan(GetListP(TURN));
     //Kalkulasi
     //di adt bangunan ada fungsinya tapi aku blm baca lgi
-
-
-
+    printf("Bangunan yang akan di level up: ");
+    scanf("%d", &x);
+    address P = Searchindex(GetListP(TURN), x);
+    BANGUNAN B = Bangunan(A, Info(P));
+	if (Pasukan(B) >= (Maksimum(B) / 2)) {
+		LevelUp(&B);
+		printf("Level %c-mu meningkat menjadi %d!", Jenis(B), Level(B));
+	}
+	else{
+		printf("Jumlah pasukan %c kurang untuk level up", Jenis(B));
+	};
     Push(&Undo, A);
 }
 
