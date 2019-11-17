@@ -96,14 +96,26 @@ void Attack(){
     Push(&Undo, A);
 }
 void Level_up(){
+	int x;
     printf("Daftar bangunan:");
     outln();
     PrintListBangunan(GetListP(TURN));
     //Kalkulasi
     //di adt bangunan ada fungsinya tapi aku blm baca lgi
-
-
-
+    printf("Bangunan yang akan di level up: ");
+    scanf("%d", &x);
+    NEED = true;
+    address P = Searchindex(GetListP(TURN), x);
+    BANGUNAN B = Bangunan(A, Info(P));
+	if (Pasukan(B) >= (Maksimum(B) / 2)) {
+		LevelUp(&B);
+		printf("Level %c-mu meningkat menjadi %d!", Jenis(B), Level(B));
+        outln();
+	}
+	else{
+		printf("Jumlah pasukan %c kurang untuk level up", Jenis(B));
+        outln();
+	};
     Push(&Undo, A);
 }
 
@@ -170,9 +182,10 @@ void Move(){
 void End_turn(){
     ENDTURN = true;
 }
-void Save(){
-   // printf("%d",2);
-}
+void Save(){}
+    //SaveGame(FileInput file) {
+    //file.writeInt(ListBangunan);
+//}
 void EXIT(){
     exit(0);
 }

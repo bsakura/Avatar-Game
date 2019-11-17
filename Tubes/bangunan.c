@@ -196,12 +196,10 @@ void SerangBangunan (BANGUNAN *B1, BANGUNAN *B2, int Pasukan) {
 }
 
 void LevelUp (BANGUNAN *B) {
-    if (Pasukan(*B) >= (Maksimum(*B) / 2)) {
-        if (Level(*B) < 4) {
-            Pasukan(*B) -= (Maksimum(*B) / 2);
-            Level(*B) += 1;
-            SetMaksimum(B);
-        }
+    if (Level(*B) < 4) {
+        Pasukan(*B) -= (Maksimum(*B) / 2);
+        Level(*B) += 1;
+        SetMaksimum(B);
     }
 }
 
