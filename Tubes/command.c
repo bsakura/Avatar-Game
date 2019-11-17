@@ -127,18 +127,9 @@ void End_turn(){
     NextTurn();
 }
 void Save();
-//struct SaveGameData
-//{
-    int              characterLevel; // Any straight up values from the player
-    int              inventoryCount; // Number of items the player has on them or stored or what not
-    int[STAT_COUNT]  statistics;     // This is usually a constant size (I am tracking X number of stats)
-    // etc} 
-//struct Item
-//{
-    int itemTypeId;
-    int Durability; // also used as a 'uses' count for potions and the like
-    int strength;   // damage of a weapon, protection of armor, effectiveness of a potion
-    // etc}
+SaveGame(FileInput file) {
+    file.writeInt(ListBangunan);
+}
 void EXIT(){
     exit(0);
 }
