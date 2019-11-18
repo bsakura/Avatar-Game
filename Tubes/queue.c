@@ -21,7 +21,7 @@ int NBElmtQueue (Queue Q){
         return 0;
     }
     else{
-        return (Tail(Q)>Head(Q) ? (Tail(Q)-Head(Q) +1) :(Tail(Q)+MaxElQ(Q)-Head(Q)+1));
+        return (Tail(Q)>=Head(Q) ? (Tail(Q)-Head(Q) +1) :(Tail(Q)+MaxElQ(Q)-Head(Q)+1));
     }
 }
 /* *** Kreator *** */
@@ -81,3 +81,48 @@ Queue GetQueueP(int P){
         return Skill2;
     }
 }
+
+void CopyQueue(Queue Qin, Queue *Qout){
+    // if (IsEmptyQueue(Qin)){
+    //     CreateEmptyQueue(Qout, MaxElQ(Qin));
+    // }else{
+    //     Kata K;
+    //     DelQueue(&Qin,&K);
+    //     Queue Q;
+    //     CopyQueue(Qin,&Q);
+    //     AddQueue(&Qin,K);
+    //     AddQueue(&Q,K);
+    //     *Qout = Q;
+    // }
+    CreateEmptyQueue(Qout,MaxElQ(Qin));
+    for(int i=1;i<=NBElmtQueue(Qin); i++){
+        (*Qout).T[i] = (Qin).T[i];
+    }
+    Head(*Qout) = Head(Qin);
+    Tail(*Qout)= Tail(Qin);
+    MaxElQ(*Qout )= MaxElQ(Qin);
+}
+
+
+
+// int main(){
+//     Queue Q1,  Q2;
+//     CreateEmptyQueue(&Q1,10);
+//     AddQueue(&Q1,TabCHartoKata("AAAA"));
+//     AddQueue(&Q1,TabCHartoKata("BBBB"));
+//     AddQueue(&Q1,TabCHartoKata("CCCC"));
+//     CopyQueue(Q1, &Q2);
+//     Kata K;
+//     DelQueue(&Q2, &K);
+//     while(!IsEmptyQueue(Q1)){
+//         DelQueue(&Q1,&K);
+//         CetakKata(K);
+//         outln;
+//     }
+//     while(!IsEmptyQueue(Q2)){
+//         DelQueue(&Q2,&K);
+//         CetakKata(K);
+//         outln;
+//     }
+//     return 0;
+// }

@@ -104,7 +104,10 @@ void CetakTurn(){
     content con;
     TabInt T;
     CopyTab(A, &T);
-    CreateContent(&con, T, Skill1, Skill2);
+    Queue Q1 ,Q2;
+    CopyQueue(Skill1, &Q1);
+    CopyQueue(Skill2,&Q2);
+    CreateContent(&con, T, Q1, Q2);
     Push(&Undo,con);
     NEED =false;
     ENDTURN = false;
@@ -261,8 +264,8 @@ void Adjust(){
         //PrintListBangunan(LS);
         //TulisMATRIKS(Graph);
         //outln();
-        CreateEmptyQueue(&Skill1,20);
-        CreateEmptyQueue(&Skill2,20);
+        CreateEmptyQueue(&Skill1,10);
+        CreateEmptyQueue(&Skill2,10);
         AddQueue(&Skill1, TabCHartoKata("IU"));
         AddQueue(&Skill2, TabCHartoKata("IU"));
     }
@@ -279,3 +282,49 @@ void StartGame(){
     }while(!ENDGAME);
     //PrintListBangunan(L1);
 }
+
+// int main(){
+//     Queue   Q2;
+//     CreateEmptyQueue(&Skill1,10);
+//     AddQueue(&Skill1,TabCHartoKata("AAAA"));
+    
+//     AddQueue(&Skill1,TabCHartoKata("BBBB"));
+//     Kata K;
+//     CopyQueue(Skill1,&Q2);
+//         CetakKata(InfoHead(Skill1));
+//     CetakKata(InfoHead(Q2));
+//     DelQueue(&Skill1,&K);
+//     CetakKata(InfoHead(Skill1));
+//     CetakKata(InfoHead(Q2));
+//     // CopyQueue(Skill1,&Q2);
+//     // CetakKata(InfoHead(Skill1));
+//     // outln();
+//     // CetakKata(InfoHead(Q2));
+//     // outln();
+//     // DelQueue(&Skill1,&K);
+//     // CetakKata(InfoHead(Skill1));
+//     // outln();
+//     // CetakKata(InfoHead(Q2));
+//     // outln();
+//     // DelQueue(&Skill1,&K);
+//     // printf("%d",NBElmtQueue(Skill1));
+//     // if(IsEmptyQueue(Skill1)){
+//     //     printf("Hore");
+//     // }
+//     // outln();
+
+//     // AddQueue(&Skill1,TabCHartoKata("CCCC"));
+//     // while(!IsEmptyQueue(Skill1)){
+//     //     DelQueue(&Skill1,&K);
+//     //     CetakKata(K);
+//     //     outln();
+//     // }
+//     // outln();
+//     // while(!IsEmptyQueue(Q2)){
+//     //     DelQueue(&Q2,&K);
+//     //     CetakKata(K);
+//     //     outln();
+//     // }
+//     // outln();
+//     // return 0;
+// }

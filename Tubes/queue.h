@@ -73,4 +73,6 @@ void DelQueue (Queue * Q, Kata * X);
 Queue GetQueueP(int P);
 /*HANYA UNTUK SELEKTOR*/
 
+void CopyQueue(Queue Qin, Queue *Qout);
+
 #endif

@@ -11,8 +11,6 @@
 
 
 void Command(){
-    CreateEmptyStack(&Undo);
-    Push(&Undo,A);
     if (CMPKATATabChar(STDIN,"ATTACK")){
         Attack();
     }else if(CMPKATATabChar(STDIN,"LEVEL_UP")){
@@ -105,16 +103,15 @@ void Attack(){
         Atk_up = false;
         Crit = false;
     }
-<<<<<<< HEAD
     content con;
     TabInt T;
     CopyTab(A, &T);
-    CreateContent(&con, T, Skill1, Skill2);
+    Queue Q1 ,Q2;
+    CopyQueue(Skill1, &Q1);
+    CopyQueue(Skill2,&Q2);
+    CreateContent(&con, T, Q1, Q2);
     Push(&Undo,con);
 
-=======
-    Push(&Undo, A);
->>>>>>> f979e96f483104d181ccd89e69f4f5c754015fbc
 }
 void Level_up(){
 	int x;
@@ -137,32 +134,39 @@ void Level_up(){
 		printf("Jumlah pasukan %c kurang untuk level up", Jenis(B));
         outln();
 	};
-<<<<<<< HEAD
     
     content con;
     TabInt T;
     CopyTab(A, &T);
-    CreateContent(&con, T, Skill1, Skill2);
+    Queue Q1 ,Q2;
+    CopyQueue(Skill1, &Q1);
+    CopyQueue(Skill2,&Q2);
+    CreateContent(&con, T, Q1, Q2);
     Push(&Undo,con);
-=======
-    Push(&Undo, A);
->>>>>>> f979e96f483104d181ccd89e69f4f5c754015fbc
 }
 
 
 void Skill(){
     useSkill();
+    CreateEmptyStack(&Undo);
+    content con;
+    TabInt T;
+    CopyTab(A, &T);
+    Queue Q1 ,Q2;
+    CopyQueue(Skill1, &Q1);
+    CopyQueue(Skill2,&Q2);
+    CreateContent(&con, T, Q1, Q2);
+    Push(&Undo,con);
 }
 
 void UNDO(){
-<<<<<<< HEAD
     content con;
     Pop(&Undo,&con);
     if(!IsEmptyStack(Undo)){
         con = InfoTop(Undo);
         CopyTab(Tab(con), &A);
-        Skill1 = S1(con);
-        Skill2 = S2(con);
+        CopyQueue(S1(con), &Skill1);
+        CopyQueue(S2(con),&Skill2);
         CreateEmpty(&L1);
         CreateEmpty(&L2);
         ListBangunan(&L1,1);
@@ -172,14 +176,8 @@ void UNDO(){
         // PrintStatus(Bangunan(A, 13));
         // outln();
         
-=======
-    TabInt T;
-    Pop(&Undo,&T);
-    if(!IsEmptyStack){
-        A = InfoTop(Undo);
->>>>>>> f979e96f483104d181ccd89e69f4f5c754015fbc
     }else{
-        Push(&Undo,T);
+        Push(&Undo,con);
         printf("Tidak ada riwayat command sebelumnya");
         outln();
     }
@@ -226,15 +224,14 @@ void Move(){
         }
         
     }
-<<<<<<< HEAD
     content con;
     TabInt T;
     CopyTab(A, &T);
-    CreateContent(&con, T, Skill1, Skill2);
+    Queue Q1 ,Q2;
+    CopyQueue(Skill1, &Q1);
+    CopyQueue(Skill2,&Q2);
+    CreateContent(&con, T, Q1, Q2);
     Push(&Undo,con);
-=======
-    Push(&Undo, A);
->>>>>>> f979e96f483104d181ccd89e69f4f5c754015fbc
 }
 void End_turn(){
     Atk_up = false;
