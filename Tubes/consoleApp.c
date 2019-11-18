@@ -16,7 +16,7 @@
 #include "command.h"
 
 TabInt A;
-List L1, L2;
+List L1, L2, LMove;
 MATRIKS Map;
 Kata STDIN;
 Queue Skill1, Skill2;
@@ -100,6 +100,7 @@ void CetakTurn(){
     printf("Skill Available: ");
     CetakKata(InfoHead(GetQueueP(TURN)));
     outln();
+    CreateEmpty(&LMove);
     CreateEmptyStack(&Undo);
     content con;
     TabInt T;
@@ -109,6 +110,7 @@ void CetakTurn(){
     CopyQueue(Skill2,&Q2);
     CreateContent(&con, T, Q1, Q2);
     Push(&Undo,con);
+    Atk_up = false;
     NEED =false;
     ENDTURN = false;
     while(!ENDTURN &&!ENDGAME){

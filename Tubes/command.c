@@ -59,48 +59,54 @@ void Attack(){
         Y = Info(P);
         printf("Jumlah pasukan :");
         scanf("%d", &N);
-        if (IsPertahanan(Bangunan(A,Y))){
-            M = Pasukan(Bangunan(A,Y)) * 4/3;
-        }else{
-            M= Pasukan(Bangunan(A,Y));
-        }
-        // if (Atk_up)
-        // {
-        //     M = Pasukan(Bangunan(A,Y));
-        // }
-        // if (Crit)
-        // {
-        //    N = N * 2;
-        // }
-        if (N>=M){
-            TambahPasukanManual(&(Bangunan(A,X)),-1*N);
-            SetPasukan(&(Bangunan(A,Y)), (N-M));
-            switch (TURN)
-            {
-            case 1:
-                if (Kepemilikan(Bangunan(A,Y))==2){
-                    DelP(&L2, Y);
-                }
-                InsVLast(&L1, Y);
-                break;
-            
-            default:
-                    if (Kepemilikan(Bangunan(A,Y))==1){
-                    DelP(&L1, Y);
-                }
-                InsVLast(&L2, Y);
-                break;
+        //printf("%d %d\n", N, Pasukan(Bangunan(A,X)));
+        if(N<=Pasukan(Bangunan(A,X))){
+            if (IsPertahanan(Bangunan(A,Y))&& !Atk_up){
+                M = Pasukan(Bangunan(A,Y)) * 4/3;
+            }else{
+                M= Pasukan(Bangunan(A,Y));
             }
-            SetKepemilikan(&(Bangunan(A, Y)),TURN);
-            printf("Bangunan menjadi milikmu!");
-            outln();
-        }else{
-            TambahPasukanManual(&(Bangunan(A,X)),-1*N);
-            TambahPasukanManual(&(Bangunan(A,Y)), N*-3/4);
-            printf("Bangunan gagal direbut.");
+            // if (Atk_up)
+            // {
+            //     M = Pasukan(Bangunan(A,Y));
+            // }
+            // if (Crit)
+            // {
+            //    N = N * 2;
+            // }
+            if (N>=M){
+                TambahPasukanManual(&(Bangunan(A,X)),-1*N);
+                SetPasukan(&(Bangunan(A,Y)), (N-M));
+                switch (TURN)
+                {
+                case 1:
+                    if (Kepemilikan(Bangunan(A,Y))==2){
+                        DelP(&L2, Y);
+                    }
+                    InsVLast(&L1, Y);
+                    break;
+                
+                default:
+                        if (Kepemilikan(Bangunan(A,Y))==1){
+                        DelP(&L1, Y);
+                    }
+                    InsVLast(&L2, Y);
+                    break;
+                }
+                SetKepemilikan(&(Bangunan(A, Y)),TURN);
+                printf("Bangunan menjadi milikmu!");
+                outln();
+            }else{
+                TambahPasukanManual(&(Bangunan(A,X)),-1*N);
+                TambahPasukanManual(&(Bangunan(A,Y)), N*-3/4);
+                printf("Bangunan gagal direbut.");
+                outln();
+            }
+        }else
+        {
+            printf("Jumlah pasukan melebihi yang ada pada bangunan");
             outln();
         }
-        Atk_up = false;
         Crit = false;
     }
     content con;
@@ -126,12 +132,17 @@ void Level_up(){
     address P = Searchindex(GetListP(TURN), x);
     BANGUNAN B = Bangunan(A, Info(P));
 	if (Pasukan(B) >= (Maksimum(B) / 2)) {
+        TambahPasukanManual(&B, -1*(Maksimum(*B) / 2));
 		LevelUp(&B);
-		printf("Level %c-mu meningkat menjadi %d!", Jenis(B), Level(B));
+		printf("Level ");
+        PrintJenisPoint(B);
+        printf(" -mu meningkat menjadi %d!", Level(B));
         outln();
 	}
 	else{
-		printf("Jumlah pasukan %c kurang untuk level up", Jenis(B));
+		printf("Jumlah pasukan ");
+        PrintJenisPoint(B);
+        printf(" kurang untuk level up");
         outln();
 	};
     
@@ -195,13 +206,18 @@ void Move(){
     NEED = true;
     address P= Searchindex((GetListP(TURN)),N);
     X= Info(P);
-    printf("Daftar bangunan terdekat: ");
-    outln();
     List FL= FilterList(Trail(SearchGNode(GRAPH,Info(P))),TURN,true);
     if (IsEmpty(FL)){
+        printf("Daftar bangunan terdekat: ");
+        outln();
         printf("Tidak ada bangunan terdekat");
         outln();
+    }else if(Search(LMove,X)!=Nil){
+        printf("Bangunan ini sudah pernah dipindahkan pasukannya");
+        outln();
     }else{
+        printf("Daftar bangunan terdekat: ");
+        outln();
         PrintListBangunan(FL);
         outln();
         printf("Bangunan yang akan menerima: ");
@@ -210,7 +226,7 @@ void Move(){
         Y = Info(P);
         printf("Jumlah pasukan: ");
         scanf("%d",&N);
-        if ((Pasukan(Bangunan(A,X))>=N) && ((Pasukan(Bangunan(A,Y))+N)>Maksimum(Bangunan(A,Y)))){
+        if ((Pasukan(Bangunan(A,X))>=N) && ((Pasukan(Bangunan(A,Y))+N)<=Maksimum(Bangunan(A,Y)))){
             TambahPasukanManual(&(Bangunan(A,X)),-1*N);
             TambahPasukanManual(&(Bangunan(A,Y)),N);
             printf("%d pasukan dari ",N);
@@ -218,8 +234,12 @@ void Move(){
             printf(" telah berpindah ke ");
             PrintJenisPoint(Bangunan(A,Y));
             outln();
-        }else{
+            InsVLast(&LMove, X);
+        }else if(Pasukan(Bangunan(A,X))<N){
             printf("Jumlah pasukan yang akan dipindahkan kurang");
+            outln();
+        }else{
+            printf("Jumlah pasukan terlalu besar");
             outln();
         }
         
