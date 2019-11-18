@@ -6,8 +6,9 @@
 #include "arraydin.h"
 
 void InstantUpgrade(List L, Pemain P, TabInt A)
-//Seluruh bangunan yang dimiliki pemain akan naik 1 level.
-//Pemain tidak akan mendapat skill ini selain dari daftar skill awal.
+/*I.S.: List bangunan awal pemain.
+  F.S.: Seluruh bangunan yang dimiliki pemain akan naik 1 level. 
+        Pemain tidak akan mendapat skill ini selain dari daftar skill awal.*/
 {
     address a;
     a = First(L);

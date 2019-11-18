@@ -15,7 +15,9 @@
 //KURANG KURANGAN KALO PAKE CRIT KAGA PAHAM GUA
 
 void useSkill(){
+    //Kamus Lokal
     Kata skill;
+    //Algoritma
     switch (TURN)
     {
     case 1:
@@ -46,8 +48,9 @@ void useSkill(){
 }
 
 void InstantUpgrade()
-//Seluruh bangunan yang dimiliki pemain akan naik 1 level.
-//Pemain tidak akan mendapat skill ini selain dari daftar skill awal.
+/*I.S.: List bangunan awal pemain.
+  F.S.: Seluruh bangunan yang dimiliki pemain akan naik 1 level. 
+        Pemain tidak akan mendapat skill ini selain dari daftar skill awal.*/
 {
     address a = First(GetListP(TURN));
     while(a != NULL)
@@ -65,9 +68,9 @@ void Shield(Pemain P){}//BONUS
 //berkurang 1 menjadi sisa 2.
 
 void ExtraTurn(){
-//Setelah giliran pengaktifan skill ini berakhir, pemain selanjutnya tetap pemain
-//yang sama.
-//Pemain mendapat skill ini jika Fort pemain tersebut direbut lawan.
+/*I.S.: Giliran pe,ain hanya satu kali per pemain
+  F.S.: Setelah giliran pengaktifan skill ini berakhir, pemain selanjutnya tetap pemain
+         yang sama. Pemain mendapat skill ini jika Fort pemain tersebut direbut lawan.*/
     Extra_turn = true;
     switch (TURN)
     {
@@ -97,7 +100,13 @@ void CriticalHit()//BONUS
 //seharusnya.
 //Pemain mendapat skill ini jika lawan baru saja mengaktifkan skill Extra Turn.
 {
+    BANGUNAN *B1, *B2;
+    int P;
     Crit = true;
+    //if (SerangBangunan(*B1,*B2,P)){
+      //  SerangBangunanCritHit(*B1,*B2,*P);
+    //}
+
 }
 
 void InstantReinforcement()
