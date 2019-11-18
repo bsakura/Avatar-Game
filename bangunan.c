@@ -4,7 +4,9 @@
 #include "bangunan.h"
 
 void MakeEmpty (ARRAYB *A, int N) {
+    //Kamus Lokal
     int i;
+    //Algoritma
     for (i = 1; i <= NBBangunan(*A); i++) {
         Jenis(Bangunan(*A, i)) = 'X';
         Kepemilikan(Bangunan(*A, i)) = 0; 
@@ -15,8 +17,13 @@ void MakeEmpty (ARRAYB *A, int N) {
     }
 }
 
-BANGUNAN SetBangunan (Jenis J, Pemain P, POINT lokasi) {
+BANGUNAN SetBangunan (Jenis J, Pemain P, POINT lokasi) 
+/* Input: Jenis bangunan yang diinginkan, pemain, dan point
+   Output: Bangunan sudah ditentukan kepemilikan, level, dan jenisnya.*/
+{
+    //Kamus Lokal
     BANGUNAN B;
+    //Algoritma
     Kepemilikan(B) = P;
     Level(B) = 1;
     if (J == 'C') {
@@ -35,7 +42,12 @@ BANGUNAN SetBangunan (Jenis J, Pemain P, POINT lokasi) {
     return B;
 }
 
-void MakeCastle (BANGUNAN *B) {
+void MakeCastle (BANGUNAN *B) 
+/*I.S. Bangunan
+  F.S. Castle terbentuk. */
+{
+    //Kamus Lokal
+    //Algoritma
     Jenis(*B) = 'C';
     SetMaksimum(B);
     if (Kepemilikan(*B) ==0) {
@@ -48,7 +60,12 @@ void MakeCastle (BANGUNAN *B) {
     }
 }
 
-void MakeTower (BANGUNAN *B) {
+void MakeTower (BANGUNAN *B) 
+/*I.S. Bangunan
+  F.S. Tower terbentuk. */
+{
+    //Kamus Lokal
+    //Algoritma
     Jenis(*B) = 'T';
     SetMaksimum(B);
     if (Kepemilikan(*B) ==0) {
@@ -61,7 +78,12 @@ void MakeTower (BANGUNAN *B) {
     }
 }
 
-void MakeFort (BANGUNAN *B) {
+void MakeFort (BANGUNAN *B) 
+/*I.S. Bangunan
+  F.S. Fort terbentuk. */
+  {
+    //Kamus Lokal
+    //Algoritma
     Jenis(*B) = 'F';
     SetMaksimum(B);
     if (Kepemilikan(*B) ==0) {
@@ -74,7 +96,12 @@ void MakeFort (BANGUNAN *B) {
     }
 }
 
-void MakeVillage (BANGUNAN *B) {
+void MakeVillage (BANGUNAN *B) 
+/*I.S. Bangunan
+  F.S. Fort terbentuk. */
+{
+    //Kamus Lokal
+    //Algoritma
     Jenis(*B) = 'V';
     SetMaksimum(B);
     if (Kepemilikan(*B) ==0) {
@@ -87,7 +114,12 @@ void MakeVillage (BANGUNAN *B) {
     }
 }
 
-boolean IsPertahanan (BANGUNAN B) {
+boolean IsPertahanan (BANGUNAN B) 
+/*Input: Bangunan sembarang.
+  Output: Boolean true jika bangunan berjenis T dan jika F namun level diatas tiga.*/
+{
+    //Kamus Lokal
+    //Algoritma
     if (Jenis(B) == 'T') {
         return true;
     }
@@ -104,11 +136,21 @@ boolean IsPertahanan (BANGUNAN B) {
     }
 }
 
-void SetKepemilikan (BANGUNAN *B, Pemain P) {
+void SetKepemilikan (BANGUNAN *B, Pemain P) 
+/*I.S: Bangunan sembarang
+  F.S: Bangunan dimiliki oleh pemain pada input.*/
+{
+    //Kamus Lokal
+    //Algoritma
     Kepemilikan(*B) = P;
 }
 
-boolean IsKepemilikan (BANGUNAN B, Pemain P) {
+boolean IsKepemilikan (BANGUNAN B, Pemain P) 
+/*Input: Bangunan dan Pemain
+  Output: Boolean true jika bangunan merupakan milik pemain.*/
+{
+    //Kamus Lokal
+    //Algoritma
     if (Kepemilikan(B) == P) {
         return true;
     }
@@ -117,8 +159,13 @@ boolean IsKepemilikan (BANGUNAN B, Pemain P) {
     }
 }
 
-void TambahPasukanAuto (BANGUNAN *B) {
+void TambahPasukanAuto (BANGUNAN *B) 
+/*I.S.: Bangunan
+  F.S.: Jumlah pasukkan pada bangunan bertambah sesuai dengan level secara automatis bergantung jenis bangunan.*/
+{
+    //Kamus Lokal
     int PasukanAwal, Selisih;
+    //Algoritma
     PasukanAwal = Pasukan(*B);
     if (Level(*B) == 1) {
         if (Jenis(*B) == 'C') {
@@ -182,11 +229,21 @@ void TambahPasukanAuto (BANGUNAN *B) {
     }
 }
 
-void TambahPasukanManual (BANGUNAN *B, int Pasukan) {
+void TambahPasukanManual (BANGUNAN *B, int Pasukan) 
+/*I.S.: Bangunan dan pasukan
+  F.S.: Pasukan ditambahkan secara manual.*/
+{
+    //Kamus Lokal
+    //Algoritma
     Pasukan(*B) += Pasukan;
 }
 
-void SerangBangunan (BANGUNAN *B1, BANGUNAN *B2, int Pasukan) {
+void SerangBangunan (BANGUNAN *B1, BANGUNAN *B2, int Pasukan) 
+/*I.S.: Bangunan 
+  F.S.: Pasukan dari bangunan yang diserang berkurang dan jika pasukan habis, kepemilikan bangunan akan berubah.*/
+{
+    //Kamus Lokal
+    //Algoritma
     if (Pasukan <= Pasukan(*B1)) {
         Pasukan(*B1) -= Pasukan;
         if (IsPertahanan(*B2)) {
@@ -202,7 +259,12 @@ void SerangBangunan (BANGUNAN *B1, BANGUNAN *B2, int Pasukan) {
     }
 }
 
-void LevelUp (BANGUNAN *B) {
+void LevelUp (BANGUNAN *B) 
+/*I.S.: Bangunan
+  F.S.: Level dari bangunan ditingkatkan jikq mmemenuhi spesifikasi yang ditentukan.*/
+{
+    //Kamus Lokal
+    //Algoritma
     if (Pasukan(*B) >= (Maksimum(*B) / 2)) {
         if (Level(*B) < 4) {
             Level(*B) += 1;
@@ -212,7 +274,12 @@ void LevelUp (BANGUNAN *B) {
     }
 }
 
-void SetMaksimum (BANGUNAN *B) {
+void SetMaksimum (BANGUNAN *B) 
+/*I.S.: Bangunan jenis sembarang
+  F.S.: Pasukan bangunan ditingkatkan sesuai dengan jenis dan level dari bangunan.*/
+{
+    //Kamus Lokal
+    //Algoritma
     if (Jenis(*B) == 'C') {
         Maksimum(*B) = 40 + (20 * (Level(*B) - 1));
     }
@@ -227,7 +294,12 @@ void SetMaksimum (BANGUNAN *B) {
     }
 }
 
-void PrintStatus (BANGUNAN B) {
+void PrintStatus (BANGUNAN B) 
+/*I.S.: Status sembarang, tidak kosong.
+  F.S.: Program mencetak status ke layar.*/
+{
+    //Kamus Lokal
+    //Algoritma
     if (Jenis(B) == 'C') {
         printf("Castle");
     }
