@@ -16,7 +16,7 @@
 #include "command.h"
 
 TabInt A;
-List L1, L2, LMove;
+List L1, L2, LMove, LAtk;
 MATRIKS Map;
 Kata STDIN;
 Queue Skill1, Skill2;
@@ -75,6 +75,13 @@ void setstd(){
 }
 
 void CetakCommand(){
+    CetakMap();
+    printf("Player %d", TURN);
+    outln();
+    PrintListBangunan(GetListP(TURN));
+    printf("Skill Available: ");
+    CetakKata(InfoHead(GetQueueP(TURN)));
+    outln();
     printf("ENTER COMMAND: ");
     // set(false);
     // STARTKATA();
@@ -94,13 +101,8 @@ void CetakCommand(){
 
 
 void CetakTurn(){
-    printf("Player %d", TURN);
-    outln();
-    PrintListBangunan(GetListP(TURN));
-    printf("Skill Available: ");
-    CetakKata(InfoHead(GetQueueP(TURN)));
-    outln();
     CreateEmpty(&LMove);
+    CreateEmpty(&LAtk);
     CreateEmptyStack(&Undo);
     content con;
     TabInt T;
@@ -276,12 +278,11 @@ void Adjust(){
 void StartGame(){
     Adjust();
     do{
-        CetakMap();
+        TambahPasukan();
         CetakTurn();
         if(!Extra_turn){
             NextTurn();
         }
-        TambahPasukan();
     }while(!ENDGAME);
     //PrintListBangunan(L1);
 }

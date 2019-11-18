@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "bangunan.h"
-
+#include "console.h"
 
 /* PROTOTYPE */
 /****************** TEST LIST KOSONG ******************/
@@ -358,18 +358,27 @@ List GetListP(Pemain P){
 
 void TambahPasukan(){
 	address P;
-	P = First(L1);
+    switch (TURN)
+    {
+    case 1:
+        P=First(L1);
+        break;
+    
+    default:
+        P=First(L2);
+        break;
+    }
 	while (P!=Nil)
 	{
 		TambahPasukanAuto(&(Bangunan(A,Info(P))));
 		P = Next(P);
 	}
-	P = First(L2);
-	while (P!=Nil)
-	{
-		TambahPasukanAuto(&(Bangunan(A,Info(P))));
-		P = Next(P);
-	}
+	// P = First(L2);
+	// while (P!=Nil)
+	// {
+	// 	TambahPasukanAuto(&(Bangunan(A,Info(P))));
+	// 	P = Next(P);
+	// }
 	
 }
 // int main(){

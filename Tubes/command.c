@@ -79,7 +79,6 @@ void Attack(){
             // }
             if (N>=M){
                 TambahPasukanManual(&(Bangunan(A,X)),-1*N);
-                SetPasukan(&(Bangunan(A,Y)), (N-M));
                 if(Jenis(Bangunan(A,Y))=='F' && Kepemilikan(Bangunan(A,Y))==ENEMY()){
                     switch (TURN)
                     {
@@ -131,7 +130,8 @@ void Attack(){
                     InsVLast(&L2, Y);
                     break;
                 }
-                SetKepemilikan(&(Bangunan(A, Y)),TURN);
+                Bangunan(A,Y) = SetBangunan(Jenis(Bangunan(A,Y)),TURN,lokasi(Bangunan(A,Y)));
+                SetPasukan(&(Bangunan(A,Y)), (N-M));
                 if(NbElmt(GetListP(TURN))==10){
                     switch (TURN)
                     {
@@ -156,6 +156,7 @@ void Attack(){
                 printf("Bangunan gagal direbut.");
                 outln();
             }
+            InsVLast(&LMove, X);
         }else
         {
             printf("Jumlah pasukan melebihi yang ada pada bangunan");
@@ -188,26 +189,6 @@ void Level_up(){
 	if (Pasukan(B) >= (Maksimum(B) / 2)) {
         TambahPasukanManual(&B, -1*(Maksimum(B) / 2));
 		LevelUp(&B);
-        P =First(GetListP(TURN));
-        boolean IR = true;
-        while (P!=Nil && IR)
-        {
-            if(Level(Bangunan(A,Info(P)))!=4){
-                IR = false;
-            }
-        }
-        if (IR){
-            switch (TURN)
-            {
-            case 1:
-                AddQueue(&Skill1,TabCHartoKata("IR"));
-                break;
-
-            default:
-                AddQueue(&Skill2,TabCHartoKata("IR"));
-                break;
-            }
-        }
 		printf("Level ");
         PrintJenisPoint(B);
         printf(" -mu meningkat menjadi %d!", Level(B));
@@ -332,6 +313,25 @@ void End_turn(){
     Atk_up = false;
     Crit = false;
     ENDTURN = true;
+    address P =First(GetListP(TURN));
+    boolean IR = true;
+    while (P!=Nil && IR)
+    {
+        if(Level(Bangunan(A,Info(P)))!=4){
+            IR = false;
+        }
+    }
+    if (IR){
+        switch (TURN)
+        {
+        case 1:
+            AddQueue(&Skill1,TabCHartoKata("IR"));
+            break;
+        default:
+            AddQueue(&Skill2,TabCHartoKata("IR"));
+            break;
+        }
+    }
 }
 void Save(){}
     //SaveGame(FileInput file) {
