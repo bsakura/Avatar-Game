@@ -64,11 +64,22 @@ void Shield(Pemain P){}//BONUS
 //Pemain mendapat skill ini jika setelah sebuah lawan menyerang, bangunan pemain
 //berkurang 1 menjadi sisa 2.
 
-void ExtraTurn(Pemain P){
+void ExtraTurn(){
 //Setelah giliran pengaktifan skill ini berakhir, pemain selanjutnya tetap pemain
 //yang sama.
 //Pemain mendapat skill ini jika Fort pemain tersebut direbut lawan.
     Extra_turn = true;
+    switch (TURN)
+    {
+    case 1:
+        AddQueue(&Skill2,TabCHartoKata("CH"));
+        break;
+    
+    default:
+        AddQueue(&Skill1,TabCHartoKata("CH"));
+        break;
+    }
+
 }
 
 void AttackUp()//BONUS

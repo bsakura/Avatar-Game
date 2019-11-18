@@ -61,9 +61,12 @@ void Attack(){
         scanf("%d", &N);
         //printf("%d %d\n", N, Pasukan(Bangunan(A,X)));
         if(N<=Pasukan(Bangunan(A,X))){
-            if (IsPertahanan(Bangunan(A,Y))&& !Atk_up){
+            if (IsPertahanan(Bangunan(A,Y))&& !Atk_up && !Crit){
                 M = Pasukan(Bangunan(A,Y)) * 4/3;
             }else{
+                if(Crit){
+                    N= N*2;
+                }
                 M= Pasukan(Bangunan(A,Y));
             }
             // if (Atk_up)
@@ -77,6 +80,41 @@ void Attack(){
             if (N>=M){
                 TambahPasukanManual(&(Bangunan(A,X)),-1*N);
                 SetPasukan(&(Bangunan(A,Y)), (N-M));
+                if(Jenis(Bangunan(A,Y))=='F' && Kepemilikan(Bangunan(A,Y))==ENEMY()){
+                    switch (TURN)
+                    {
+                    case 1:
+                        AddQueue(&Skill2,TabCHartoKata("ET"));
+                        break;
+
+                    default:
+                        AddQueue(&Skill1,TabCHartoKata("ET"));
+                        break;
+                    }
+                }
+                if(Jenis(Bangunan(A,Y))=='T' && Kepemilikan(Bangunan(A,Y))==ENEMY()){
+                    address P= First(GetListP(TURN));
+                    int count=0;
+                    while (P != Nil){
+                        if(Jenis(Bangunan(A, Info(P)))=='T'){
+                            count++;
+                        }
+                        P=Next(P);
+                    }
+                    if(count==2){
+                        switch (TURN)
+                        {
+                        case 1:
+                            AddQueue(&Skill2,TabCHartoKata("AU"));
+                            break;
+
+                        default:
+                            AddQueue(&Skill1,TabCHartoKata("AU"));
+                            break;
+                        }
+                    }
+
+                }
                 switch (TURN)
                 {
                 case 1:
@@ -94,11 +132,27 @@ void Attack(){
                     break;
                 }
                 SetKepemilikan(&(Bangunan(A, Y)),TURN);
+                if(NbElmt(GetListP(TURN))==10){
+                    switch (TURN)
+                    {
+                    case 1:
+                        AddQueue(&Skill2,TabCHartoKata("BR"));
+                        break;
+
+                    default:
+                        AddQueue(&Skill1,TabCHartoKata("BR"));
+                        break;
+                    }
+                }
                 printf("Bangunan menjadi milikmu!");
                 outln();
             }else{
                 TambahPasukanManual(&(Bangunan(A,X)),-1*N);
-                TambahPasukanManual(&(Bangunan(A,Y)), N*-3/4);
+                if (IsPertahanan(Bangunan(A,Y))&& !Atk_up && !Crit){
+                    TambahPasukanManual(&(Bangunan(A,Y)), N*-3/4);
+                }else{
+                    TambahPasukanManual(&(Bangunan(A,Y)), N*-1);
+                }
                 printf("Bangunan gagal direbut.");
                 outln();
             }
@@ -132,12 +186,33 @@ void Level_up(){
     address P = Searchindex(GetListP(TURN), x);
     BANGUNAN B = Bangunan(A, Info(P));
 	if (Pasukan(B) >= (Maksimum(B) / 2)) {
-        TambahPasukanManual(&B, -1*(Maksimum(*B) / 2));
+        TambahPasukanManual(&B, -1*(Maksimum(B) / 2));
 		LevelUp(&B);
+        P =First(GetListP(TURN));
+        boolean IR = true;
+        while (P!=Nil && IR)
+        {
+            if(Level(Bangunan(A,Info(P)))!=4){
+                IR = false;
+            }
+        }
+        if (IR){
+            switch (TURN)
+            {
+            case 1:
+                AddQueue(&Skill1,TabCHartoKata("IR"));
+                break;
+
+            default:
+                AddQueue(&Skill2,TabCHartoKata("IR"));
+                break;
+            }
+        }
 		printf("Level ");
         PrintJenisPoint(B);
         printf(" -mu meningkat menjadi %d!", Level(B));
         outln();
+
 	}
 	else{
 		printf("Jumlah pasukan ");

@@ -111,6 +111,7 @@ void CetakTurn(){
     CreateContent(&con, T, Q1, Q2);
     Push(&Undo,con);
     Atk_up = false;
+    Crit = false;
     NEED =false;
     ENDTURN = false;
     while(!ENDTURN &&!ENDGAME){
