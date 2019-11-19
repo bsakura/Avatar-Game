@@ -10,4 +10,6 @@ void StartGame();
 void Adjust();
 void setstd();
 void MakeMap();
+void newA();
+void BacaBangunan(int i ,int X);
 #endif

@@ -172,72 +172,75 @@ void CetakTurn(){
 //         break;
 //     }
 void Adjust(){
-        //Kamus
-        int N, x, y, i,j;
-        char C;
-        POINT P;
-        BANGUNAN B;
+    //Kamus
+    int N, x, y, i,j;
+    char C;
+
+    TURN = 1;
+    ENDGAME = false;
+    Extra_turn =false;
+    ENDTURN = false;
+    CreateGraph(&GRAPH);
+    CreateEmpty(&L1);
+    CreateEmpty(&L2);
+    MakePlayer(&Player1, 1);
+    MakePlayer(&Player2, 2);
+
+    set(true);
+    STARTKATA();
+    NBrsEff(Map) = toInt(CKata);
+    ADVKATA();
+    NKolEff(Map) = toInt(CKata);
+    ADVKATA();
+    MakeMATRIKS(NBrsEff(Map), NKolEff(Map),&Map);
         
-        TURN = 1;
-        ENDGAME = false;
-        Extra_turn =false;
-        ENDTURN = false;
-        CreateGraph(&GRAPH);
-        i = 1;
-        set(true);
-        STARTKATA();
-        NBrsEff(Map) = toInt(CKata);
-        ADVKATA();
-        NKolEff(Map) = toInt(CKata);
-        ADVKATA();
-        MakeMATRIKS(NBrsEff(Map), NKolEff(Map),&Map);
-        N = toInt(CKata);
-        MakeEmpty(&A, N);
-        ADVKATA();
-        C= toChar(CKata);
-        ADVKATA();
-        x= toInt(CKata);
-        ADVKATA();
-        y= toInt(CKata);
-        P = MakePOINT(x,y);
-        B = SetBangunan(C,1, P);
-        Bangunan(A, i) = B;
-        i++;
-        ADVKATA();
-        C= toChar(CKata);
-        ADVKATA();
-        x= toInt(CKata);
-        ADVKATA();
-        y= toInt(CKata);
-        P = MakePOINT(x,y);
-        B = SetBangunan(C,2, P);
-        Bangunan(A, i) = B;
-        ADVKATA();
-        for (i=3; i <= N; i++){
-            C= toChar(CKata);
-            ADVKATA();
-            x= toInt(CKata);
-            ADVKATA();
-            y= toInt(CKata);
-            P = MakePOINT(x,y);
-            B = SetBangunan(C,0, P);
-            Neff(A)= i;
-            Bangunan(A, i) = B;
-            ADVKATA();
-        }
-        ReadGraph();
-        MakeMap();
-        CreateEmpty(&L1);
-        ListBangunan(&L1,1);
-        CreateEmpty(&L2);
-        ListBangunan(&L2,2);
-        MakePlayer(&Player1, 1);
-        MakePlayer(&Player2, 2);
-        AddSkill(1, TabCHartoKata("IU"));
-        AddSkill(2, TabCHartoKata("IU"));
+    newA();
+        
+    ReadGraph();
+    MakeMap();
+    ListBangunan(&L1,1);
+    ListBangunan(&L2,2);
+    AddSkill(1, TabCHartoKata("IU"));
+    AddSkill(2, TabCHartoKata("IU"));
+}
+
+
+void newA(){
+    int N, i;
+    char C;
+    N = toInt(CKata);
+    MakeEmpty(&A, N);
+    i = 1;
+    ADVKATA();
+    // Baca Bangunan Player 1
+    BacaBangunan(i, 1);
+    i++;
+    // Baca Bangunan Player 1
+    BacaBangunan(i,2);
+    i++;
+    //Baca Bangunan Lainnya
+    for (i=3; i <= N; i++){
+        BacaBangunan(i,0);
     }
 
+}
 
+void BacaBangunan(int i ,int X){
+    int x, y;
+    char C;
+    BANGUNAN B;
+    POINT P;
+    C= toChar(CKata);
+    ADVKATA();
+    x= toInt(CKata);
+    ADVKATA();
+    y= toInt(CKata);
+    P = MakePOINT(x,y);
+    B = SetBangunan(C,X, P);
+    Neff(A)= i;
+    Bangunan(A, i) = B;
+    ADVKATA();
+}
 void ReadGraph(){
     int i,j;
     for (i=1 ; i<= Neff(A); i++){
