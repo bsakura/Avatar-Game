@@ -10,7 +10,10 @@
 #include "boolean.h"
 
 
-void Command(){
+void Command()
+/*I.S: Sembarang
+  F.S: Setelah memproses input dari mesin kata, akan dilakukan aksi command dengan memanggil prosedur sesuai perintah.*/
+{
     if (CMPKATATabChar(STDIN,"ATTACK")){
         Attack();
     }else if(CMPKATATabChar(STDIN,"LEVEL_UP")){
@@ -33,8 +36,16 @@ void Command(){
     }
 }
 
-void Attack(){
+void Attack()
+/*I.S: Sembarang
+  F.S: akan dikeluarkan output berupa daftar bangunan, bangunan yang dapat digunakan untuk menyerang,
+       dan bangunan yang bisa diserang. Apabila tidak ada bangunan yang berhubungan langsung dengan 
+       angunan penyerang, akan keluar output tidak ada bangunan yang dapat diserang.Jika ada bangunan 
+       yang dapat diserang, akan keluar output hasil jumlah pasukan setelah penyerangan berhasil.*/
+{
+    //Kamus Lokal
     int N,M, X,Y;
+    //Algoritma
     printf("Daftar bangunan:");
     outln();
     PrintListBangunan(GetListP(TURN));
@@ -174,8 +185,16 @@ void Attack(){
     Push(&Undo,con);
 
 }
-void Level_up(){
+void Level_up()
+/*I.S: Bangunan
+  F.S: Output berupa list bangunan yang bisa dilevel-up lalu akan dikembalikan properti-properti
+       bangunan yang telah diupgrade di layar.*/
+{
+    //Kamus Lokal
 	int x;
+    content con;
+    TabInt T;
+    //Algoritma
     printf("Daftar bangunan:");
     outln();
     PrintListBangunan(GetListP(TURN));
@@ -202,8 +221,6 @@ void Level_up(){
         outln();
 	};
     
-    content con;
-    TabInt T;
     CopyTab(A, &T);
     Queue Q1 ,Q2;
     CopyQueue(Skill1, &Q1);
@@ -213,7 +230,13 @@ void Level_up(){
 }
 
 
-void Skill(){
+void Skill()
+/*I.S.: Sembarang.
+  F.S.: Dihasilkan stack kosong untuk memasukkan skill-skill yang diperoleh oleh pemain
+        dan apabila pemain menggunakan skill, skill tersebut akan menghilang dan tidak 
+        dapat digunakan lagi. */
+{
+    //Algoritma
     useSkill();
     CreateEmptyStack(&Undo);
     content con;
@@ -226,8 +249,15 @@ void Skill(){
     Push(&Undo,con);
 }
 
-void UNDO(){
+void UNDO()
+/*I.S.: Sembarang
+  F.S.: Segala aksi yang dilakukan oleh pemain kembali ke keadaan sebelum pemain melakukan aksi.
+        Jika sebelumnya tidak ada command, akan muncul keluaran berupa tidak ada perintah untuk 
+        dibatalkan.*/
+{
+    //Kamus Lokal
     content con;
+    //Algoritma
     Pop(&Undo,&con);
     if(!IsEmptyStack(Undo)){
         con = InfoTop(Undo);
@@ -251,8 +281,16 @@ void UNDO(){
     
 }
 
-void Move(){
+void Move()
+/*I.S: Sembarang.
+  F.S: AKan ada keluaran berupa daftar bangunan dan bangunan terdekat yang dapat dipilih
+       untuk memindahkan pasukkan. Jika pasukkan terlalu besar akan ada pembertitahuan bahwa
+       pemindahan tidak berhasil. Apabila pemindahan berhasil akan keluar notifikasi tentang
+       jumlah pasukan di bangunan tersebut.*/
+{
+    //Kamus Lokal
     int N, X,Y;
+    //Algoritma
     printf("Daftar bangunan:");
     outln();
     PrintListBangunan(GetListP(TURN));
@@ -309,7 +347,11 @@ void Move(){
     CreateContent(&con, T, Q1, Q2);
     Push(&Undo,con);
 }
-void End_turn(){
+void End_turn()
+/*I.S.: Sembarang.
+  F.S.: Mengakhiri giliran pemain.*/
+{
+    //Algoritma
     Atk_up = false;
     Crit = false;
     ENDTURN = true;
