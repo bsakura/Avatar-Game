@@ -183,23 +183,12 @@ void Adjust(){
         Extra_turn =false;
         ENDTURN = false;
         CreateGraph(&GRAPH);
-
-        // printf("%d", TURN);
-        // NextTurn();
-        // printf("%d", TURN);
         i = 1;
-
         set(true);
         STARTKATA();
         NBrsEff(Map) = toInt(CKata);
-        // printf("%d", NBrsEff(M));
-        // CetakKata(CKata);
-        // outln();
-        // printf("%d", toInt(CKata));
-        // outln();
         ADVKATA();
         NKolEff(Map) = toInt(CKata);
-        // printf("%d",NKolEff(M));
         ADVKATA();
         MakeMATRIKS(NBrsEff(Map), NKolEff(Map),&Map);
         N = toInt(CKata);
@@ -213,8 +202,6 @@ void Adjust(){
         P = MakePOINT(x,y);
         B = SetBangunan(C,1, P);
         Bangunan(A, i) = B;
-        Elmt(Map,x,y) = i;
-        InsertGNode(&GRAPH,i);
         i++;
         ADVKATA();
         C= toChar(CKata);
@@ -225,8 +212,6 @@ void Adjust(){
         P = MakePOINT(x,y);
         B = SetBangunan(C,2, P);
         Bangunan(A, i) = B;
-        Elmt(Map,x,y) = i;
-        InsertGNode(&GRAPH,i);
         ADVKATA();
         for (i=3; i <= N; i++){
             C= toChar(CKata);
@@ -238,42 +223,46 @@ void Adjust(){
             B = SetBangunan(C,0, P);
             Neff(A)= i;
             Bangunan(A, i) = B;
-            Elmt(Map,x,y) = i;
-            InsertGNode(&GRAPH,i);
-            //A[i] = B;
-            //M[lokasi(B).x][lokasi(B).y]=B;
             ADVKATA();
         }
-        for (i=1; i<=N; i++){   
-            for(j=1; j<=N; j++){
-                if(toInt(CKata)==1){
-                    InsertEdge(&GRAPH,i,j);
-                }
-                ADVKATA();
-            }
-        }
+        ReadGraph();
+        MakeMap();
         CreateEmpty(&L1);
-        // PrintInfo(L1);
         ListBangunan(&L1,1);
-        //PrintInfo(L1);
-        //PrintListBangunan(L1);
-        // for (i = 1; i<= N; i++) {
-        //     PrintStatus(Bangunan(A, i));
-        //     outln();
-        // }
         CreateEmpty(&L2);
         ListBangunan(&L2,2);
-        //PrintListBangunan(L2);
-        //CreateEmpty(&LS);
-        //ListBangunanSerang(&LS,1);
-        //PrintListBangunan(LS);
-        //TulisMATRIKS(Graph);
-        //outln();
         MakePlayer(&Player1, 1);
         MakePlayer(&Player2, 2);
         AddSkill(1, TabCHartoKata("IU"));
         AddSkill(2, TabCHartoKata("IU"));
     }
+
+
+void ReadGraph(){
+    int i,j;
+    for (i=1 ; i<= Neff(A); i++){
+        InsertGNode(&GRAPH,i);
+    }
+    for (i=1; i<=Neff(A); i++){   
+        for(j=1; j<=Neff(A); j++){
+            if(toInt(CKata)==1){
+               InsertEdge(&GRAPH,i,j);
+             }
+            ADVKATA();
+        }
+    }
+}
+void MakeMap(){
+    int i;
+    for (i =1; i<= Neff(A); i++){
+        int x;
+        int y;
+        x =  Absis(lokasi(Bangunan(A,i)));
+        y = Ordinat(lokasi(Bangunan(A,i)));
+        Elmt(Map,x,y) = i;
+    }
+}
+
 
 void StartGame(){
     Adjust();

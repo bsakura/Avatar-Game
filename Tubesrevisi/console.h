@@ -5,7 +5,7 @@
 
 extern int TURN;
 extern boolean ENDTURN, Extra_turn, ENDGAME,NEED;
-
+void ReadGraph();
 int ENEMY();
 void NextTurn();
 void outln();

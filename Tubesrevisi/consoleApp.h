@@ -9,4 +9,5 @@ void CetakTurn();
 void StartGame();
 void Adjust();
 void setstd();
+void MakeMap();
 #endif
