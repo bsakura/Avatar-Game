@@ -21,7 +21,7 @@ typedef struct {
 	address First;
 } List;
 
-extern List L1,L2, LMove;
+extern List L1,L2, LMove, LAtk;
 /* Definisi list : */
 /* List kosong : First(L) = Nil */
 /* Setiap elemen dengan address P dapat diacu Info(P), Next(P) */
