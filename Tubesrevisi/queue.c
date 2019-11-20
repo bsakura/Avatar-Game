@@ -31,7 +31,11 @@ void CreateEmptyQueue (Queue * Q, int Max){
 /* Jika alokasi berhasil, Tabel memori dialokasi berukuran Max+1 */
 /* atau : jika alokasi gagal, Q kosong dg MaxEl=0 */
 /* Proses : Melakukan alokasi, membuat sebuah Q kosong */
+    int i;
     (*Q).T = (Kata*) malloc ((Max+1) * sizeof(Kata));
+    for(int i=1;i<=Max; i++){
+        (*Q).T[i] = TabCHartoKata("");
+    }    
     MaxElQ(*Q) = Max;
     Head(*Q) = 0;
     Tail(*Q) = 0;
@@ -88,7 +92,7 @@ void CopyQueue(Queue Qin, Queue *Qout){
     //     *Qout = Q;
     // }
     CreateEmptyQueue(Qout,MaxElQ(Qin));
-    for(int i=1;i<=NBElmtQueue(Qin); i++){
+    for(int i=1;i<=MaxElQ(Qin); i++){
         (*Qout).T[i] = (Qin).T[i];
     }
     Head(*Qout) = Head(Qin);

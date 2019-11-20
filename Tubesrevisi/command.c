@@ -297,7 +297,7 @@ void Move()
         Y = Info(P);
         printf("Jumlah pasukan: ");
         scanf("%d",&N);
-        if ((Pasukan(Bangunan(A,X))>=N) && ((Pasukan(Bangunan(A,Y))+N)<=Maksimum(Bangunan(A,Y)))){
+        if ((Pasukan(Bangunan(A,X))>=N)/* && ((Pasukan(Bangunan(A,Y))+N)<=Maksimum(Bangunan(A,Y)))*/){
             TambahPasukanManual(&(Bangunan(A,X)),-1*N);
             TambahPasukanManual(&(Bangunan(A,Y)),N);
             printf("%d pasukan dari ",N);
@@ -306,13 +306,9 @@ void Move()
             PrintJenisPoint(Bangunan(A,Y));
             outln();
             InsVLast(&LMove, X);
-        }else if(Pasukan(Bangunan(A,X))<N){
+        }else 
             printf("Jumlah pasukan yang akan dipindahkan kurang");
             outln();
-        }else{
-            printf("Jumlah pasukan terlalu besar");
-            outln();
-        }
         
     }
     CopyTab(A, &T);
