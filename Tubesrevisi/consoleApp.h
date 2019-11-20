@@ -39,4 +39,11 @@ void newA();
 void BacaBangunan(int i ,int X);
 /*I.S: Sembarang
   F.S: Memvaca bangunan pada koordinat*/
+
+void Load();
+
+void loadBangunan();
+void loadgraph();
+void loadPlayer();
+void loadList();
 #endif

@@ -19,7 +19,7 @@ typedef struct {
     int NKolEff; /* banyaknya/ukuran kolom yg terdefinisi */
 } MATRIKS;
 
-extern MATRIKS M;
+extern MATRIKS Map;
 /* NBrsEff <= 1 dan NKolEff <= 1 */
 /* Indeks matriks yang digunakan: [BrsMin..BrsMax][KolMin..KolMax] */
 /* Memori matriks yang dipakai selalu di "ujung kiri atas" */

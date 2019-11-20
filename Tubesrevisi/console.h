@@ -4,7 +4,7 @@
 #include "mesinkata.h"
 
 extern int TURN;
-extern boolean ENDTURN, Extra_turn, ENDGAME,NEED;
+extern boolean ENDTURN, Extra_turn, ENDGAME,NEED, newG;;
 void ReadGraph();
 int ENEMY();
 void NextTurn();
@@ -31,4 +31,7 @@ boolean CMPKATATabChar(Kata K, char* str);
 Kata TabCHartoKata(char* str);
 /*Input: String
   OutputL Mengubah karakter string menjadi kata.*/
+
+boolean tobool(Kata K);
+char* KatatoTabChar(Kata K);
 #endif

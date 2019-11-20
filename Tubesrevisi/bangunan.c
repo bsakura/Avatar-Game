@@ -323,3 +323,17 @@ void PrintJenisPoint(BANGUNAN B)
     }
     TulisPOINT(lokasi(B));
 }
+void MakeBangunan(BANGUNAN *B, char J, int Pl, int A, int M, int PA, int L, int x, int y){
+  POINT P;
+
+  Jenis(*B) = J;
+  Kepemilikan(*B)= Pl;
+  Pasukan(*B)= A;
+  Maksimum(*B) = M;
+  PasukanAwal(*B) = PA;
+  Level(*B) = L;
+  P = MakePOINT(x,y);
+  lokasi(*B) = P;
+}
+
+

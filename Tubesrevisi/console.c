@@ -1,9 +1,8 @@
 #include <stdio.h>
 #include "console.h"
-#include "input.h"
 #include <stdlib.h>
 int TURN;
-
+boolean newG;
 int ENEMY(){
     //Algoritma
     switch (TURN)
@@ -142,10 +141,32 @@ void CopyKata(Kata *K1,Kata K2)
     //Algoritma
     *K1 =K2;
 } 
-
+char* KatatoTabChar(Kata K){
+    int i;
+    char* str;
+    str = (char*) malloc ((K.Length) * sizeof(char));
+    for (i=1; i<=K.Length;i++){
+        str[i-1] = K.TabKata[i];
+    }
+}
+boolean tobool(Kata K){
+    int X = toInt(K);
+    switch (X)
+    {
+    case 0:
+        return false;
+        break;
+    
+    default:
+        return true;
+        break;
+    }
+}
 // int main(){
 //     char* c= "MOVE";
 //     Kata K= TabCHartoKata(c);
 //     CetakKata(K);
+//     char *d;
+//     d = KatatoTabChar(K);
 //     return 0;
-// }
+//}

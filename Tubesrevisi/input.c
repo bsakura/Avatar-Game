@@ -2,7 +2,7 @@
 #include "bangunan.h"
 #include <stdio.h>
 #include "input.h"
-
+#include "console.h"
 char CC;
 int EOP;
 char MARK;
@@ -27,7 +27,11 @@ void START() {
 
     /* Algoritma */
     if (useFile){
-        pita = fopen("input.txt","r");
+        if (newG){
+            pita = fopen("input.txt","r");
+        }else{
+            pita = fopen("out.txt","r");
+        }
     } else{
         pita= stdin;
     }
@@ -48,6 +52,7 @@ void ADV() {
         EOP = -1;
     }else if(useFile) {
         EOP = retval;
+
         if (EOP==-1){
             fclose(pita);
         }

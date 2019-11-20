@@ -100,4 +100,7 @@ void SetPasukan(BANGUNAN *B, int Pas);
 void PrintJenisPoint(BANGUNAN B);
 /*I.S.: Bangunan.
   F.S.: Program mencetak jenis point ke layar.*/
+
+void MakeBangunan(BANGUNAN *B, char J, int P, int A, int M, int PA ,int L, int x, int y);
+
 #endif

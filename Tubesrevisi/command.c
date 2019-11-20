@@ -9,6 +9,7 @@
 #include "graph.h"
 #include "boolean.h"
 #include "player.h"
+#include "matriks.h"
 
 void Command()
 /*I.S: Sembarang
@@ -58,105 +59,110 @@ void Attack()
     NEED = true;
     address P= Searchindex((GetListP(TURN)),N);
     X= Info(P);
-    printf("Daftar bangunan yang dapat diserang: ");
-    outln();
-    List FL= FilterList(Trail(SearchGNode(GRAPH,Info(P))),TURN,false);
-    if (IsEmpty(FL)){
-        printf("Tidak ada bangunan yang dapat diserang");
+    if(Search(LAtk,X)==Nil){
+        printf("Daftar bangunan yang dapat diserang: ");
         outln();
-    }else{
-        PrintListBangunan(FL);
-        outln();
-        printf("Bangunan yang diserang: ");
-        scanf("%d",&N);
-        P = Searchindex(FL,N);
-        Y = Info(P);
-        printf("Jumlah pasukan :");
-        scanf("%d", &N);
-        Kalku = N;
-        //printf("%d %d\n", N, Pasukan(Bangunan(A,X)));
-        if(N<=Pasukan(Bangunan(A,X))){
-            if (IsPertahanan(Bangunan(A,Y)) && !IsCritP(TURN)){
-                M = Pasukan(Bangunan(A,Y)) * 4/3;
-            }
-            if (IsAtkP(TURN)){
-                M = Pasukan(Bangunan(A,Y));
-            }
-            else{
-                if(IsCritP(TURN)){
-                    Kalku = Kalku*2;
+        List FL= FilterList(Trail(SearchGNode(GRAPH,Info(P))),TURN,false);
+        if (IsEmpty(FL)){
+            printf("Tidak ada bangunan yang dapat diserang");
+            outln();
+        }else{
+            PrintListBangunan(FL);
+            outln();
+            printf("Bangunan yang diserang: ");
+            scanf("%d",&N);
+            P = Searchindex(FL,N);
+            Y = Info(P);
+            printf("Jumlah pasukan :");
+            scanf("%d", &N);
+            Kalku = N;
+            //printf("%d %d\n", N, Pasukan(Bangunan(A,X)));
+            if(N<=Pasukan(Bangunan(A,X))){
+                if (IsPertahanan(Bangunan(A,Y)) && !IsCritP(TURN)){
+                    M = Pasukan(Bangunan(A,Y)) * 4/3;
                 }
-                M= Pasukan(Bangunan(A,Y));
-            }
-            if (Kalku>=M){
-                if(IsCritP(TURN)){
-                    if (N<=M){
-                        TambahPasukanManual(&(Bangunan(A,X)),-1*(M-N));
-                    }
-                    else{
-                        TambahPasukanManual(&(Bangunan(A,X)), (N-M));
-                    }
+                if (IsAtkP(TURN)){
+                    M = Pasukan(Bangunan(A,Y));
                 }
                 else{
-                    TambahPasukanManual(&(Bangunan(A,X)), -1*N);
+                    if(IsCritP(TURN)){
+                        Kalku = Kalku*2;
+                    }
+                    M= Pasukan(Bangunan(A,Y));
                 }
-                if(Jenis(Bangunan(A,Y))=='F' && Kepemilikan(Bangunan(A,Y))==ENEMY()){
-                    AddSkill(ENEMY(),TabCHartoKata("ET"));
-                }
-                if(Jenis(Bangunan(A,Y))=='T' && Kepemilikan(Bangunan(A,Y))==ENEMY()){
-                    address P= First(GetListP(TURN));
-                    int count=0;
-                    while (P != Nil){
-                        if(Jenis(Bangunan(A, Info(P)))=='T'){
-                            count++;
+                if (Kalku>=M){
+                    if(IsCritP(TURN)){
+                        // if (N<=M){ sama aja ga sih? wkwkkwk
+                            TambahPasukanManual(&(Bangunan(A,X)),-1*(M-N));
+                        // }
+                        // else{
+                        //     TambahPasukanManual(&(Bangunan(A,X)), (N-M));
+                        // }
+                    }
+                    else{
+                        TambahPasukanManual(&(Bangunan(A,X)), -1*N);
+                    }
+                    if(Jenis(Bangunan(A,Y))=='F' && Kepemilikan(Bangunan(A,Y))==ENEMY()){
+                        AddSkill(ENEMY(),TabCHartoKata("ET"));
+                    }
+                    if(Jenis(Bangunan(A,Y))=='T' && Kepemilikan(Bangunan(A,Y))==ENEMY()){
+                        address P= First(GetListP(TURN));
+                        int count=0;
+                        while (P != Nil){
+                            if(Jenis(Bangunan(A, Info(P)))=='T'){
+                                count++;
+                            }
+                            P=Next(P);
                         }
-                        P=Next(P);
-                    }
-                    if(count==2){
-                        AddSkill(ENEMY(), TabCHartoKata("AU"));
-                    }
+                        if(count==2){
+                            AddSkill(ENEMY(), TabCHartoKata("AU"));
+                        }
 
-                }
-                switch (TURN)
-                {
-                case 1:
-                    if (Kepemilikan(Bangunan(A,Y))==2){
-                        DelP(&L2, Y);
                     }
-                    InsVLast(&L1, Y);
-                    break;
-                
-                default:
-                        if (Kepemilikan(Bangunan(A,Y))==1){
-                        DelP(&L1, Y);
+                    switch (TURN)
+                    {
+                    case 1:
+                        if (Kepemilikan(Bangunan(A,Y))==2){
+                            DelP(&L2, Y);
+                        }
+                        InsVLast(&L1, Y);
+                        break;
+                    
+                    default:
+                            if (Kepemilikan(Bangunan(A,Y))==1){
+                            DelP(&L1, Y);
+                        }
+                        InsVLast(&L2, Y);
+                        break;
                     }
-                    InsVLast(&L2, Y);
-                    break;
-                }
-                Bangunan(A,Y) = SetBangunan(Jenis(Bangunan(A,Y)),TURN,lokasi(Bangunan(A,Y)));
-                SetPasukan(&(Bangunan(A,Y)), (N-M));
-                if(NbElmt(GetListP(TURN))==10){
-                    AddSkill(ENEMY(), TabCHartoKata("BR"));
-                }
-                printf("Bangunan menjadi milikmu!");
-                outln();
-            }else{
-                TambahPasukanManual(&(Bangunan(A,X)),-1*N);
-                if (IsPertahanan(Bangunan(A,Y))&& !IsAtkP(TURN) && !IsCritP(TURN)){
-                    TambahPasukanManual(&(Bangunan(A,Y)), N*-3/4);
+                    Bangunan(A,Y) = SetBangunan(Jenis(Bangunan(A,Y)),TURN,lokasi(Bangunan(A,Y)));
+                    SetPasukan(&(Bangunan(A,Y)), (N-M));
+                    if(NbElmt(GetListP(TURN))==10){
+                        AddSkill(ENEMY(), TabCHartoKata("BR"));
+                    }
+                    printf("Bangunan menjadi milikmu!");
+                    outln();
                 }else{
-                    TambahPasukanManual(&(Bangunan(A,Y)), N*-1);
+                    TambahPasukanManual(&(Bangunan(A,X)),-1*N);
+                    if (IsPertahanan(Bangunan(A,Y))&& !IsAtkP(TURN) && !IsCritP(TURN)){
+                        TambahPasukanManual(&(Bangunan(A,Y)), N*-3/4);
+                    }else{
+                        TambahPasukanManual(&(Bangunan(A,Y)), N*-1);
+                    }
+                    printf("Bangunan gagal direbut.");
+                    outln();
                 }
-                printf("Bangunan gagal direbut.");
+                InsVLast(&LAtk, X);
+            }else
+            {
+                printf("Jumlah pasukan melebihi yang ada pada bangunan");
                 outln();
             }
-            InsVLast(&LMove, X);
-        }else
-        {
-            printf("Jumlah pasukan melebihi yang ada pada bangunan");
-            outln();
+            SetCritP(TURN,false);
         }
-        SetCritP(TURN,false);
+    }else{
+        printf("Bangunan ini sudah digunakan untuk menyerang");
+        outln();
     }
     CopyTab(A, &T);
     CopyPlayer(&P1, Player1);
@@ -171,7 +177,7 @@ void Level_up()
        bangunan yang telah diupgrade di layar.*/
 {
     //Kamus Lokal
-	int x;
+	int x, y;
     content con;
     TabInt T;
     Player P1, P2;
@@ -185,19 +191,19 @@ void Level_up()
     scanf("%d", &x);
     NEED = true;
     address P = Searchindex(GetListP(TURN), x);
-    BANGUNAN B = Bangunan(A, Info(P));
-	if (Pasukan(B) >= (Maksimum(B) / 2)) {
-        TambahPasukanManual(&B, -1*(Maksimum(B) / 2));
-		LevelUp(&B);
+    y = Info(P);
+	if (Pasukan(Bangunan(A,y)) >= (Maksimum(Bangunan(A,y)) / 2)) {
+        TambahPasukanManual(&(Bangunan(A,y)), -1*(Maksimum(Bangunan(A,y)) / 2));
+		LevelUp(&(Bangunan(A,y)));
 		printf("Level ");
-        PrintJenisPoint(B);
-        printf(" -mu meningkat menjadi %d!", Level(B));
+        PrintJenisPoint(Bangunan(A,y));
+        printf(" -mu meningkat menjadi %d!", Level(Bangunan(A,y)));
         outln();
 
 	}
 	else{
 		printf("Jumlah pasukan ");
-        PrintJenisPoint(B);
+        PrintJenisPoint(Bangunan(A,y));
         printf(" kurang untuk level up");
         outln();
 	};
@@ -342,10 +348,106 @@ void End_turn()
         AddSkill(TURN, TabCHartoKata("IR"));
     }
 }
-void Save(){}
-    //SaveGame(FileInput file) {
-    //file.writeInt(ListBangunan);
-//}
+void Save(){
+    Queue Q;
+    BANGUNAN B;
+    int i,j;
+    adrNode G;
+    address P;
+    Kata K;
+    FILE *f=fopen("out.txt", "w");
+    //Print Turn sama extra turn
+    fprintf(f, "%d " ,TURN);
+    if (Extra_turn){
+        fprintf(f, "1\n");
+    }else
+    {
+        fprintf(f, "0\n");
+    }
+    
+    //Print dimensi map
+    fprintf(f, "%d %d\n" ,NBrsEff(Map), NKolEff(Map));
+    //print Array
+    fprintf(f, "%d\n", Neff(A));
+    for (i = 1; i <= Neff(A); i++)
+    {
+        B = Bangunan(A,i);
+        fprintf(f, "%c %d %d %d %d %d %0.0f %0.0f\n", Jenis(B),Kepemilikan(B),Pasukan(B),Maksimum(B),PasukanAwal(B), Level(B), Absis(lokasi(B)),Ordinat(lokasi(B)));
+    }
+    //Print graph
+    G = GRAPH.First;
+    while (G!=Nil)
+    {
+        P = First(Trail(G));
+        while (P!=Nil)
+        {
+            fprintf(f, "%d ", Info(P));
+            P =Next(P);
+        }
+        fprintf(f, ".\n");
+        G=NextN(G);
+    }
+    //Print player 1
+    CopyQueue(skill(Player1), &Q);
+    while (!IsEmptyQueue(Q))
+    {
+        DelQueue(&Q,&K);
+        for(i=1; i<= K.Length; i++){
+            fprintf(f, "%c", K.TabKata[i]);
+        }  
+        fprintf(f, " ", K.TabKata[i]);  
+    }
+    fprintf(f, ".\n");
+    if (IsAtkP(1)){
+        fprintf(f, "1 ");
+    }else{
+        fprintf(f, "0 ");
+    }
+    if (IsCritP(1)){
+        fprintf(f, "1 ");
+    }else{
+        fprintf(f, "0 ");
+    }
+    fprintf(f, "%d\n", getShield(1));
+    //Print player 2
+    CopyQueue(skill(Player2), &Q);
+    while (!IsEmptyQueue(Q))
+    {
+        DelQueue(&Q,&K);
+        for(i=1; i<= K.Length; i++){
+            fprintf(f, "%c", K.TabKata[i]);
+        }  
+        fprintf(f, " ", K.TabKata[i]);  
+    }
+    fprintf(f, ".\n");
+    if (IsAtkP(2)){
+        fprintf(f, "1 ");
+    }else{
+        fprintf(f, "0 ");
+    }
+    if (IsCritP(2)){
+        fprintf(f, "1 ");
+    }else{
+        fprintf(f, "0 ");
+    }
+    fprintf(f, "%d\n", getShield(2));
+    //Print Lmove
+    P = First(LMove);
+    while (P!=Nil)
+    {
+        fprintf(f, "%d ", Info(P));
+        P =Next(P);
+    }
+    fprintf(f, ".\n");
+    P = First(LAtk);
+    while (P!=Nil)
+    {
+        fprintf(f, "%d ", Info(P));
+        P =Next(P);
+    }
+    fprintf(f, ".");
+    fclose(f);
+}
 void EXIT(){
     exit(0);
 }

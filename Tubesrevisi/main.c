@@ -1,29 +1,22 @@
 #include "consoleApp.h"
-
+#include <stdio.h>
+#include "console.h"
+#include "boolean.h"
 int main(){
-    // Queue Q1,  Q2;
-    // CreateEmptyQueue(&Q1,10);
-    // AddQueue(&Q1,TabCHartoKata("AAAA"));
-    // AddQueue(&Q1,TabCHartoKata("BBBB"));
-    // AddQueue(&Q1,TabCHartoKata("CCCC"));
-    // // CopyQueue(Q1, &Q2);
-    // Kata K;
-    // // DelQueue(&Q2, &K);
+    printf("1. New Game\n2.Load Game\nPilih Aksi: ");
+    int N;
+    scanf("%d",&N);
+    switch (N)
+    {
+    case 1:
+        newG = true;
+        StartGame();
+        break;
     
-    // while(!IsEmptyQueue(Q1)){
-    //     DelQueue(&Q1,&K);
-    //     CetakKata(K);
-    //     outln();
-    // }
-    // // outln();
-    // // while(!IsEmptyQueue(Q2)){
-    // //     DelQueue(&Q2,&K);
-    // //     CetakKata(K);
-    // //     outln();
-    // // }
-    // outln();
-    StartGame();
-    // CetakMap();
-    // CetakTurn();
+    default:
+        newG= false;
+        Load();
+        break;
+    }
     return 0;
 }
