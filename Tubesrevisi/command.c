@@ -76,18 +76,18 @@ void Attack()
         Kalku = N;
         //printf("%d %d\n", N, Pasukan(Bangunan(A,X)));
         if(N<=Pasukan(Bangunan(A,X))){
-            if (IsPertahanan(Bangunan(A,Y))&& !IsAtkP(TURN) && !IsCritP(TURN)){
+            if (IsPertahanan(Bangunan(A,Y)) && !IsCritP(TURN)){
                 M = Pasukan(Bangunan(A,Y)) * 4/3;
-            }else{
+            }
+            if (IsAtkP(TURN)){
+                M = Pasukan(Bangunan(A,Y));
+            }
+            else{
                 if(IsCritP(TURN)){
                     Kalku = Kalku*2;
                 }
                 M= Pasukan(Bangunan(A,Y));
             }
-            // if (Atk_up)
-            // {
-            //     M = Pasukan(Bangunan(A,Y));
-            // }
             if (Kalku>=M){
                 if(IsCritP(TURN)){
                     if (N<=M){
