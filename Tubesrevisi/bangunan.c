@@ -29,7 +29,7 @@ BANGUNAN SetBangunan (Jenis J, Pemain P, POINT lokasi)
 
 void CopyBangunan(BANGUNAN *B, BANGUNAN Bin)
 /*I.S: Sembarang
-  F.S: Bangunan disalin.
+  F.S: Bangunan disalin.*/
 {
     *B = Bin;
 }

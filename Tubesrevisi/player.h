@@ -39,14 +39,9 @@ boolean IsAtkP(int X);
 /*Input: integer
   Output: Booeln true jika...*/
 
-void Setcrit(Player *P, boolean crit)
+void Setcrit(Player *P, boolean crit);
 /*I.S: Sembarang
   F.S: Menetapkan critical.*/
-{
-    //Algoritma
-    crit(*P) = crit;
-}
-
 boolean IsCrit(Player P);
 /*Input: player
   Output: Boolean true jika critical.*/
@@ -55,14 +50,9 @@ boolean IsCritP(int X);
 /*Input: integer
   Output: Boolean true jika ...*/
 
-void Setshield(Player *P, int S)
+void Setshield(Player *P, int S);
 /*I.S: Sembarang
   F.S: Shield ditentukan.*/
-{
-    //Algoritma
-    shield(*P) = S;
-}
-
 int getShield(int X);
 /*Input: integer
   Output: integer*/
