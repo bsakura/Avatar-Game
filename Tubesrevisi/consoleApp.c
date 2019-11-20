@@ -22,8 +22,14 @@ Kata STDIN;
 Stack Undo;
 Graph GRAPH;
 boolean Extra_turn,ENDTURN,ENDGAME, NEED;
-void CetakMap(){
+
+void CetakMap()
+/*I.S: Sembarang
+  F.s: Mencetak map ke layar.*/
+{
+    //Kamus lokal
     int i,j;
+    //Algoritma
     for (i=1;i<=NKolEff(Map) +2; i++){
         printf("*");
     }
@@ -58,7 +64,10 @@ void CetakMap(){
     outln();
 }
 
-void setstd(){
+void setstd()
+/*I.S: Sembarang
+  F.S: Mengebalikan kondisi standard.*/
+{
     set(false);
     STARTKATA();
     STDIN = CKata;
@@ -73,7 +82,11 @@ void setstd(){
     // outln();
 }
 
-void CetakCommand(){
+void CetakCommand()
+/*I.S: Sembarang
+  F.S: Mencetak player sesuai giliran, skill yang tersedia, lalu menerima input command.*/
+{
+    //Algoritma
     CetakMap();
     printf("Player %d", TURN);
     outln();
@@ -99,10 +112,15 @@ void CetakCommand(){
 }
 
 
-void CetakTurn(){
+void CetakTurn()
+/*I.S: Sembarang
+  F.S: Mencetak giliran dengan mencetak command jika giliran dan game belum berakhir*/
+{
+    //Kamus Lokal
     content con;
     TabInt T;
     Player P1,P2;
+    //Algoritma
     CreateEmpty(&LMove);
     CreateEmpty(&LAtk);
     CreateEmptyStack(&Undo);
@@ -171,11 +189,14 @@ void CetakTurn(){
 //         ountln();
 //         break;
 //     }
-void Adjust(){
-    //Kamus
+void Adjust()
+/*I.S: Sembarang
+  F.S: Mengatur graf, player, dan dasar permainan*/
+{
+    //Kamus Lokal
     int N, x, y, i,j;
     char C;
-
+    //Algoritma
     TURN = 1;
     ENDGAME = false;
     Extra_turn =false;
@@ -205,9 +226,12 @@ void Adjust(){
 }
 
 
-void newA(){
+void newA()
+{
+    //Kamus Lokal
     int N, i;
     char C;
+    //Algoritma
     N = toInt(CKata);
     MakeEmpty(&A, N);
     i = 1;
@@ -225,11 +249,16 @@ void newA(){
 
 }
 
-void BacaBangunan(int i ,int X){
+void BacaBangunan(int i ,int X)
+/*I.S: Sembarang
+  F.S: Memvaca bangunan pada koordinat*/
+{
+    //Kamus Lokal
     int x, y;
     char C;
     BANGUNAN B;
     POINT P;
+    //Algoritma
     C= toChar(CKata);
     ADVKATA();
     x= toInt(CKata);
@@ -241,8 +270,13 @@ void BacaBangunan(int i ,int X){
     Bangunan(A, i) = B;
     ADVKATA();
 }
-void ReadGraph(){
+void ReadGraph()
+/*I.S: Sembarang
+  F.S: Membaca graf*/
+{
+    //Kamus Lokal
     int i,j;
+    //Algoritma
     for (i=1 ; i<= Neff(A); i++){
         InsertGNode(&GRAPH,i);
     }
@@ -255,8 +289,13 @@ void ReadGraph(){
         }
     }
 }
-void MakeMap(){
+void MakeMap()
+/*I.S: Sembarang
+  F.S: Membuat map.*/
+{
+    //Kamus Lokal
     int i;
+    //Algoritma
     for (i =1; i<= Neff(A); i++){
         int x;
         int y;
@@ -267,7 +306,11 @@ void MakeMap(){
 }
 
 
-void StartGame(){
+void StartGame()
+/*I.S: Sembarang
+  F.S: Memulai game.*/
+{
+    //Algoritma
     Adjust();
     do{
         TambahPasukan();

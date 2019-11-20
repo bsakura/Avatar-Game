@@ -27,7 +27,10 @@ BANGUNAN SetBangunan (Jenis J, Pemain P, POINT lokasi)
     return B;
 }
 
-void CopyBangunan(BANGUNAN *B, BANGUNAN Bin){
+void CopyBangunan(BANGUNAN *B, BANGUNAN Bin)
+/*I.S: Sembarang
+  F.S: Bangunan disalin.
+{
     *B = Bin;
 }
 
@@ -122,7 +125,10 @@ void SetKepemilikan (BANGUNAN *B, Pemain P)
     Kepemilikan(*B) = P;
 }
 
-boolean IsKepemilikan (BANGUNAN B, Pemain P) {
+boolean IsKepemilikan (BANGUNAN B, Pemain P) 
+/*Input: Bangunan dan pemain
+  Output: True jika benar bangunan dimiliki oleh pemain pada input.*/
+{
     if (Kepemilikan(B) == P) {
         return true;
     }
@@ -292,7 +298,10 @@ void PrintStatus (BANGUNAN B)
     //printf(" %d", Kepemilikan(B));
 }
 
-void SetPasukan(BANGUNAN *B, int Pas){
+void SetPasukan(BANGUNAN *B, int Pas)
+/*I.S: Bangunan 
+  F.S: Bangunan dengan pasukan yang ditentukan.*/
+{
     Pasukan(*B) = Pas;
 }
 
