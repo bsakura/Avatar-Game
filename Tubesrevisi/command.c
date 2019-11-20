@@ -44,7 +44,7 @@ void Attack()
        yang dapat diserang, akan keluar output hasil jumlah pasukan setelah penyerangan berhasil.*/
 {
     //Kamus Lokal
-    int N,M, X,Y;
+    int N,M,Kalku, X,Y;
     content con;
     TabInt T;
     Player P1, P2;
@@ -73,26 +73,33 @@ void Attack()
         Y = Info(P);
         printf("Jumlah pasukan :");
         scanf("%d", &N);
+        Kalku = N;
         //printf("%d %d\n", N, Pasukan(Bangunan(A,X)));
         if(N<=Pasukan(Bangunan(A,X))){
-            if (IsPertahanan(Bangunan(A,Y))&& !IsAtkP(TURN) && !IsCritP(TURN)){
+            if (IsPertahanan(Bangunan(A,Y)) && !IsCritP(TURN)){
                 M = Pasukan(Bangunan(A,Y)) * 4/3;
-            }else{
+            }
+            if (IsAtkP(TURN)){
+                M = Pasukan(Bangunan(A,Y));
+            }
+            else{
                 if(IsCritP(TURN)){
-                    N= N*2;
+                    Kalku = Kalku*2;
                 }
                 M= Pasukan(Bangunan(A,Y));
             }
-            // if (Atk_up)
-            // {
-            //     M = Pasukan(Bangunan(A,Y));
-            // }
-            // if (Crit)
-            // {
-            //    N = N * 2;
-            // }
-            if (N>=M){
-                TambahPasukanManual(&(Bangunan(A,X)),-1*N);
+            if (Kalku>=M){
+                if(IsCritP(TURN)){
+                    if (N<=M){
+                        TambahPasukanManual(&(Bangunan(A,X)),-1*(M-N));
+                    }
+                    else{
+                        TambahPasukanManual(&(Bangunan(A,X)), (N-M));
+                    }
+                }
+                else{
+                    TambahPasukanManual(&(Bangunan(A,X)), -1*N);
+                }
                 if(Jenis(Bangunan(A,Y))=='F' && Kepemilikan(Bangunan(A,Y))==ENEMY()){
                     AddSkill(ENEMY(),TabCHartoKata("ET"));
                 }

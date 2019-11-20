@@ -2,8 +2,13 @@
 #include "boolean.h"
 //Konstruktor
 #include "listlinier.h"
-adrNode AlokGNode(int X){
+adrNode AlokGNode(int X)
+/*I.S: Sembarang
+  F.S: Mengalokasikan node.*/
+{
+  //Kamus Lokal
   adrNode P;
+  //Algoritma
   P = (GNode *) malloc (sizeof(GNode));
   infoN(P)=X;
   adrSuccNode L;
@@ -14,16 +19,28 @@ adrNode AlokGNode(int X){
 }
 
 
-void DealokGNode(adrNode P){
+void DealokGNode(adrNode P)
+/*I.S: Sembarang
+  F.S: Node terdealokasi.*/
+{
+  //Algoritma
   free(P);
 }
 
-void CreateGraph (Graph *G){
+void CreateGraph (Graph *G)
+/*I.S: Sembarang
+  F.S: Graph baru terbuat.*/
+{
+  //Algoritma
   (*G).First =Nil;
 }
 
 //Fungsi/prosedur lain
-adrNode SearchGNode(Graph G, int X){
+adrNode SearchGNode(Graph G, int X)
+/*I.S: Graph 
+  F.S: Mengembalikan address dari node dimana C ditemukan.*/
+{
+  //Algoritma
   adrNode P;
   P=G.First;
   while (P != Nil && infoN(P)!=X){
@@ -32,7 +49,11 @@ adrNode SearchGNode(Graph G, int X){
   return P;
 }
 
-boolean SearchEdge(Graph G, int prec, int succ){
+boolean SearchEdge(Graph G, int prec, int succ)
+/*Input: Graph, prec dan succ
+  Output: Boolean true jika setelah pencarian node ..*/
+{
+  //Algoritma
   adrNode P;
   P=SearchGNode(G,prec);
   if (P!=Nil){
@@ -45,9 +66,14 @@ boolean SearchEdge(Graph G, int prec, int succ){
   }
 }
 
-void InsertGNode(Graph *G,int X){
+void InsertGNode(Graph *G,int X)
+/*I.S: Sembarang
+  F.S: integer dimasukkan ke dalma graf.*/
+{
+  //Kamus Lokal
   adrNode P;
   adrNode P1;
+  //Algoritma
   P=(*G).First;
   if (P!=Nil){
     while (NextN(P) != Nil){
@@ -62,8 +88,13 @@ void InsertGNode(Graph *G,int X){
   }
 }
 
-void InsertEdge(Graph *G,int prec,int succ){
+void InsertEdge(Graph *G,int prec,int succ)
+/*I.S: Sembarang
+  F.S: ..*/
+{
+  //Kamus Lokal
   adrNode Pprec,Psucc;
+  //Algoritma
   Pprec=SearchGNode(*G,prec);
   Psucc=SearchGNode(*G,succ);
   if (Pprec==Nil){
