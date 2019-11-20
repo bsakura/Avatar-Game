@@ -7,11 +7,12 @@
 #include "console.h"
 #include "queue.h"
 #include "player.h"
-//SYARAT SYARAT SKILL BELOM ADA
+
 //CRIT SAMA ATK UP MASIH BELOM BERES DI COMMAND.C (masalah shield dkk)
 //CRIT NON-AKTIFIN SHIELD SAMA ATK UP SIAPA?
 //ATK UP SATU SERANGAN AJA ATO ENGGA?
-//CRIT SAMA ATK UP BISA DIGABUNG DALAM SATU TURN APA ENGGA (sekarang diset bisa)
+//CRIT SAMA ATK UP BISA DIGABUNG DALAM SATU TURN APA ENGGA
+//SHIELDNYA BELOMANN
 
 void useSkill(){
     //Kamus Lokal
@@ -60,7 +61,7 @@ void InstantUpgrade()
     }
 }
 
-void Shield(Pemain P){}//BONUS
+void Shield(){}//BONUS
 //Seluruh bangunan yang dimiliki oleh pemain akan memiliki pertahanan selama 2
 //turn. Apabila skill ini digunakan 2 kali berturut-turut, durasi tidak akan bertambah,
 //namun menjadi nilai maksimum.
