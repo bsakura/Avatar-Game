@@ -19,17 +19,6 @@ void useSkill(){
     Kata skill;
     //Algoritma
     DelSkill(TURN, &skill);
-    // switch (TURN)
-    // {
-    // case 1:
-    //     DelQueue(&Skill1,&skill);
-    //     break;
-    
-    // default:
-    //     DelQueue(&Skill2,&skill);
-    //     break;
-    // }
-    
     //CetakKata(skill);
     if (CMPKATATabChar(skill, "IU")){
         InstantUpgrade();

@@ -369,6 +369,7 @@ void End_turn()
     }
 }
 void Save(){
+    /* Prosedur untuk menyimpan data permainan*/
     Queue Q;
     BANGUNAN B;
     int i,j;

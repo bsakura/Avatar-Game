@@ -35,16 +35,29 @@ void MakeMap();
   F.S: Membuat map.*/
 
 void newA();
+/*Membuat TabInt A dari new Gamw*/
+
+void ReadGraph();
+/*I.S: Sembarang
+  F.S: Membaca graf*/
 
 void BacaBangunan(int i ,int X);
 /*I.S: Sembarang
   F.S: Memvaca bangunan pada koordinat*/
 
 void Load();
+/*Proses Melanjutkan permainan yang sudah disimpan*/
 
 void loadBangunan();
+/*Baca bangunan dari file load*/
+
 void loadgraph();
+/*Baca graph dari file load*/
 void loadPlayer();
+/*Baca Player dari file load*/
+
 void loadList();
-void ReadGraph();
+/*Baca List dari file load*/
+
+
 #endif

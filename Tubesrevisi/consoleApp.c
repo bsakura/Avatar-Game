@@ -32,13 +32,13 @@ void CetakMap()
     //Kamus lokal
     int i,j;
     //Algoritma
-    for (i=1;i<=NKolEff(Map) +2; i++){
+    for (i=GetFirstIdxKol(Map);i<=GetLastIdxKol(Map) +2; i++){
         printf("*");
     }
     outln();
-    for (i=1;i<=NBrsEff(Map); i++){
+    for (i=GetFirstIdxBrs(Map);i<=GetLastIdxBrs(Map); i++){
         printf("*");
-        for (j=1; j<=NKolEff(Map);j++){
+        for (j=GetFirstIdxKol(Map); j<=GetLastIdxKol(Map);j++){
             if (Elmt(Map,i,j) ==0){
                 printf(" ");
             }else{ 
@@ -60,7 +60,7 @@ void CetakMap()
         printf("*");
         outln();
     }
-    for (i=1;i<=NKolEff(Map) +2; i++){
+    for (i=GetFirstIdxKol(Map);i<=GetLastIdxKol(Map) +2; i++){
         printf("*");
     }
     outln();
@@ -73,15 +73,6 @@ void setstd()
     set(false);
     STARTKATA();
     STDIN = CKata;
-    // printf("OOOO : "); 
-    // outln();
-    // CetakKata(CKata);
-    // outln();
-    // CetakKata(STDIN);
-    // outln();
-    // printf("OOOO : ");
-    // printf("ini %c ini ", CC);
-    // outln();
 }
 
 void CetakCommand()
@@ -97,15 +88,10 @@ void CetakCommand()
     infoSkill(TURN);
     outln();
     printf("ENTER COMMAND: ");
-    // set(false);
-    // STARTKATA();
-    // STDIN = CKata; 
-    // CetakKata(CKata);
-    // CetakKata(STDIN);
     if(NEED){
         char C;
         fscanf(stdin,"%c",&C);
-    }//print_blue(C);
+    }
     NEED =false;
     setstd();
     Command();
@@ -138,10 +124,6 @@ void CetakTurn()
     ENDTURN = false;
     while(!ENDTURN &&!ENDGAME){
         CetakCommand();
-        // PrintStatus(Bangunan(A,1));
-        // outln();
-        // PrintStatus(Bangunan(A, 13));
-        // outln();
     }
 }
 
@@ -184,14 +166,16 @@ void Adjust()
 
 
 void newA()
+
 {
+    
     //Kamus Lokal
     int N, i;
     char C;
     //Algoritma
     N = toInt(CKata);
     MakeEmpty(&A, N);
-    i = 1;
+    i = GetFirstIdx(A);
     ADVKATA();
     // Baca Bangunan Player 1
     BacaBangunan(i, 1);
@@ -200,7 +184,7 @@ void newA()
     BacaBangunan(i,2);
     i++;
     //Baca Bangunan Lainnya
-    for (i=3; i <= N; i++){
+    for (; i <= N; i++){
         BacaBangunan(i,0);
     }
 
@@ -234,11 +218,11 @@ void ReadGraph()
     //Kamus Lokal
     int i,j;
     //Algoritma
-    for (i=1 ; i<= Neff(A); i++){
+    for (i=1 ; i<= NbElmtTab(A); i++){
         InsertGNode(&GRAPH,i);
     }
-    for (i=1; i<=Neff(A); i++){   
-        for(j=1; j<=Neff(A); j++){
+    for (i=1; i<=NbElmtTab(A); i++){   
+        for(j=1; j<=NbElmtTab(A); j++){
             if(toInt(CKata)==1){
                InsertEdge(&GRAPH,i,j);
              }
@@ -253,7 +237,7 @@ void MakeMap()
     //Kamus Lokal
     int i;
     //Algoritma
-    for (i =1; i<= Neff(A); i++){
+    for (i =1; i<= NbElmtTab(A); i++){
         int x;
         int y;
         x =  Absis(lokasi(Bangunan(A,i)));
@@ -280,6 +264,7 @@ void StartGame()
 }
 
 void Load(){
+/*Proses Melanjutkan permainan yang sudah disimpan*/
     //Kamus
     int i, N;
     content con;
@@ -314,7 +299,7 @@ void Load(){
     MakeEmpty(&A, N);
     Neff(A) = N;
     ADVKATA();
-    for (i = 1; i <= Neff(A); i++)
+    for (i = GetFirstIdx(A); i <= GetLastIdx(A); i++)
     {
         loadBangunan(i);
     }
@@ -339,21 +324,11 @@ void Load(){
     while(!ENDTURN &&!ENDGAME){
         CetakCommand();
     }
-    // if(!ENDGAME && !Extra_turn){
-    //     NextTurn();
-    // }
-    // while (!ENDGAME)
-    // {
-    //     TambahPasukan();
-    //     CetakTurn();
-    //     if(!Extra_turn){
-    //         NextTurn();
-    //     }
-    // }
 }   
 
 
 void loadBangunan(int i){
+/*Baca bangunan dari file load*/
     char C;
     int P, AA, M, PA, L, x, y;
     C = toChar(CKata);
@@ -381,13 +356,14 @@ void loadBangunan(int i){
 }
 
 void loadgraph(){
+/*Baca graph dari file load*/
     adrNode N;
     int i;
-    for (i=1 ; i<= Neff(A); i++){
+    for (i=1 ; i<= NbElmtTab(A); i++){
         InsertGNode(&GRAPH,i);
     }
     N = GRAPH.First;
-    for (i=1; i<=Neff(A); i++){   
+    for (i=1; i<=NbElmtTab(A); i++){   
         while (toChar(CKata)!='.')
         {
             InsVLast(&(Trail(N)), toInt(CKata));
@@ -400,6 +376,7 @@ void loadgraph(){
 }
 
 void loadPlayer(int X){
+/*Baca Player dari file load*/
     while(toChar(CKata) != '.'){
         AddSkill(X, CKata);
         ADVKATA();
@@ -415,6 +392,7 @@ void loadPlayer(int X){
 }
 
 void loadList(List *L){
+/*Baca List dari file load*/
     while (toChar(CKata)!= '.')
     {
         InsVLast(L, toInt(CKata));

@@ -71,5 +71,8 @@ void DelQueue (Queue * Q, Kata * X);
 
 
 void CopyQueue(Queue Qin, Queue *Qout);
+/* Proses : Menduplikat Qin ke Qout
+I.S Qin terdefinisi
+F.S Qout akan sama dengan Qin */
 
 #endif
