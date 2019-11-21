@@ -94,20 +94,20 @@ void Attack()
 
                 if (Kalku>=M){
                     if(IsCritP(TURN)){
-                        SetPasukan(&(Bangunan(A,Y), (Kalku - M)));
+                        SetPasukan(&(Bangunan(A,Y)) , (Kalku - M));
                         temp = Pasukan(Bangunan(A,Y));
                         half = temp/2;
-                        SetPasukan(&(Bangunan(A,Y)), half);
+                        SetPasukan(&(Bangunan(A,Y)) , half);
                         //BELOM DIFLOOR KALO TEMPNYA GANJIL
                     }
                     else if(IsPertahanan(Bangunan(A,Y)) && (!IsAtkP(TURN)) && (!IsCritP(TURN))){
-                        SetPasukan(&(Bangunan(A,Y), (Kalku - M)));
+                        SetPasukan(&(Bangunan(A,Y)), (Kalku - M));
                         temp = Pasukan(Bangunan(A,Y));
                         TambahPasukanManual(&(Bangunan(A,Y)), (1/3)*temp);
                         //BELOM DIFLOOR
                     }
                     else{
-                        SetPasukan(&(Bangunan(A,Y), (Kalku - M)));
+                        SetPasukan(&(Bangunan(A,Y)), (Kalku - M));
                     }
                     //Syarat penambahan skill extra turn & attack up pada queue skill
                     if(Jenis(Bangunan(A,Y))=='F' && Kepemilikan(Bangunan(A,Y))==ENEMY()){
