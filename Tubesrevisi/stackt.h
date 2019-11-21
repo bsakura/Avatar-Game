@@ -77,4 +77,5 @@ void Pop (Stack * S, content* X);
 /* I.S. S  tidak mungkin kosong */
 /* F.S. X adalah nilai elemen TOP yang lama, TOP berkurang 1 */
 void CreateContent(content *C,TabInt T,Player P1, Player P2, List LA, List LB );
+/* F.S Membuat content baru dari elemen elemennya*/
 #endif

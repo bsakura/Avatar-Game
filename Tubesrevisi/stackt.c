@@ -49,6 +49,7 @@ void Pop (Stack * S, content* X){
     Top(*S)--;
 }
 void CreateContent(content *C,TabInt T,Player P1, Player P2, List LA, List LB ){
+/* F.S Membuat content baru dari elemen elemennya*/
     (*C).T = T;
     (*C).P1 = P1;
     (*C).P2 = P2;

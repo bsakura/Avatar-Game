@@ -80,17 +80,9 @@ void DelQueue (Queue * Q, Kata * X){
 }
 
 void CopyQueue(Queue Qin, Queue *Qout){
-    // if (IsEmptyQueue(Qin)){
-    //     CreateEmptyQueue(Qout, MaxElQ(Qin));
-    // }else{
-    //     Kata K;
-    //     DelQueue(&Qin,&K);
-    //     Queue Q;
-    //     CopyQueue(Qin,&Q);
-    //     AddQueue(&Qin,K);
-    //     AddQueue(&Q,K);
-    //     *Qout = Q;
-    // }
+/*Proses : Menduplikat Qin ke Qout
+I.S Qin terdefinisi
+F.S Qout akan sama dengan Qin*/
     CreateEmptyQueue(Qout,MaxElQ(Qin));
     for(int i=1;i<=MaxElQ(Qin); i++){
         (*Qout).T[i] = (Qin).T[i];
