@@ -76,7 +76,6 @@ void Attack()
             Y = Info(P);
             printf("Jumlah pasukan :");
             scanf("%d", &N);
-            //printf("%d %d\n", N, Pasukan(Bangunan(A,X)));
             M = Pasukan(Bangunan(A,Y));
             if(N<=Pasukan(Bangunan(A,X))){
                 if (IsPertahanan(Bangunan(A,Y)) && (!IsAtkP(TURN)) && (!IsCritP(TURN))){
@@ -84,7 +83,6 @@ void Attack()
                 }
                 else if(IsCritP(TURN)){
                     Kalku = Kalku*2;
-                    M= Pasukan(Bangunan(A,Y));
                 }
                 else{
                     Kalku = N;
@@ -93,27 +91,10 @@ void Attack()
                 TambahPasukanManual(&(Bangunan(A,X)), -1*N);
 
                 if (Kalku>=M){
-                    if(IsCritP(TURN)){
-                        SetPasukan(&(Bangunan(A,Y)) , (Kalku - M));
-                        temp = Pasukan(Bangunan(A,Y));
-                        half = temp/2;
-                        SetPasukan(&(Bangunan(A,Y)) , half);
-                        //BELOM DIFLOOR KALO TEMPNYA GANJIL
-                    }
-                    else if(IsPertahanan(Bangunan(A,Y)) && (!IsAtkP(TURN)) && (!IsCritP(TURN))){
-                        SetPasukan(&(Bangunan(A,Y)), (Kalku - M));
-                        temp = Pasukan(Bangunan(A,Y));
-                        TambahPasukanManual(&(Bangunan(A,Y)), (1/3)*temp);
-                        //BELOM DIFLOOR
-                    }
-                    else{
-                        SetPasukan(&(Bangunan(A,Y)), (Kalku - M));
-                    }
                     //Syarat penambahan skill extra turn & attack up pada queue skill
                     if(Jenis(Bangunan(A,Y))=='F' && Kepemilikan(Bangunan(A,Y))==ENEMY()){
                         AddSkill(ENEMY(),TabCHartoKata("ET"));
                     }
-                    
                     if(Jenis(Bangunan(A,Y))=='T' && Kepemilikan(Bangunan(A,Y))==ENEMY()){
                         address P= First(GetListP(TURN));
                         int count=0;
@@ -128,7 +109,6 @@ void Attack()
                         }
 
                     }
-                    
                     switch (TURN)
                     {
                     case 1:
@@ -145,31 +125,48 @@ void Attack()
                         InsVLast(&L2, Y);
                         break;
                     }
-                    
-                    Bangunan(A,Y) = SetBangunan(Jenis(Bangunan(A,Y)),TURN,lokasi(Bangunan(A,Y)));
-                    SetPasukan(&(Bangunan(A,Y)), (N-M));
+
+                    if(IsCritP(TURN)){
+                        SetPasukan(&(Bangunan(A,Y)) , (Kalku - M));
+                        temp = Pasukan(Bangunan(A,Y));
+                        half = temp/2;
+                        Bangunan(A,Y) = SetBangunan(Jenis(Bangunan(A,Y)),TURN,lokasi(Bangunan(A,Y)));
+                        SetPasukan(&(Bangunan(A,Y)) , half);
+                        //BELOM DIFLOOR KALO TEMPNYA GANJIL
+                    }
+                    else if(IsPertahanan(Bangunan(A,Y)) && (!IsAtkP(TURN)) && (!IsCritP(TURN))){
+                        SetPasukan(&(Bangunan(A,Y)), (Kalku - M));
+                        temp = Pasukan(Bangunan(A,Y));
+                        Bangunan(A,Y) = SetBangunan(Jenis(Bangunan(A,Y)),TURN,lokasi(Bangunan(A,Y)));
+                        SetPasukan(&(Bangunan(A,Y)) , (4/3)*temp);
+                        //BELOM DIFLOOR
+                    }
+                    else{
+                        Bangunan(A,Y) = SetBangunan(Jenis(Bangunan(A,Y)),TURN,lokasi(Bangunan(A,Y)));
+                        SetPasukan(&(Bangunan(A,Y)), (Kalku - M));
+                    }
                     if(NbElmt(GetListP(TURN))==10){
                         AddSkill(ENEMY(), TabCHartoKata("BR"));
                     }
                     printf("Bangunan menjadi milikmu!");
                     outln();
-                }else{
-                    TambahPasukanManual(&(Bangunan(A,X)),-1*N);
-                    if (IsPertahanan(Bangunan(A,Y))&& !IsAtkP(TURN) && !IsCritP(TURN)){
-                        TambahPasukanManual(&(Bangunan(A,Y)), N*-3/4);
-                    }else{
-                        TambahPasukanManual(&(Bangunan(A,Y)), N*-1);
+                    if (IsEmpty(GetListP(ENEMY()))){
+                        ENDGAME = true;
                     }
+                }else{
+                    TambahPasukanManual(&(Bangunan(A,Y)), -1*Kalku);
                     printf("Bangunan gagal direbut.");
                     outln();
                 }
+                SetCritP(TURN,false);
                 InsVLast(&LAtk, X);
             }else
             {
                 printf("Jumlah pasukan melebihi yang ada pada bangunan");
                 outln();
             }
-            SetCritP(TURN,false);
+           
+        
         }
     }else{
         printf("Bangunan ini sudah digunakan untuk menyerang");
