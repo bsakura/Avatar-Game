@@ -123,18 +123,7 @@ void InsertFirst (List *L, address P){
     First(*L)= P;
 }
 
-void InsertAfter (List *L, address P, address Prec){
-/* I.S. Prec pastilah elemen list dan bukan elemen terakhir, */
-/*      P sudah dialokasi  */
-/* F.S. Insert P sebagai elemen sesudah elemen beralamat Prec */
-    address a;
-    a = First(*L);
-    while (a != Prec){
-        a = Next(a);
-    }
-    Next(P)= Next(a);
-    Next(a) = P;
-}
+
 void InsertLast (List *L, address P){
 /* I.S. Sembarang, P sudah dialokasi  */
 /* F.S. P ditambahkan sebagai elemen terakhir yang baru */
@@ -257,64 +246,23 @@ int NbElmt (List L){
         return count;
     }
 }
-infotype Max (List L);//{
-/* Mengirimkan nilai Info(P) yang maksimum */
-/*    infotype Max;
-    if (IsEmpty(L)){
-        return Nil;
-    } else{
-        Max = Info(First(L));
-        address a;
-        a = First(L);
-        while ( Next(a)!= Nil){
-            if (Info(a)> Max){
-                Max = Info(a);
-            }
-            a = Next(a);
-        }
-        if (Info(a)>Max){
-            return Info(a);
-        }else{
-            return Max;
-        }
-    }
-}*/
+
 
 /****************** PROSES TERHADAP LIST ******************/
-void Konkat1 (List *L1, List *L2, List *L3){
-/* I.S. L1 dan L2 sembarang */
-/* F.S. L1 dan L2 kosong, L3 adalah hasil konkatenasi L1 & L2 */
-/* Konkatenasi dua buah list : L1 dan L2    */
-/* menghasilkan L3 yang baru (dengan elemen list L1 dan L2) */
-/* dan L1 serta L2 menjadi list kosong.*/
-/* Tidak ada alokasi/dealokasi pada prosedur ini */
-    if(IsEmpty(*L1)){
-        First(*L3) = First(*L2);
-    }else{
-        First(*L3) = First (*L1);
-        address a;
-        a = First(*L1);
-        while (Next(a) != Nil){
-            a = Next(a);
-        }
-        Next(a)= First(*L2);
-    }
-    CreateEmpty(L1);
-    CreateEmpty(L2);
-}
 
 void ListBangunan (List *L, Pemain P) {
+    /* Membuat list index bangunan pemain P dari TabInt A*/
     int i;
     for (i = 1; i <= Neff(A); i++) {
         
         if (Kepemilikan(Bangunan(A, i)) == P) {
             InsVLast(L, i);
-           // PrintInfo(*L);
         }
     }
 }
 
 List FilterList (List L, Pemain P, boolean eq) {
+    /*Digunakan untuk filter list dalam graph*/
     int i;
     List L1;
     CreateEmpty(&L1);
@@ -335,6 +283,7 @@ List FilterList (List L, Pemain P, boolean eq) {
 }
 
 void PrintListBangunan (List L) {
+    /*Mencetak bangunan yang indexnya berada pada List L*/
     address a;
     int i;
     a = First(L);
@@ -349,6 +298,7 @@ void PrintListBangunan (List L) {
 }
 
 List GetListP(Pemain P){
+    /* Mendapatkan list pemain P*/
     if (P==1){
         return L1;
     }else{
@@ -357,6 +307,7 @@ List GetListP(Pemain P){
 }
 
 void TambahPasukan(){
+    /* Menambah pasukan seluruh bangunan pemain yang sedang mendapat giliran*/
 	address P;
     switch (TURN)
     {
@@ -373,17 +324,11 @@ void TambahPasukan(){
 		TambahPasukanAuto(&(Bangunan(A,Info(P))));
 		P = Next(P);
 	}
-	// P = First(L2);
-	// while (P!=Nil)
-	// {
-	// 	TambahPasukanAuto(&(Bangunan(A,Info(P))));
-	// 	P = Next(P);
-	// }
-	
 }
 
 
 void CopyList(List *L1,List L2){
+    /* Menduplikat L1 ke L2*/
     CreateEmpty(L1);
     address P = First(L2);
     while (P!=Nil)

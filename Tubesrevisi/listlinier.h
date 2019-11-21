@@ -142,15 +142,22 @@ void Konkat1 (List *L1, List *L2, List *L3);
 /* Tidak ada alokasi/dealokasi pada prosedur ini */
 
 void ListBangunan (List *L,  Pemain P);
+/* Membuat list index bangunan pemain P dari TabInt A*/
 
 List FilterList (List L, Pemain P, boolean eq);
+/*Digunakan untuk filter list dalam graph*/
 
 void PrintListBangunan (List L );
+/*Mencetak bangunan yang indexnya berada pada List L*/
 
 List GetListP(Pemain P);
+/* Mendapatkan list pemain P*/
+
 address Searchindex(List L,int idx);
 
 void TambahPasukan();
+/* Menambah pasukan seluruh bangunan pemain yang sedang mendapat giliran*/
 
 void CopyList(List *L1,List L2);
+/* Menduplikat L1 ke L2*/
 #endif

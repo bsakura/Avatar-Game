@@ -40,14 +40,8 @@ void MakeCastle (BANGUNAN *B)
 {
     Jenis(*B) = 'C';
     SetMaksimum(B);
-    // if (Kepemilikan(*B) ==0) {
-        PasukanAwal(*B) = 40;
-        Pasukan(*B) = PasukanAwal(*B);
-    // }
-    // else {
-    //     PasukanAwal(*B) =0;
-    //     Pasukan(*B) =0;
-    // }
+    PasukanAwal(*B) = 40;
+    Pasukan(*B) = PasukanAwal(*B);
 }
 
 void MakeTower (BANGUNAN *B) 
@@ -56,14 +50,8 @@ void MakeTower (BANGUNAN *B)
 {
     Jenis(*B) = 'T';
     SetMaksimum(B);
-    //if (Kepemilikan(*B) ==0) {
-        PasukanAwal(*B) = 30;
-        Pasukan(*B) = PasukanAwal(*B);
-    //}
-    // else {
-    //     PasukanAwal(*B) =0;
-    //     Pasukan(*B) =0;
-    // }
+    PasukanAwal(*B) = 30;
+    Pasukan(*B) = PasukanAwal(*B);
 }
 
 void MakeFort (BANGUNAN *B)
@@ -72,14 +60,8 @@ void MakeFort (BANGUNAN *B)
 {
     Jenis(*B) = 'F';
     SetMaksimum(B);
-    // if (Kepemilikan(*B) ==0) {
-        PasukanAwal(*B) = 80;
-        Pasukan(*B) = PasukanAwal(*B);
-    // }
-    // else {
-    //     PasukanAwal(*B) =0;
-    //     Pasukan(*B) =0;
-    // }
+    PasukanAwal(*B) = 80;
+    Pasukan(*B) = PasukanAwal(*B);
 }
 
 void MakeVillage (BANGUNAN *B) 
@@ -88,14 +70,8 @@ void MakeVillage (BANGUNAN *B)
 {
     Jenis(*B) = 'V';
     SetMaksimum(B);
-    // if (Kepemilikan(*B) ==0) {
-        PasukanAwal(*B) = 20;
-        Pasukan(*B) = PasukanAwal(*B);
-    //}
-    // else {
-    //     PasukanAwal(*B) =0;
-    //     Pasukan(*B) =0;
-    // }
+    PasukanAwal(*B) = 20;
+    Pasukan(*B) = PasukanAwal(*B);
 }
 
 boolean IsPertahanan (BANGUNAN B) 
@@ -142,67 +118,63 @@ void TambahPasukanAuto (BANGUNAN *B)
   F.S.: Jumlah pasukkan pada bangunan bertambah sesuai dengan level secara automatis bergantung jenis bangunan.*/
 
 {
-    int PasukanAwal, Selisih;
-    PasukanAwal = Pasukan(*B);
-    if (Level(*B) == 1) {
-        if (Jenis(*B) == 'C') {
-            Pasukan(*B) += 10;
+    if (Pasukan(*B)<Maksimum(*B)){
+        if (Level(*B) == 1) {
+            if (Jenis(*B) == 'C') {
+                Pasukan(*B) += 10;
+            }
+            else if (Jenis(*B) == 'T') {
+                Pasukan(*B) += 5;
+            }
+            else if (Jenis(*B) == 'F') {
+                Pasukan(*B) += 10;
+            }
+            else if (Jenis(*B) == 'V') {
+                Pasukan(*B) += 5;
+            }
         }
-        else if (Jenis(*B) == 'T') {
-            Pasukan(*B) += 5;
+        else if (Level(*B) == 2) {
+            if (Jenis(*B) == 'C') {
+                Pasukan(*B) += 15;
+            }
+            else if (Jenis(*B) == 'T') {
+                Pasukan(*B) += 10;
+            }
+            else if (Jenis(*B) == 'F') {
+                Pasukan(*B) += 20;
+            }
+            else if (Jenis(*B) == 'V') {
+                Pasukan(*B) += 10;
+            }
         }
-        else if (Jenis(*B) == 'F') {
-            Pasukan(*B) += 10;
+        else if (Level(*B) == 3) {
+            if (Jenis(*B) == 'C') {
+                Pasukan(*B) += 20;
+            }
+            else if (Jenis(*B) == 'T') {
+                Pasukan(*B) += 20;
+            }
+            else if (Jenis(*B) == 'F') {
+                Pasukan(*B) += 30;
+            }
+            else if (Jenis(*B) == 'V') {
+                Pasukan(*B) += 15;
+            }
         }
-        else if (Jenis(*B) == 'V') {
-            Pasukan(*B) += 5;
+        else if (Level(*B) == 4) {
+            if (Jenis(*B) == 'C') {
+                Pasukan(*B) += 25;
+            }
+            else if (Jenis(*B) == 'T') {
+                Pasukan(*B) += 30;
+            }
+            else if (Jenis(*B) == 'F') {
+                Pasukan(*B) += 40;
+            }
+            else if (Jenis(*B) == 'V') {
+                Pasukan(*B) += 20;
+            }
         }
-    }
-    else if (Level(*B) == 2) {
-        if (Jenis(*B) == 'C') {
-            Pasukan(*B) += 15;
-        }
-        else if (Jenis(*B) == 'T') {
-            Pasukan(*B) += 10;
-        }
-        else if (Jenis(*B) == 'F') {
-            Pasukan(*B) += 20;
-        }
-        else if (Jenis(*B) == 'V') {
-            Pasukan(*B) += 10;
-        }
-    }
-    else if (Level(*B) == 3) {
-        if (Jenis(*B) == 'C') {
-            Pasukan(*B) += 20;
-        }
-        else if (Jenis(*B) == 'T') {
-            Pasukan(*B) += 20;
-        }
-        else if (Jenis(*B) == 'F') {
-            Pasukan(*B) += 30;
-        }
-        else if (Jenis(*B) == 'V') {
-            Pasukan(*B) += 15;
-        }
-    }
-    else if (Level(*B) == 4) {
-        if (Jenis(*B) == 'C') {
-            Pasukan(*B) += 25;
-        }
-        else if (Jenis(*B) == 'T') {
-            Pasukan(*B) += 30;
-        }
-        else if (Jenis(*B) == 'F') {
-            Pasukan(*B) += 40;
-        }
-        else if (Jenis(*B) == 'V') {
-            Pasukan(*B) += 20;
-        }
-    }
-    Selisih = Pasukan(*B) - PasukanAwal;
-    if (Pasukan(*B) > Maksimum(*B)) {
-        Pasukan(*B) -= Selisih;
     }
 }
 
@@ -324,16 +296,19 @@ void PrintJenisPoint(BANGUNAN B)
     TulisPOINT(lokasi(B));
 }
 void MakeBangunan(BANGUNAN *B, char J, int Pl, int A, int M, int PA, int L, int x, int y){
-  POINT P;
-
-  Jenis(*B) = J;
-  Kepemilikan(*B)= Pl;
-  Pasukan(*B)= A;
-  Maksimum(*B) = M;
-  PasukanAwal(*B) = PA;
-  Level(*B) = L;
-  P = MakePOINT(x,y);
-  lokasi(*B) = P;
+/*I.S.: Bangunan.
+  F.S.: Program Membuat bangunan dari komponennya.*/
+    //Kamus
+    POINT P;
+    // Algoritma
+    Jenis(*B) = J;
+    Kepemilikan(*B)= Pl;
+    Pasukan(*B)= A;
+    Maksimum(*B) = M;
+    PasukanAwal(*B) = PA;
+    Level(*B) = L;
+    P = MakePOINT(x,y);
+    lokasi(*B) = P;
 }
 
 

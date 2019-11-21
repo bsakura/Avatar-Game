@@ -35,7 +35,9 @@ void End_turn();
 /*I.S.: Sembarang.
   F.S.: Mengakhiri giliran pemain.*/
 void Save();
+/* Prosedur untuk menyimpan data permainan*/
 void EXIT();
+/* Prosedur untuk keluar dari permainan*/
 
 
 #endif

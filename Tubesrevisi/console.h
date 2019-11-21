@@ -5,8 +5,11 @@
 
 extern int TURN;
 extern boolean ENDTURN, Extra_turn, ENDGAME,NEED, newG;;
-void ReadGraph();
+
+
 int ENEMY();
+/* I.S Giliran Pemain
+F. S Untuk mendapatkan nomor pemain yang sedang tidak mendapatkan giliran*/
 void NextTurn();
 /*I.S: Giliran pemain.
   F.S. Giliran pemain berganti.*/
@@ -33,5 +36,6 @@ Kata TabCHartoKata(char* str);
   OutputL Mengubah karakter string menjadi kata.*/
 
 boolean tobool(Kata K);
-char* KatatoTabChar(Kata K);
+/*Input: Kata
+  Output: Mengubah kata menjadi boolean 0 1.*/
 #endif

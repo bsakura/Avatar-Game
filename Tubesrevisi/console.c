@@ -3,7 +3,11 @@
 #include <stdlib.h>
 int TURN;
 boolean newG;
+
+
 int ENEMY(){
+/* I.S Giliran Pemain
+F. S Untuk mendapatkan nomor pemain yang sedang tidak mendapatkan giliran*/
     //Algoritma
     switch (TURN)
     {
@@ -141,15 +145,11 @@ void CopyKata(Kata *K1,Kata K2)
     //Algoritma
     *K1 =K2;
 } 
-char* KatatoTabChar(Kata K){
-    int i;
-    char* str;
-    str = (char*) malloc ((K.Length) * sizeof(char));
-    for (i=1; i<=K.Length;i++){
-        str[i-1] = K.TabKata[i];
-    }
-}
+
+
 boolean tobool(Kata K){
+/*Input: Kata
+  Output: Mengubah kata menjadi boolean 0 1.*/
     int X = toInt(K);
     switch (X)
     {
@@ -162,11 +162,3 @@ boolean tobool(Kata K){
         break;
     }
 }
-// int main(){
-//     char* c= "MOVE";
-//     Kata K= TabCHartoKata(c);
-//     CetakKata(K);
-//     char *d;
-//     d = KatatoTabChar(K);
-//     return 0;
-//}
