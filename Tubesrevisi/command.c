@@ -45,7 +45,7 @@ void Attack()
        yang dapat diserang, akan keluar output hasil jumlah pasukan setelah penyerangan berhasil.*/
 {
     //Kamus Lokal
-    int N,M,Kalku, X,Y;
+    int N,M,Kalku, X,Y, temp, half;
     content con;
     TabInt T;
     Player P1, P2;
@@ -76,37 +76,38 @@ void Attack()
             Y = Info(P);
             printf("Jumlah pasukan :");
             scanf("%d", &N);
-            Kalku = N;
             //printf("%d %d\n", N, Pasukan(Bangunan(A,X)));
+            M = Pasukan(Bangunan(A,Y));
             if(N<=Pasukan(Bangunan(A,X))){
-                if (IsPertahanan(Bangunan(A,Y)) && !IsCritP(TURN)){
-                    M = Pasukan(Bangunan(A,Y)) * 4/3;
+                if (IsPertahanan(Bangunan(A,Y)) && (!IsAtkP(TURN)) && (!IsCritP(TURN))){
+                    Kalku = Pasukan(Bangunan(A,X)) * 3/4;
                 }
-                if (IsAtkP(TURN)){
-                    M = Pasukan(Bangunan(A,Y));
-                }
-                else{
-                    if(IsCritP(TURN)){
-                        Kalku = Kalku*2;
-                    }
+                else if(IsCritP(TURN)){
+                    Kalku = Kalku*2;
                     M= Pasukan(Bangunan(A,Y));
                 }
+                else{
+                    Kalku = N;
+                }
                 
+                TambahPasukanManual(&(Bangunan(A,X)), -1*N);
+
                 if (Kalku>=M){
                     if(IsCritP(TURN)){
-                        if (N<=M){
-                        // ini buat ngitung kalo ada crit, soalnya bonus pasukan pas kalkulasi
-                        // kalo ada crit ga keitung buat pasukan yang ditaroh di bangunan
-                            TambahPasukanManual(&(Bangunan(A,X)),-1*(M-(Kalku - M)));
-                            // Kalo N<=M, pasukan yang diassign di bangunan bukan sebanyak N
-                        }
-                        else{
-                            TambahPasukanManual(&(Bangunan(A,X)), (N-M));
-                            // Kalo N>M, pasukan yang diassign sebanyak N
-                        }
+                        SetPasukan(&(Bangunan(A,Y)) , (Kalku - M));
+                        temp = Pasukan(Bangunan(A,Y));
+                        half = temp/2;
+                        SetPasukan(&(Bangunan(A,Y)) , half);
+                        //BELOM DIFLOOR KALO TEMPNYA GANJIL
+                    }
+                    else if(IsPertahanan(Bangunan(A,Y)) && (!IsAtkP(TURN)) && (!IsCritP(TURN))){
+                        SetPasukan(&(Bangunan(A,Y)), (Kalku - M));
+                        temp = Pasukan(Bangunan(A,Y));
+                        TambahPasukanManual(&(Bangunan(A,Y)), (1/3)*temp);
+                        //BELOM DIFLOOR
                     }
                     else{
-                        TambahPasukanManual(&(Bangunan(A,X)), -1*N);
+                        SetPasukan(&(Bangunan(A,Y)), (Kalku - M));
                     }
                     //Syarat penambahan skill extra turn & attack up pada queue skill
                     if(Jenis(Bangunan(A,Y))=='F' && Kepemilikan(Bangunan(A,Y))==ENEMY()){
@@ -389,8 +390,8 @@ void Save(){
     //Print dimensi map
     fprintf(f, "%d %d\n" ,NBrsEff(Map), NKolEff(Map));
     //print Array
-    fprintf(f, "%d\n", NbElmtTab(A));
-    for (i = 1; i <= NbElmtTab(A); i++)
+    fprintf(f, "%d\n", Neff(A));
+    for (i = 1; i <= Neff(A); i++)
     {
         B = Bangunan(A,i);
         fprintf(f, "%c %d %d %d %d %d %0.0f %0.0f\n", Jenis(B),Kepemilikan(B),Pasukan(B),Maksimum(B),PasukanAwal(B), Level(B), Absis(lokasi(B)),Ordinat(lokasi(B)));
@@ -470,7 +471,6 @@ void Save(){
     fclose(f);
 }
 void EXIT(){
-    /* Prosedur untuk keluar dari permainan*/
     exit(0);
 }
 
