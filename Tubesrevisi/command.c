@@ -45,7 +45,8 @@ void Attack()
        yang dapat diserang, akan keluar output hasil jumlah pasukan setelah penyerangan berhasil.*/
 {
     //Kamus Lokal
-    int N,M,Kalku, X,Y, temp, half;
+    int N,M,Kalku, X,Y, temp, intPas;
+    double half, doTemp, floorPas, empatpertiga;
     content con;
     TabInt T;
     Player P1, P2;
@@ -129,17 +130,22 @@ void Attack()
                     if(IsCritP(TURN)){
                         SetPasukan(&(Bangunan(A,Y)) , (Kalku - M));
                         temp = Pasukan(Bangunan(A,Y));
-                        half = temp/2;
+                        doTemp = (double)temp;
+                        half = doTemp/2;
+                        floorPas = floor(half);
+                        intPas = (int)floorPas;
                         Bangunan(A,Y) = SetBangunan(Jenis(Bangunan(A,Y)),TURN,lokasi(Bangunan(A,Y)));
-                        SetPasukan(&(Bangunan(A,Y)) , half);
-                        //BELOM DIFLOOR KALO TEMPNYA GANJIL
+                        SetPasukan(&(Bangunan(A,Y)) , intPas);
                     }
                     else if(IsPertahanan(Bangunan(A,Y)) && (!IsAtkP(TURN)) && (!IsCritP(TURN))){
                         SetPasukan(&(Bangunan(A,Y)), (Kalku - M));
                         temp = Pasukan(Bangunan(A,Y));
+                        doTemp = (double)temp;
+                        empatpertiga = doTemp * (4/3);
+                        floorPas = floor(empatpertiga);
+                        intPas = (int)floorPas;
                         Bangunan(A,Y) = SetBangunan(Jenis(Bangunan(A,Y)),TURN,lokasi(Bangunan(A,Y)));
-                        SetPasukan(&(Bangunan(A,Y)) , (4/3)*temp);
-                        //BELOM DIFLOOR
+                        SetPasukan(&(Bangunan(A,Y)) , intPas;
                     }
                     else{
                         Bangunan(A,Y) = SetBangunan(Jenis(Bangunan(A,Y)),TURN,lokasi(Bangunan(A,Y)));
