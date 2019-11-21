@@ -10,6 +10,7 @@
 #include "boolean.h"
 #include "player.h"
 #include "matriks.h"
+#include <math.h>
 
 void Command()
 /*I.S: Sembarang
@@ -79,7 +80,7 @@ void Attack()
             scanf("%d", &N);
             M = Pasukan(Bangunan(A,Y));
             if(N<=Pasukan(Bangunan(A,X))){
-                if (IsPertahanan(Bangunan(A,Y)) && (!IsAtkP(TURN)) && (!IsCritP(TURN))){
+                if ((IsPertahanan(Bangunan(A,Y)) || getShield(TURN)>0) && (!IsAtkP(TURN)) && (!IsCritP(TURN))){
                     Kalku = Pasukan(Bangunan(A,X)) * 3/4;
                 }
                 else if(IsCritP(TURN)){
@@ -92,10 +93,11 @@ void Attack()
                 TambahPasukanManual(&(Bangunan(A,X)), -1*N);
 
                 if (Kalku>=M){
-                    //Syarat penambahan skill extra turn & attack up pada queue skill
+                    //Syarat penambahan skill extra turn 
                     if(Jenis(Bangunan(A,Y))=='F' && Kepemilikan(Bangunan(A,Y))==ENEMY()){
                         AddSkill(ENEMY(),TabCHartoKata("ET"));
                     }
+                    //Syarat skill attack up pada queue skill
                     if(Jenis(Bangunan(A,Y))=='T' && Kepemilikan(Bangunan(A,Y))==ENEMY()){
                         address P= First(GetListP(TURN));
                         int count=0;
@@ -110,6 +112,7 @@ void Attack()
                         }
 
                     }
+                    
                     switch (TURN)
                     {
                     case 1:
@@ -126,7 +129,9 @@ void Attack()
                         InsVLast(&L2, Y);
                         break;
                     }
-
+                    if (Kepemilikan(Bangunan(A,Y))==ENEMY()&&NbElmt(GetListP(ENEMY()))==2){
+                        AddSkill(ENEMY(), TabCHartoKata("Shield"));
+                    }
                     if(IsCritP(TURN)){
                         SetPasukan(&(Bangunan(A,Y)) , (Kalku - M));
                         temp = Pasukan(Bangunan(A,Y));
@@ -137,7 +142,7 @@ void Attack()
                         Bangunan(A,Y) = SetBangunan(Jenis(Bangunan(A,Y)),TURN,lokasi(Bangunan(A,Y)));
                         SetPasukan(&(Bangunan(A,Y)) , intPas);
                     }
-                    else if(IsPertahanan(Bangunan(A,Y)) && (!IsAtkP(TURN)) && (!IsCritP(TURN))){
+                    else if((IsPertahanan(Bangunan(A,Y)) || getShield(TURN)>0) && (!IsAtkP(TURN)) && (!IsCritP(TURN))){
                         SetPasukan(&(Bangunan(A,Y)), (Kalku - M));
                         temp = Pasukan(Bangunan(A,Y));
                         doTemp = (double)temp;
@@ -145,7 +150,7 @@ void Attack()
                         floorPas = floor(empatpertiga);
                         intPas = (int)floorPas;
                         Bangunan(A,Y) = SetBangunan(Jenis(Bangunan(A,Y)),TURN,lokasi(Bangunan(A,Y)));
-                        SetPasukan(&(Bangunan(A,Y)) , intPas;
+                        SetPasukan(&(Bangunan(A,Y)) , intPas);
                     }
                     else{
                         Bangunan(A,Y) = SetBangunan(Jenis(Bangunan(A,Y)),TURN,lokasi(Bangunan(A,Y)));

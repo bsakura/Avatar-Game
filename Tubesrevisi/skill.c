@@ -46,12 +46,14 @@ void InstantUpgrade()
     }
 }
 
-void Shield(){}//BONUS
+void Shield(){
 //Seluruh bangunan yang dimiliki oleh pemain akan memiliki pertahanan selama 2
 //turn. Apabila skill ini digunakan 2 kali berturut-turut, durasi tidak akan bertambah,
 //namun menjadi nilai maksimum.
 //Pemain mendapat skill ini jika setelah sebuah lawan menyerang, bangunan pemain
 //berkurang 1 menjadi sisa 2.
+    SetShieldP(TURN, 2);
+}
 
 void ExtraTurn(){
 /*I.S.: Giliran pe,ain hanya satu kali per pemain
@@ -77,12 +79,7 @@ void CriticalHit()//BONUS
 //seharusnya.
 //Pemain mendapat skill ini jika lawan baru saja mengaktifkan skill Extra Turn.
 {
-    // BANGUNAN *B1, *B2;
-    // int P;
     SetCritP(TURN, true);
-    //if (SerangBangunan(*B1,*B2,P)){
-      //  SerangBangunanCritHit(*B1,*B2,*P);
-    //}
 
 }
 

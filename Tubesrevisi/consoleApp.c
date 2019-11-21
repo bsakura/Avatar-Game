@@ -122,6 +122,9 @@ void CetakTurn()
     Push(&Undo,con);
     SetatkP(TURN, false);
     SetCritP(TURN, false);
+    if (getShield(TURN)>0){
+        SetShieldP(TURN, getShield(TURN)-1);
+    }
     ENDTURN = false;
     while(!ENDTURN &&!ENDGAME){
         CetakCommand();
