@@ -3,7 +3,7 @@
 #include "console.h"
 #include "boolean.h"
 int main(){
-    printf("1. New Game\n2.Load Game\nPilih Aksi: ");
+    printf("1. New Game\n2. Load Game\nPilih Aksi: ");
     int N;
     scanf("%d",&N);
     switch (N)

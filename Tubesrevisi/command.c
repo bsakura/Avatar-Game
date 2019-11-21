@@ -94,16 +94,21 @@ void Attack()
                 
                 if (Kalku>=M){
                     if(IsCritP(TURN)){
-                        // if (N<=M){ sama aja ga sih? wkwkkwk
-                            TambahPasukanManual(&(Bangunan(A,X)),-1*(M-N));
-                        // }
-                        // else{
-                        //     TambahPasukanManual(&(Bangunan(A,X)), (N-M));
-                        // }
+                        if (N<=M){
+                        // ini buat ngitung kalo ada crit, soalnya bonus pasukan pas kalkulasi
+                        // kalo ada crit ga keitung buat pasukan yang ditaroh di bangunan
+                            TambahPasukanManual(&(Bangunan(A,X)),-1*(M-(Kalku - M)));
+                            // Kalo N<=M, pasukan yang diassign di bangunan bukan sebanyak N
+                        }
+                        else{
+                            TambahPasukanManual(&(Bangunan(A,X)), (N-M));
+                            // Kalo N>M, pasukan yang diassign sebanyak N
+                        }
                     }
                     else{
                         TambahPasukanManual(&(Bangunan(A,X)), -1*N);
                     }
+                    //Syarat penambahan skill extra turn & attack up pada queue skill
                     if(Jenis(Bangunan(A,Y))=='F' && Kepemilikan(Bangunan(A,Y))==ENEMY()){
                         AddSkill(ENEMY(),TabCHartoKata("ET"));
                     }
