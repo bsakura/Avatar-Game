@@ -122,14 +122,17 @@ void CetakTurn()
     content con;
     TabInt T;
     Player P1,P2;
+    List LA,LB;
     //Algoritma
     CreateEmpty(&LMove);
     CreateEmpty(&LAtk);
+    CopyList(&LA, LMove);
+    CopyList(&LB, LAtk);
     CreateEmptyStack(&Undo);
     CopyTab(A, &T);
     CopyPlayer(&P1, Player1);
     CopyPlayer(&P2, Player2);
-    CreateContent(&con, T, P1, P2);
+    CreateContent(&con, T, P1, P2, LA,LB);
     Push(&Undo,con);
     SetatkP(TURN, false);
     ENDTURN = false;
@@ -279,6 +282,10 @@ void StartGame()
 void Load(){
     //Kamus
     int i, N;
+    content con;
+    TabInt T;
+    Player P1,P2;
+    List LA,LB;
     //Algoritma
     ENDGAME = false;
     ENDTURN = false;
@@ -320,16 +327,14 @@ void Load(){
     outln();
     loadList(&LMove);
     loadList(&LAtk);
-    //Kamus Lokal
-    content con;
-    TabInt T;
-    Player P1,P2;
-    //Algoritma
+    
+    CopyList(&LA, LMove);
+    CopyList(&LB, LAtk);
     CreateEmptyStack(&Undo);
     CopyTab(A, &T);
     CopyPlayer(&P1, Player1);
     CopyPlayer(&P2, Player2);
-    CreateContent(&con, T, P1, P2);
+    CreateContent(&con, T, P1, P2, LA,LB);
     Push(&Undo,con);
     while(!ENDTURN &&!ENDGAME){
         CetakCommand();

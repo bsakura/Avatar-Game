@@ -48,8 +48,10 @@ void Pop (Stack * S, content* X){
     *X = InfoTop(*S);
     Top(*S)--;
 }
-void CreateContent(content *C,TabInt T,Player P1, Player P2 ){
+void CreateContent(content *C,TabInt T,Player P1, Player P2, List LA, List LB ){
     (*C).T = T;
     (*C).P1 = P1;
     (*C).P2 = P2;
+    (*C).LA = LA;
+    (*C).LB = LB;    
 }

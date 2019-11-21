@@ -49,6 +49,7 @@ void Attack()
     content con;
     TabInt T;
     Player P1, P2;
+    List LA,LB;
     //Algoritma
     printf("Daftar bangunan:");
     outln();
@@ -90,6 +91,7 @@ void Attack()
                     }
                     M= Pasukan(Bangunan(A,Y));
                 }
+                
                 if (Kalku>=M){
                     if(IsCritP(TURN)){
                         // if (N<=M){ sama aja ga sih? wkwkkwk
@@ -105,6 +107,7 @@ void Attack()
                     if(Jenis(Bangunan(A,Y))=='F' && Kepemilikan(Bangunan(A,Y))==ENEMY()){
                         AddSkill(ENEMY(),TabCHartoKata("ET"));
                     }
+                    
                     if(Jenis(Bangunan(A,Y))=='T' && Kepemilikan(Bangunan(A,Y))==ENEMY()){
                         address P= First(GetListP(TURN));
                         int count=0;
@@ -119,6 +122,7 @@ void Attack()
                         }
 
                     }
+                    
                     switch (TURN)
                     {
                     case 1:
@@ -129,12 +133,13 @@ void Attack()
                         break;
                     
                     default:
-                            if (Kepemilikan(Bangunan(A,Y))==1){
+                        if (Kepemilikan(Bangunan(A,Y))==1){
                             DelP(&L1, Y);
                         }
                         InsVLast(&L2, Y);
                         break;
                     }
+                    
                     Bangunan(A,Y) = SetBangunan(Jenis(Bangunan(A,Y)),TURN,lokasi(Bangunan(A,Y)));
                     SetPasukan(&(Bangunan(A,Y)), (N-M));
                     if(NbElmt(GetListP(TURN))==10){
@@ -164,10 +169,13 @@ void Attack()
         printf("Bangunan ini sudah digunakan untuk menyerang");
         outln();
     }
+    
+    CopyList(&LA, LMove);
+    CopyList(&LB, LAtk);
     CopyTab(A, &T);
     CopyPlayer(&P1, Player1);
     CopyPlayer(&P2, Player2);
-    CreateContent(&con, T, P1, P2);
+    CreateContent(&con, T, P1, P2, LA,LB);
     Push(&Undo,con);
 
 }
@@ -181,6 +189,7 @@ void Level_up()
     content con;
     TabInt T;
     Player P1, P2;
+    List LA,LB;
     //Algoritma
     printf("Daftar bangunan:");
     outln();
@@ -206,12 +215,13 @@ void Level_up()
         PrintJenisPoint(Bangunan(A,y));
         printf(" kurang untuk level up");
         outln();
-	};
-    
+	}
+    CopyList(&LA, LMove);
+    CopyList(&LB, LAtk);
     CopyTab(A, &T);
     CopyPlayer(&P1, Player1);
     CopyPlayer(&P2, Player2);
-    CreateContent(&con, T, P1, P2);
+    CreateContent(&con, T, P1, P2, LA,LB);
     Push(&Undo,con);
 }
 
@@ -226,13 +236,16 @@ void Skill()
     content con;
     TabInt T;
     Player P1,P2;
+    List LA,LB;
     //Algoritma
     useSkill();
     CreateEmptyStack(&Undo);
+    CopyList(&LA, LMove);
+    CopyList(&LB, LAtk);
     CopyTab(A, &T);
     CopyPlayer(&P1, Player1);
     CopyPlayer(&P2, Player2);
-    CreateContent(&con, T, P1, P2);
+    CreateContent(&con, T, P1, P2, LA,LB);
     Push(&Undo,con);
 }
 
@@ -249,16 +262,14 @@ void UNDO()
     if(!IsEmptyStack(Undo)){
         con = InfoTop(Undo);
         CopyTab(Tab(con), &A);
+        CopyList(&LMove, LA(con));
+        CopyList(&LAtk, LA(con));
         CopyPlayer(&Player1, P1(con));
         CopyPlayer(&Player2, P2(con));
         CreateEmpty(&L1);
         CreateEmpty(&L2);
         ListBangunan(&L1,1);
         ListBangunan(&L2,2);
-        // PrintStatus(Bangunan(A,1));
-        // outln();
-        // PrintStatus(Bangunan(A, 13));
-        // outln();
         
     }else{
         Push(&Undo,con);
@@ -280,6 +291,7 @@ void Move()
     content con;
     TabInt T;
     Player P1,P2;
+    List LA,LB;
     //Algoritma
     printf("Daftar bangunan:");
     outln();
@@ -319,15 +331,18 @@ void Move()
             PrintJenisPoint(Bangunan(A,Y));
             outln();
             InsVLast(&LMove, X);
-        }else 
+        }else{
             printf("Jumlah pasukan yang akan dipindahkan kurang");
             outln();
+        }
         
     }
+    CopyList(&LA, LMove);
+    CopyList(&LB, LAtk);
     CopyTab(A, &T);
     CopyPlayer(&P1, Player1);
     CopyPlayer(&P2, Player2);
-    CreateContent(&con, T, P1, P2);
+    CreateContent(&con, T, P1, P2, LA,LB);
     Push(&Undo,con);
 }
 void End_turn()

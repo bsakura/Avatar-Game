@@ -9,6 +9,7 @@
 #include "queue.h"
 #include "arraydin.h"
 #include "player.h"
+#include "listlinier.h"
 #define Nill 0
 #define MaxElS 20
 /* Nil adalah stack dengan elemen kosong . */
@@ -25,6 +26,8 @@ typedef struct {
   TabInt T;
   Player P1;
   Player P2;
+  List LA;
+  List LB;
 }content;
 /* Contoh deklarasi variabel bertype stack dengan ciri TOP : */
 /* Versi I : dengan menyimpan tabel dan alamat top secara eksplisit*/
@@ -44,6 +47,8 @@ typedef struct {
 #define Tab(C) (C).T
 #define P1(C) (C).P1
 #define P2(C) (C).P2
+#define LA(C) (C).LA
+#define LB(C) (C).LB
 
 extern Stack Undo;
 /* ************ Prototype ************ */
@@ -71,5 +76,5 @@ void Pop (Stack * S, content* X);
 /* Menghapus X dari Stack S. */
 /* I.S. S  tidak mungkin kosong */
 /* F.S. X adalah nilai elemen TOP yang lama, TOP berkurang 1 */
-void CreateContent(content *C,TabInt T,Player P1, Player P2 );
+void CreateContent(content *C,TabInt T,Player P1, Player P2, List LA, List LB );
 #endif

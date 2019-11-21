@@ -151,4 +151,6 @@ List GetListP(Pemain P);
 address Searchindex(List L,int idx);
 
 void TambahPasukan();
+
+void CopyList(List *L1,List L2);
 #endif

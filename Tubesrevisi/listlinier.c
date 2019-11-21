@@ -381,6 +381,18 @@ void TambahPasukan(){
 	// }
 	
 }
+
+
+void CopyList(List *L1,List L2){
+    CreateEmpty(L1);
+    address P = First(L2);
+    while (P!=Nil)
+    {
+        InsVLast(L1, Info(P));
+        P= Next(P);
+    }
+    
+}
 // int main(){
 //     List L;
 //     CreateEmpty(&L);
