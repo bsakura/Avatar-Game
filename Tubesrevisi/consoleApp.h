@@ -46,4 +46,5 @@ void loadBangunan();
 void loadgraph();
 void loadPlayer();
 void loadList();
+void ReadGraph();
 #endif

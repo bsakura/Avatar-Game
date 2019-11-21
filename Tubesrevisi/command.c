@@ -388,8 +388,8 @@ void Save(){
     //Print dimensi map
     fprintf(f, "%d %d\n" ,NBrsEff(Map), NKolEff(Map));
     //print Array
-    fprintf(f, "%d\n", Neff(A));
-    for (i = 1; i <= Neff(A); i++)
+    fprintf(f, "%d\n", NbElmtTab(A));
+    for (i = 1; i <= NbElmtTab(A); i++)
     {
         B = Bangunan(A,i);
         fprintf(f, "%c %d %d %d %d %d %0.0f %0.0f\n", Jenis(B),Kepemilikan(B),Pasukan(B),Maksimum(B),PasukanAwal(B), Level(B), Absis(lokasi(B)),Ordinat(lokasi(B)));
@@ -469,6 +469,7 @@ void Save(){
     fclose(f);
 }
 void EXIT(){
+    /* Prosedur untuk keluar dari permainan*/
     exit(0);
 }
 

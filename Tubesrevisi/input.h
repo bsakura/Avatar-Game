@@ -8,6 +8,7 @@ extern int EOP;
 extern boolean useFile;
 extern char MARK;
 void set(boolean use);
+/*Konfigurasi mesin kata digunakan untuk membaca file atau std in*/
 void START();
 /* Mesin siap dioperasikan. Pita disiapkan untuk dibaca.
    Karakter pertama yang ada pada pita posisinya adalah pada jendela.

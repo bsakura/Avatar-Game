@@ -11,6 +11,8 @@ static FILE * pita;
 static int retval;
 
 void set(boolean use){
+/*Konfigurasi mesin kata digunakan untuk membaca file atau std in
+use true jika memakai file*/
     useFile = use;
     if (use){
         MARK = '\0';
@@ -18,6 +20,7 @@ void set(boolean use){
         MARK = '\n';
     }
 }
+
 void START() {
 /* Mesin siap dioperasikan. Pita disiapkan untuk dibaca.
    Karakter pertama yang ada pada pita posisinya adalah pada jendela.

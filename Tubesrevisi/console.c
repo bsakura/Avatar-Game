@@ -6,6 +6,8 @@ boolean newG;
 
 
 int ENEMY(){
+/* I.S Giliran Pemain
+F. S Untuk mendapatkan nomor pemain yang sedang tidak mendapatkan giliran*/
     //Algoritma
     switch (TURN)
     {

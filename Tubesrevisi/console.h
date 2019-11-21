@@ -5,8 +5,11 @@
 
 extern int TURN;
 extern boolean ENDTURN, Extra_turn, ENDGAME,NEED, newG;;
-void ReadGraph();
+
+
 int ENEMY();
+/* I.S Giliran Pemain
+F. S Untuk mendapatkan nomor pemain yang sedang tidak mendapatkan giliran*/
 void NextTurn();
 /*I.S: Giliran pemain.
   F.S. Giliran pemain berganti.*/
