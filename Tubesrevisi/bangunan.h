@@ -102,5 +102,8 @@ void PrintJenisPoint(BANGUNAN B);
   F.S.: Program mencetak jenis point ke layar.*/
 
 void MakeBangunan(BANGUNAN *B, char J, int P, int A, int M, int PA ,int L, int x, int y);
+/*I.S.: Bangunan.
+  F.S.: Program Membuat bangunan dari komponennya.*/
+
 
 #endif

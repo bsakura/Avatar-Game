@@ -33,5 +33,6 @@ Kata TabCHartoKata(char* str);
   OutputL Mengubah karakter string menjadi kata.*/
 
 boolean tobool(Kata K);
-char* KatatoTabChar(Kata K);
+/*Input: Kata
+  Output: Mengubah kata menjadi boolean 0 1.*/
 #endif
