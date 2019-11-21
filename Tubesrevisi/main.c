@@ -10,7 +10,7 @@ int main(){
     {
     case 1:
         newG = true;
-        StartGame();
+        newGame();
         break;
     
     default:

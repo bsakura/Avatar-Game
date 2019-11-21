@@ -28,7 +28,7 @@ void Adjust();
 
 void setstd();
 /*I.S: Sembarang
-  F.S: Mengebalikan kondisi standard.*/
+  F.S: Mesin kar operasi ke STDIN.*/
 
 void MakeMap();
 /*I.S: Sembarang
@@ -59,5 +59,7 @@ void loadPlayer();
 void loadList();
 /*Baca List dari file load*/
 
+void newGame();
+//Proses memulai new Game
 
 #endif

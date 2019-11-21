@@ -42,11 +42,11 @@ boolean IsAtkP(int X)
     switch (X)
     {
     case 1:
-        IsAtk(Player1);
+        return IsAtk(Player1);
         break;
     
     default:
-        IsAtk(Player2);
+        return IsAtk(Player2);
         break;
     }
 }
@@ -74,11 +74,11 @@ boolean IsCritP(int X)
     switch (X)
     {
     case 1:
-        IsCrit(Player1);
+        return IsCrit(Player1);
         break;
     
     default:
-        IsCrit(Player2);
+        return IsCrit(Player2);
         break;
     }
 }
@@ -98,11 +98,11 @@ int getShield(int X)
     switch (X)
     {
     case 1:
-        shield(Player1);
+        return shield(Player1);
         break;
     
     default:
-        shield(Player2);
+        return shield(Player2);
         break;
     }
 }

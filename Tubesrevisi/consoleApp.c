@@ -68,7 +68,7 @@ void CetakMap()
 
 void setstd()
 /*I.S: Sembarang
-  F.S: Mengebalikan kondisi standard.*/
+  F.S: Mesin kar operasi ke STDIN.*/
 {
     set(false);
     STARTKATA();
@@ -121,6 +121,7 @@ void CetakTurn()
     CreateContent(&con, T, P1, P2, LA,LB);
     Push(&Undo,con);
     SetatkP(TURN, false);
+    SetCritP(TURN, false);
     ENDTURN = false;
     while(!ENDTURN &&!ENDGAME){
         CetakCommand();
@@ -131,10 +132,8 @@ void Adjust()
 /*I.S: Sembarang
   F.S: Mengatur graf, player, dan dasar permainan*/
 {
-    //Kamus Lokal
-    int N, x, y, i,j;
-    char C;
     //Algoritma
+    //Config
     TURN = 1;
     ENDGAME = false;
     Extra_turn =false;
@@ -146,6 +145,7 @@ void Adjust()
     MakePlayer(&Player1, 1);
     MakePlayer(&Player2, 2);
 
+    //Mulai Baca File
     set(true);
     STARTKATA();
     NBrsEff(Map) = toInt(CKata);
@@ -153,9 +153,7 @@ void Adjust()
     NKolEff(Map) = toInt(CKata);
     ADVKATA();
     MakeMATRIKS(NBrsEff(Map), NKolEff(Map),&Map);
-        
     newA();
-        
     ReadGraph();
     MakeMap();
     ListBangunan(&L1,1);
@@ -247,12 +245,17 @@ void MakeMap()
 }
 
 
+void newGame(){
+//Proses memulai new Game
+    Adjust();
+    StartGame();
+}
+
 void StartGame()
 /*I.S: Sembarang
   F.S: Memulai game.*/
 {
     //Algoritma
-    Adjust();
     do{
         TambahPasukan();
         CetakTurn();
@@ -323,6 +326,12 @@ void Load(){
     Push(&Undo,con);
     while(!ENDTURN &&!ENDGAME){
         CetakCommand();
+    }
+    if(!Extra_turn){
+        NextTurn();
+    }
+    if(!ENDGAME){
+        StartGame();
     }
 }   
 
