@@ -72,15 +72,6 @@ void TambahPasukanManual (BANGUNAN *B, int Pasukan);
 /*I.S.: Bangunan dan pasukan
   F.S.: Pasukan ditambahkan secara manual.*/
 
-void SerangBangunan (BANGUNAN *B1, BANGUNAN *B2, int Pasukan); 
-/*I.S.: Bangunan 
-  F.S.: Pasukan dari bangunan yang diserang berkurang dan jika pasukan habis, kepemilikan bangunan akan berubah.*/
-
-void SerangBangunanCritHit (BANGUNAN *B1, BANGUNAN *B2, int Pasukan); 
-/*I.S.: Bangunan 
-  F.S.: Pasukan dari bangunan yang diserang berkurang dan jika pasukan habis, kepemilikan bangunan akan berubah
-        namun dengan spesifikasi penyerangan menggunakan skill critical hit.*/
-
 void LevelUp (BANGUNAN *B); 
 /*I.S.: Bangunan
   F.S.: Level dari bangunan ditingkatkan jikq mmemenuhi spesifikasi yang ditentukan.*/

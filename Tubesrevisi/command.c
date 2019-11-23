@@ -94,21 +94,21 @@ void Attack()
 
                 if (Kalku>=M){
                     //Syarat penambahan skill extra turn 
-                    if(Jenis(Bangunan(A,Y))=='F' && Kepemilikan(Bangunan(A,Y))==ENEMY()){
+                    if(Jenis(Bangunan(A,Y))=='F' && IsKepemilikan(Bangunan(A,Y),ENEMY())){
                         AddSkill(ENEMY(),TabCHartoKata("ET"));
                     }
                     
                     switch (TURN)
                     {
                     case 1:
-                        if (Kepemilikan(Bangunan(A,Y))==2){
+                        if (IsKepemilikan(Bangunan(A,Y),ENEMY())){
                             DelP(&L2, Y);
                         }
                         InsVLast(&L1, Y);
                         break;
                     
                     default:
-                        if (Kepemilikan(Bangunan(A,Y))==1){
+                        if (IsKepemilikan(Bangunan(A,Y),ENEMY())){
                             DelP(&L1, Y);
                         }
                         InsVLast(&L2, Y);
@@ -116,12 +116,12 @@ void Attack()
                     }
 
                     /*Penambahan skill shield*/
-                    if (Kepemilikan(Bangunan(A,Y))==ENEMY()&&NbElmt(GetListP(ENEMY()))==2){
+                    if (IsKepemilikan(Bangunan(A,Y),ENEMY())&&NbElmt(GetListP(ENEMY()))==2){
                         AddSkill(ENEMY(), TabCHartoKata("Shield"));
                     }
 
                     //Syarat skill attack up pada queue skill
-                    if(Jenis(Bangunan(A,Y))=='T' && Kepemilikan(Bangunan(A,Y))==ENEMY()){
+                    if(Jenis(Bangunan(A,Y))=='T' && IsKepemilikan(Bangunan(A,Y),ENEMY())){
                         address P= First(GetListP(TURN));
                         int count=0;
                         while (P != Nil){
