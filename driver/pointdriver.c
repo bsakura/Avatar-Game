@@ -1,4 +1,4 @@
-#include "point.h"
+#include "../Tubesrevisi/point.h"
 #include <stdio.h>
 
 void print_bool(boolean B){

@@ -185,41 +185,6 @@ void TambahPasukanManual (BANGUNAN *B, int Pasukan)
     Pasukan(*B) += Pasukan;
 }
 
-void SerangBangunan (BANGUNAN *B1, BANGUNAN *B2, int Pasukan) 
-/*I.S.: Bangunan 
-  F.S.: Pasukan dari bangunan yang diserang berkurang dan jika pasukan habis, kepemilikan bangunan akan berubah.*/
-{
-    if (Pasukan <= Pasukan(*B1)) {
-        Pasukan(*B1) -= Pasukan;
-        if (IsPertahanan(*B2)) {
-            Pasukan = (Pasukan * 3) / 4;
-        }
-        Pasukan(*B2) -= Pasukan;
-        if (Pasukan(*B2) < 0) {
-            Pasukan(*B2) *= -1;
-            Level(*B2) = 1;
-            SetMaksimum(B2);
-            SetKepemilikan(B2, Kepemilikan(*B1));
-        }
-    }
-}
-void SerangBangunanCritHit (BANGUNAN *B1, BANGUNAN *B2, int Pasukan) 
-{
-    if (Pasukan <= Pasukan(*B1)) {
-        Pasukan(*B1) -= Pasukan/2;
-        if (IsPertahanan(*B2)) {
-            Pasukan = (Pasukan * 3) / 4;
-        }
-        Pasukan(*B2) -= Pasukan;
-        if (Pasukan(*B2) < 0) {
-            Pasukan(*B2) *= -1;
-            Level(*B2) = 1;
-            SetMaksimum(B2);
-            SetKepemilikan(B2, Kepemilikan(*B1));
-        }
-    }
-}
-
 void LevelUp (BANGUNAN *B) 
 /*I.S.: Bangunan
   F.S.: Level dari bangunan ditingkatkan jikq mmemenuhi spesifikasi yang ditentukan.*/
