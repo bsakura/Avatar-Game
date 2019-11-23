@@ -85,4 +85,7 @@ void infoSkill(int X);
 /*I.S: Sembarang
   F.S: Mencetak skill.*/
 
+boolean IsEmptySkill(int X);
+/*I.S: X = 1 || X=2
+  F.S: Apakah skill pemain X kosong.*/
 #endif

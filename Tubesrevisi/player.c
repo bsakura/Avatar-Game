@@ -9,7 +9,7 @@ void MakePlayer(Player *P, int X)
 {
     //Algoritma
     number(*P) = X;
-    CreateEmptyQueue(&skill(*P),10);
+    CreateEmptyQueue((&skill(*P)),10);
     Setatk(P, false);
     Setcrit(P, false);
     Setshield(P, 0);
@@ -201,11 +201,38 @@ void infoSkill(int X)
     switch (X)
     {
     case 1:
-        CetakKata(InfoHead(skill(Player1)));
+        if (IsEmptyQueue(skill(Player1)))
+        {
+            printf("Tidak ada skill yang tersedia");
+        }
+        else{
+            CetakKata(InfoHead(skill(Player1)));
+        }
         break;
     
     default:
-        CetakKata(InfoHead(skill(Player1)));
+        if (IsEmptyQueue(skill(Player2)))
+        {
+            printf("Tidak ada skill yang tersedia");
+        }
+        else{
+            CetakKata(InfoHead(skill(Player2)));
+        }
+        break;
+    }
+}
+
+boolean IsEmptySkill(int X){
+/*I.S: X = 1 || X=2
+  F.S: Apakah skill pemain X kosong.*/
+    switch (X)
+    {
+    case 1:
+        return IsEmptyQueue(skill(Player1));
+        break;
+    
+    default:
+        return IsEmptyQueue(skill(Player2));
         break;
     }
 }

@@ -7,29 +7,33 @@
 #include "console.h"
 #include "queue.h"
 #include "player.h"
-
+#include <stdio.h>
 //SHIELDNYA BELOMANN
 
 void useSkill(){
     //Kamus Lokal
     Kata skill;
     //Algoritma
-    DelSkill(TURN, &skill);
-    //CetakKata(skill);
-    if (CMPKATATabChar(skill, "IU")){
-        InstantUpgrade();
-    }else if (CMPKATATabChar(skill, "Shield")){
-        Shield();
-    }else if (CMPKATATabChar(skill, "ET")){
-        ExtraTurn();
-    }else if (CMPKATATabChar(skill, "AU")){
-        AttackUp();
-    }else if (CMPKATATabChar(skill, "CH")){
-        CriticalHit();
-    }else if (CMPKATATabChar(skill, "IR")){
-        InstantReinforcement();
-    }else{//Barrage
-        Barrage();
+    if(IsEmptySkill(TURN)){
+        printf("Tidak ada skill yang dapat digunakan");
+        outln();
+    }else{
+        DelSkill(TURN, &skill);
+        if (CMPKATATabChar(skill, "IU")){
+            InstantUpgrade();
+        }else if (CMPKATATabChar(skill, "Shield")){
+            Shield();
+        }else if (CMPKATATabChar(skill, "ET")){
+            ExtraTurn();
+        }else if (CMPKATATabChar(skill, "AU")){
+            AttackUp();
+        }else if (CMPKATATabChar(skill, "CH")){
+            CriticalHit();
+        }else if (CMPKATATabChar(skill, "IR")){
+            InstantReinforcement();
+        }else{//Barrage
+            Barrage();
+        }
     }
 }
 
@@ -92,11 +96,7 @@ void InstantReinforcement()
     address a;
     a = First(GetListP(TURN));
     while(a!=NULL){
-        if(Pasukan(Bangunan(A, Info(a))) < Maksimum(Bangunan(A, Info(a))))
-            {
-                TambahPasukanManual(&(Bangunan(A,Info(a))), 5);
-            }
-        
+        TambahPasukanManual(&(Bangunan(A,Info(a))), 5);
         a = Next(a);
     }
 }

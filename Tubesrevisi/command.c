@@ -46,8 +46,8 @@ void Attack()
        yang dapat diserang, akan keluar output hasil jumlah pasukan setelah penyerangan berhasil.*/
 {
     //Kamus Lokal
-    int N,M,Kalku, X,Y, temp, intPas;
-    double half, doTemp, floorPas, empatpertiga;
+    int N, X,Y, temp, intPas;
+    double half, M,Kalku, doTemp, floorPas, empatpertiga;
     content con;
     TabInt T;
     Player P1, P2;
@@ -78,16 +78,16 @@ void Attack()
             Y = Info(P);
             printf("Jumlah pasukan :");
             scanf("%d", &N);
-            M = Pasukan(Bangunan(A,Y));
+            M = (double) Pasukan(Bangunan(A,Y));
             if(N<=Pasukan(Bangunan(A,X))){
-                if ((IsPertahanan(Bangunan(A,Y)) || getShield(TURN)>0) && (!IsAtkP(TURN)) && (!IsCritP(TURN))){
-                    Kalku = Pasukan(Bangunan(A,X)) * 3/4;
+                if ((IsPertahanan(Bangunan(A,Y)) || getShield(ENEMY())>0) && (!IsAtkP(TURN)) && (!IsCritP(TURN))){
+                    Kalku = (double)  N * 3/4;
                 }
                 else if(IsCritP(TURN)){
-                    Kalku = Kalku*2;
+                    Kalku = (double) N*2;
                 }
                 else{
-                    Kalku = N;
+                    Kalku = (double) N;
                 }
                 
                 TambahPasukanManual(&(Bangunan(A,X)), -1*N);
@@ -96,21 +96,6 @@ void Attack()
                     //Syarat penambahan skill extra turn 
                     if(Jenis(Bangunan(A,Y))=='F' && Kepemilikan(Bangunan(A,Y))==ENEMY()){
                         AddSkill(ENEMY(),TabCHartoKata("ET"));
-                    }
-                    //Syarat skill attack up pada queue skill
-                    if(Jenis(Bangunan(A,Y))=='T' && Kepemilikan(Bangunan(A,Y))==ENEMY()){
-                        address P= First(GetListP(TURN));
-                        int count=0;
-                        while (P != Nil){
-                            if(Jenis(Bangunan(A, Info(P)))=='T'){
-                                count++;
-                            }
-                            P=Next(P);
-                        }
-                        if(count==2){
-                            AddSkill(ENEMY(), TabCHartoKata("AU"));
-                        }
-
                     }
                     
                     switch (TURN)
@@ -129,23 +114,44 @@ void Attack()
                         InsVLast(&L2, Y);
                         break;
                     }
+
+                    /*Penambahan skill shield*/
                     if (Kepemilikan(Bangunan(A,Y))==ENEMY()&&NbElmt(GetListP(ENEMY()))==2){
                         AddSkill(ENEMY(), TabCHartoKata("Shield"));
                     }
+
+                    //Syarat skill attack up pada queue skill
+                    if(Jenis(Bangunan(A,Y))=='T' && Kepemilikan(Bangunan(A,Y))==ENEMY()){
+                        address P= First(GetListP(TURN));
+                        int count=0;
+                        while (P != Nil){
+                            if(Jenis(Bangunan(A, Info(P)))=='T'){
+                                count++;
+                            }
+                            P=Next(P);
+                        }
+                        if(count==3){
+                            AddSkill(TURN, TabCHartoKata("AU"));
+                        }
+
+                    }
+
+                    //Penambahan skill Barrage
+                    if(NbElmt(GetListP(TURN))==10){
+                        AddSkill(ENEMY(), TabCHartoKata("BR"));
+                    }
+
                     if(IsCritP(TURN)){
-                        SetPasukan(&(Bangunan(A,Y)) , (Kalku - M));
-                        temp = Pasukan(Bangunan(A,Y));
-                        doTemp = (double)temp;
+                        doTemp = (double) (Kalku -M);
                         half = doTemp/2;
                         floorPas = floor(half);
                         intPas = (int)floorPas;
                         Bangunan(A,Y) = SetBangunan(Jenis(Bangunan(A,Y)),TURN,lokasi(Bangunan(A,Y)));
                         SetPasukan(&(Bangunan(A,Y)) , intPas);
+                        printf("%d\n",intPas);
                     }
-                    else if((IsPertahanan(Bangunan(A,Y)) || getShield(TURN)>0) && (!IsAtkP(TURN)) && (!IsCritP(TURN))){
-                        SetPasukan(&(Bangunan(A,Y)), (Kalku - M));
-                        temp = Pasukan(Bangunan(A,Y));
-                        doTemp = (double)temp;
+                    else if((IsPertahanan(Bangunan(A,Y)) || getShield(ENEMY())>0) && (!IsAtkP(TURN)) && (!IsCritP(TURN))){
+                        doTemp = (double) (Kalku -M);
                         empatpertiga = doTemp * (4/3);
                         floorPas = floor(empatpertiga);
                         intPas = (int)floorPas;
@@ -153,19 +159,19 @@ void Attack()
                         SetPasukan(&(Bangunan(A,Y)) , intPas);
                     }
                     else{
+                        intPas = (int) (Kalku-M);
                         Bangunan(A,Y) = SetBangunan(Jenis(Bangunan(A,Y)),TURN,lokasi(Bangunan(A,Y)));
-                        SetPasukan(&(Bangunan(A,Y)), (Kalku - M));
+                        SetPasukan(&(Bangunan(A,Y)), intPas);
                     }
-                    if(NbElmt(GetListP(TURN))==10){
-                        AddSkill(ENEMY(), TabCHartoKata("BR"));
-                    }
+                    
                     printf("Bangunan menjadi milikmu!");
                     outln();
                     if (IsEmpty(GetListP(ENEMY()))){
                         ENDGAME = true;
                     }
                 }else{
-                    TambahPasukanManual(&(Bangunan(A,Y)), -1*Kalku);
+                    intPas = (int) (Kalku);
+                    TambahPasukanManual(&(Bangunan(A,Y)), -1*intPas);
                     printf("Bangunan gagal direbut.");
                     outln();
                 }
@@ -372,6 +378,7 @@ void End_turn()
         if(Level(Bangunan(A,Info(P)))!=4){
             IR = false;
         }
+        P = Next(P);
     }
     if (IR){
         AddSkill(TURN, TabCHartoKata("IR"));

@@ -264,6 +264,8 @@ void StartGame()
         CetakTurn();
         if(!Extra_turn){
             NextTurn();
+        }else{
+            Extra_turn = false;
         }
     }while(!ENDGAME);
     //PrintListBangunan(L1);
@@ -332,6 +334,8 @@ void Load(){
     }
     if(!Extra_turn){
         NextTurn();
+    }else{
+        Extra_turn = false;
     }
     if(!ENDGAME){
         StartGame();
