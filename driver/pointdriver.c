@@ -18,11 +18,12 @@ void print_point(POINT P){
 
 int main(){
 
-    POINT p1;
-    BacaPOINT(&p1);
+
 
     POINT p2;
-    BacaPOINT(&p2);
+    float x,y;
+    
+    MakePOINT(x,y);
 
     TulisPOINT(p2);
 
