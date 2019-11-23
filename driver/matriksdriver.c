@@ -13,7 +13,7 @@ void print_bool(boolean B){
 
 int main(){
     MATRIKS M;
-    MakeMATRIKS(&M);
+    MakeMATRIKS(&M,3,3);
     TulisMATRIKS(M);
     return 0;
 }
