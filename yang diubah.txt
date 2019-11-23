@@ -1,0 +1,23 @@
+ngubah posisi command yang nambahin skill
+jangan lupa yg au nya jadi 3
+
+END TURN YG IR TAMBAHIN NEXT P
+Matiin extra turn d console app. ada 2
+skill ir gaada if maksimum
+
+ngebenerin infoskill
+
+make player yang wue emptynya jadi pke kurung
+
+command.c kalku = N*2
+
+getShield jadi ENEMY bukan turn
+
+
+kalku sama M jadi double aja
+is empty skill
+Tambahin klo gaada skill
+
+di useskill ada filter klo gaada skill
+
+ada floor di command yang else
