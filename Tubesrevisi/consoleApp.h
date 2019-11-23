@@ -6,9 +6,6 @@ void CetakMap();
 /*I.S: Sembarang
   F.s: Mencetak map ke layar.*/
 
-void outln();
-/*I.S: Sembarang
-  F.S: Mencetak enter.*/
 
 void CetakCommand();
 /*I.S: Sembarang

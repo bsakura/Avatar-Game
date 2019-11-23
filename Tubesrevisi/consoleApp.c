@@ -316,7 +316,6 @@ void Load(){
     loadgraph();
     loadPlayer(1);
     loadPlayer(2);
-    outln();
     loadList(&LMove);
     loadList(&LAtk);
     
