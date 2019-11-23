@@ -148,7 +148,6 @@ void Attack()
                         intPas = (int)floorPas;
                         Bangunan(A,Y) = SetBangunan(Jenis(Bangunan(A,Y)),TURN,lokasi(Bangunan(A,Y)));
                         SetPasukan(&(Bangunan(A,Y)) , intPas);
-                        printf("%d\n",intPas);
                     }
                     else if((IsPertahanan(Bangunan(A,Y)) || getShield(ENEMY())>0) && (!IsAtkP(TURN)) && (!IsCritP(TURN))){
                         doTemp = (double) (Kalku -M);
@@ -170,7 +169,8 @@ void Attack()
                         ENDGAME = true;
                     }
                 }else{
-                    intPas = (int) (Kalku);
+                    doTemp = floor(Kalku);
+                    intPas = (int) (doTemp);
                     TambahPasukanManual(&(Bangunan(A,Y)), -1*intPas);
                     printf("Bangunan gagal direbut.");
                     outln();
@@ -214,8 +214,6 @@ void Level_up()
     printf("Daftar bangunan:");
     outln();
     PrintListBangunan(GetListP(TURN));
-    //Kalkulasi
-    //di adt bangunan ada fungsinya tapi aku blm baca lgi
     printf("Bangunan yang akan di level up: ");
     scanf("%d", &x);
     NEED = true;

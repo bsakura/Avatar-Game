@@ -267,7 +267,6 @@ void PrintStatus (BANGUNAN B)
     TulisPOINT(lokasi(B));
     printf(" %d", Pasukan(B));
     printf(" lv. %d", Level(B));
-    //printf(" %d", Kepemilikan(B));
 }
 
 void SetPasukan(BANGUNAN *B, int Pas)

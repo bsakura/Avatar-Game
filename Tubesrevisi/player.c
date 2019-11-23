@@ -24,6 +24,8 @@ void Setskill(Player *P, Queue skill)
 }
 
 void Setatk(Player *P, boolean atk){
+/*I.S: Sembarang
+  F.S: Menentukan atk player.*/
     atk(*P)  = atk;
 }
 
@@ -35,7 +37,7 @@ boolean IsAtk(Player P)
     return atk(P);
 }
 boolean IsAtkP(int X)
-/*Input: integer
+/*Input: integer X = 1 || X=2
   Output: Booeln true jika...*/
 {
     //Algoritma
@@ -67,7 +69,7 @@ boolean IsCrit(Player P)
 }
 
 boolean IsCritP(int X)
-/*Input: integer
+/*Input: integer X = 1 || X=2
   Output: Boolean true jika ...*/
 {
     //Algoritma
@@ -91,7 +93,7 @@ void Setshield(Player *P, int S)
 }
 
 int getShield(int X)
-/*Input: integer
+/*Input: integerX = 1 || X=2
   Output: integer*/
 {
     //Algoritma
@@ -118,7 +120,7 @@ void CopyPlayer(Player *P1, Player P2 )
     Setshield(P1, shield(P2));
 }
 void AddSkill(int X, Kata K )
-/*I.S: Sembarang
+/*I.S: X = 1 || X=2
   F.S: Menambahkan skill.*/
 {
     //Algoritma
@@ -134,7 +136,7 @@ void AddSkill(int X, Kata K )
     }
 }
 void DelSkill(int X, Kata *K)
-/*I.S: Sembarang
+/*I.S: X = 1 || X=2
   F.S: Skill terhapus.*/
 {
     //Algoritma
@@ -151,7 +153,7 @@ void DelSkill(int X, Kata *K)
 }
 
 void SetatkP(int X, boolean atk)
-/*I.S; Sembarang
+/*I.S; X = 1 || X=2
   F.S: Menetapkan atk player.*/
 {
     switch (X)
@@ -166,7 +168,7 @@ void SetatkP(int X, boolean atk)
     }
 }
 void SetCritP(int X, boolean crit)
-/*I.S; Sembarang
+/*I.S; X = 1 || X=2
   F.S: Menetapkan crit player.*/{
     switch (X)
     {
@@ -180,7 +182,7 @@ void SetCritP(int X, boolean crit)
     }
 }
 void SetShieldP(int X, int S)
-/*I.S; Sembarang
+/*I.S; X = 1 || X=2 , 0<= S <= 2
   F.S: Menetapkan shield player.*/{
     switch (X)
     {
@@ -195,7 +197,7 @@ void SetShieldP(int X, int S)
 }
 
 void infoSkill(int X)
-/*I.S: Sembarang
+/*I.S: X = 1 || X=2
   F.S: Mencetak skill.*/
 {
     switch (X)

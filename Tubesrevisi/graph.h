@@ -16,9 +16,7 @@ typedef struct tadrNode {
     adrSuccNode Trail;
 } GNode;
 
-// typedef struct {
-//   adrNode FirstN;
-// }Graph;
+
 typedef struct {
 	adrNode First;
 } Graph;

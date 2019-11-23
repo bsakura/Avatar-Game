@@ -338,16 +338,3 @@ void CopyList(List *L1,List L2){
     }
     
 }
-// int main(){
-//     List L;
-//     CreateEmpty(&L);
-//     address P1;
-//     address P2;
-//     InsVFirst(&L,2);
-//    // InsVFirst(&L,3);
-//     PrintInfo(L);
-//     address P;
-//     DelLast(&L,&P);
-//     PrintInfo(L);
-//     return 0;
-// }

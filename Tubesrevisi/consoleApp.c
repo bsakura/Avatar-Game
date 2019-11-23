@@ -290,7 +290,6 @@ void Load(){
     CreateEmpty(&LMove);
     MakePlayer(&Player1, 1);
     MakePlayer(&Player2, 2);
-    //printf("%d\n", 50);
     set(true);
     STARTKATA();
     TURN = toInt(CKata);
@@ -348,7 +347,6 @@ void loadBangunan(int i){
     char C;
     int P, AA, M, PA, L, x, y;
     C = toChar(CKata);
-    //CetakKata(CKata);
     ADVKATA();
     P = toInt(CKata);
     ADVKATA();
@@ -388,7 +386,6 @@ void loadgraph(){
         N = NextN(N);
         ADVKATA();
     }
-   // CetakKata(CKata);
 }
 
 void loadPlayer(int X){
@@ -402,7 +399,6 @@ void loadPlayer(int X){
     ADVKATA();
     SetCritP(X, tobool(CKata));
     ADVKATA();
-    //CetakKata(CKata);
     SetShieldP(X, toInt(CKata));
     ADVKATA();
 }
