@@ -194,18 +194,7 @@ void DelLast (List *L, address *P){
         Next(a) = Nil;
     }
 }
-void DelAfter (List *L, address *Pdel, address Prec){
-/* I.S. List tidak kosong. Prec adalah anggota list  */
-/* F.S. Menghapus Next(Prec): */
-/*      Pdel adalah alamat elemen list yang dihapus  */
-    address a;
-    a = First(*L);
-    while (a != Prec){
-        a = Next(a);
-    }
-    *Pdel = Next(a);
-    Next(a) = Next(Next(a));
-}
+
 /****************** PROSES SEMUA ELEMEN LIST ******************/
 void PrintInfo (List L)
 /* I.S. List mungkin kosong */

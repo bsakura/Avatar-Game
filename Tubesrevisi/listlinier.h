@@ -85,10 +85,6 @@ void DelVLast (List *L, infotype *X);
 void InsertFirst (List *L, address P);
 /* I.S. Sembarang, P sudah dialokasi  */
 /* F.S. Menambahkan elemen ber-address P sebagai elemen pertama */
-void InsertAfter (List *L, address P, address Prec);
-/* I.S. Prec pastilah elemen list dan bukan elemen terakhir, */
-/*      P sudah dialokasi  */
-/* F.S. Insert P sebagai elemen sesudah elemen beralamat Prec */
 void InsertLast (List *L, address P);
 /* I.S. Sembarang, P sudah dialokasi  */
 /* F.S. P ditambahkan sebagai elemen terakhir yang baru */
@@ -113,10 +109,7 @@ void DelLast (List *L, address *P);
 /*      Elemen list berkurang satu (mungkin menjadi kosong) */
 /* Last element baru adalah predesesor elemen terakhir yg lama, */
 /* jika ada */
-void DelAfter (List *L, address *Pdel, address Prec);
-/* I.S. List tidak kosong. Prec adalah anggota list  */
-/* F.S. Menghapus Next(Prec): */
-/*      Pdel adalah alamat elemen list yang dihapus  */
+
 
 /****************** PROSES SEMUA ELEMEN LIST ******************/
 void PrintInfo (List L);
@@ -128,18 +121,6 @@ void PrintInfo (List L);
 int NbElmt (List L);
 /* Mengirimkan banyaknya elemen list; mengirimkan 0 jika list kosong */
 
-/*** Prekondisi untuk Max/Min/rata-rata : List tidak kosong ***/
-infotype Max (List L);
-/* Mengirimkan nilai Info(P) yang maksimum */
-
-/****************** PROSES TERHADAP LIST ******************/
-void Konkat1 (List *L1, List *L2, List *L3);
-/* I.S. L1 dan L2 sembarang */
-/* F.S. L1 dan L2 kosong, L3 adalah hasil konkatenasi L1 & L2 */
-/* Konkatenasi dua buah list : L1 dan L2    */
-/* menghasilkan  L3 yang baru (dengan elemen list L1 dan L2) */
-/* dan L1 serta L2 menjadi list kosong.*/
-/* Tidak ada alokasi/dealokasi pada prosedur ini */
 
 void ListBangunan (List *L,  Pemain P);
 /* Membuat list index bangunan pemain P dari TabInt A*/
@@ -154,6 +135,7 @@ List GetListP(Pemain P);
 /* Mendapatkan list pemain P*/
 
 address Searchindex(List L,int idx);
+/*List tidak kosong index i terdefinisi pada L*/
 
 void TambahPasukan();
 /* Menambah pasukan seluruh bangunan pemain yang sedang mendapat giliran*/

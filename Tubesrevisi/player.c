@@ -4,7 +4,7 @@ Player Player1, Player2;
 
 
 void MakePlayer(Player *P, int X)
-/*I.S: Sembarang
+/*I.S: X = 1 || X=2
   F.S: Player baru dibuat.*/
 {
     //Algoritma
