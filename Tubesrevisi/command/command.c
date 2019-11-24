@@ -257,7 +257,7 @@ void Skill()
     List LA,LB;
     //Algoritma
     useSkill();
-    //CreateEmptyStack(&Undo);
+    CreateEmptyStack(&Undo);
     CopyList(&LA, LMove);
     CopyList(&LB, LAtk);
     CopyTab(A, &T);
