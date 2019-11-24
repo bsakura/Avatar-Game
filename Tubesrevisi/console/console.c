@@ -1,6 +1,7 @@
 #include "console.h"
 #include <stdio.h>
 #include <stdlib.h>
+
 int TURN;
 boolean newG;
 
@@ -130,12 +131,20 @@ boolean CMPKATATabChar(Kata K, char* str)
 /*Input: Kata dan String Karakter.
   Output: Boolean true jika...*/
 {
+    //Kamus
+    int i, size;
     //Algoritma
-	for(int i = 1; i<=K.Length ; i++){
-		if (K.TabKata[i] != str[i-1])
-			return false;
-	}
-	return true;
+    size = lengthTabChar(str);
+    if (size != K.Length) {
+        return false;
+    }
+    else {
+        for(i = 1; i<=K.Length ; i++){
+            if (K.TabKata[i] != str[i-1])
+                return false;
+        }
+        return true;
+    }
 }
 
 void CopyKata(Kata *K1,Kata K2)
