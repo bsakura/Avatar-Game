@@ -1,3 +1,7 @@
-1. Saat awal pasukan semua bangunan pemain adalah 0
+1. Saat newGame pasukan semua bangunan pemain U
 2. busur node dibilang ada jika salah node menyatakan terhubung ke node lainnya
-3. 
+3. Masukkan untuk command tidak boleh ada spasi di tengahnya, karena memakai prinsip mesin kata
+4. Masukkan untuk memilih bangunan harus ada pada yang ditampilkan
+5. Kalkulasi saat attack menggunakan pembulatan ke bawah, misalnya 10 pasykan dikerahkan untuk yang mempunyai pertahanan, maka musuh akan berkurang 7 pasukan. Sementara 41 pasukan menyerang 30 pasukan pertahanan maka bangunan akan terebut dengan sisa 0 pasukan.
+6. Jika saat shield aktif dan pemain menggunakan extra turn, maka saat dia mendapat giliran kembali shield belum berkurang kesempatannya
+7. Untuk loadgame diasumsikan nilai Maksimum , Pasukan Awal dan Level sudah sesuai satu sama lainnya
