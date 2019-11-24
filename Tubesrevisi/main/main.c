@@ -1,20 +1,7 @@
-#include "../arraydin/arraydin.c"
-#include "../bangunan/bangunan.c"
 #include "../boolean/boolean.h"
-#include "../command/command.c"
-#include "../console/console.c"
-#include "../consoleApp/consoleApp.c"
-#include "../graph/graph.c"
-#include "../input/input.c"
-#include "../listlinier/listlinier.c"
-#include "../matriks/matriks.c"
-#include "../mesinkata/mesinkata.c"
-#include "../pcolor/pcolor.c"
-#include "../player/player.c"
-#include "../point/point.c"
-#include "../queue/queue.c"
-#include "../skill/skill.c"
-#include "../stackt/stackt.c"
+#include "../console/console.h"
+#include "../consoleApp/consoleApp.h"
+#include "../listlinier/listlinier.h"
 #include <stdio.h>
 #include <stdlib.h>
 
