@@ -1,4 +1,6 @@
-#include "../Tubesrevisi/mesinkata.h"
+#include "../Tubesrevisi/mesinkata.c"
+#include "../Tubesrevisi/input.c"
+#include "../Tubesrevisi/console.c"
 #include <stdio.h>
 
 boolean IsKataSama(Kata K1, Kata K2){
@@ -30,7 +32,7 @@ boolean IsKataSama(Kata K1, Kata K2){
 
 
 int main(void){
-int kReg = 0, kPanj = 0;
+	int kReg = 0, kPanj = 0;
 	int i, idx, banyakkata = 0;
 	Kata CKoma, CTitik;
 

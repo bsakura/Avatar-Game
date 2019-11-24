@@ -1,68 +1,33 @@
-#include "../Tubesrevisi/queue.h"
+#include "../Tubesrevisi/queue.c"
+#include "../Tubesrevisi/mesinkata.c"
+#include "../Tubesrevisi/input.c"
+#include "../Tubesrevisi/console.c"
 #include <stdio.h>
 
-float AvgElmt(Queue Q){
-	float sum = 0;
-	int i = Head(Q);
-	
-	while(i != (Tail(Q)))
-        {
-            sum += Q.T[i];
-            i = (i % MaxEl(Q)) + 1;
-        }
-	sum += Q.T[Tail(Q)];
-	
-	return (sum/NBElmt(Q));
-}
-
-
-int main(void){
-	
-	int El = 0;
-	Queue Antri;
-	int kode = -999;
-	int add_amount;
-	int deleted;
-	
-	scanf("%d",&El);
-	CreateEmpty(&Antri, El);
-	
-	
-	scanf("%d", &kode);
-	while(kode == 1 || kode == 2){
-		
-		if (kode == 1){
-			scanf("%d", &add_amount);
-			if (IsFull(Antri)){
-				printf("Queue penuh\n");
-			}
-			else{
-				Add(&Antri, add_amount);
-			}
-		}
-		
-		else if (kode == 2){
-
-			if (IsEmpty(Antri)){
-				printf("Queue kosong\n");
-			}
-			else{
-				Del(&Antri, &deleted);
-			}
-		
-		}
-		
-		scanf("%d", &kode);
+int main () {
+	Queue Q1, Q2;
+	int maxelq, i;
+	scanf("%d", &maxelq);
+	CreateEmptyQueue (&Q1, maxelq);
+	CreateEmptyQueue (&Q2, maxelq);
+	if (IsEmptyQueue (Q2)) {
+		printf("!\n");
 	}
-	
-	printf("%d\n",NBElmt(Antri));
-	if (IsEmpty(Antri)){
-		printf("Tidak bisa dihitung\n");
+	for (i = 1; i <= maxelq; i++) {
+		AddQueue(&Q1, TabCHartoKata("T"));
 	}
-	else{
-		printf("%.2f\n",AvgElmt(Antri));
+	if (IsFullQueue (Q1)) {
+		printf("%d\n", NBElmtQueue(Q1));
 	}
-	
-	
+	CopyQueue(Q1, &Q2);
+	for (i = 1; i <= maxelq; i++) {
+		CetakKata(InfoHead(Q2));
+		printf("\n");
+	}
+	DeAlokasiQueue(&Q2);
+	for (i = 1; i <= maxelq; i++) {
+		CetakKata(InfoHead(Q2));
+		printf("\n");
+	}
 	return 0;
 }

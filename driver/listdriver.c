@@ -1,44 +1,39 @@
-#include "../Tubesrevisi/."
+#include "../Tubesrevisi/listlinier.c"
+#include "../Tubesrevisi/bangunan.c"
+#include "../Tubesrevisi/point.c"
 #include <stdio.h>
 int main(void){
 	
 	List LIST;
+	address P;
+	int input, awal, akhir;
 	CreateEmpty(&LIST);
-	int input;
-	
-	while(1) {
-		
-		scanf("%d",&input);		
+	scanf(" %d",&input);
+	while(input != -999) {		
 		if ((input <= 100) && (input >= 0)){
 			InsVFirst(&LIST, input);
 		}
 		else{
-			break;
+			InsVLast(&LIST, input);
 		}
+		scanf(" %d",&input);
 	} 
 	
 	if (!IsEmpty(LIST)){
 		printf("%d\n", NbElmt(LIST));
-		printf("%d\n", Max(LIST));
-		printf("%d\n", Min(LIST));	
-		printf("%.2f\n", Average(LIST));
-		
-		List Inverted;
-		CreateEmpty(&Inverted);
-		
-		Inverted = FInversList(LIST);
-		PrintInfo(Inverted);
-		printf("\n");
 		PrintInfo(LIST);
 		printf("\n");
-		
+		DelVFirst(&LIST, &awal);
+		DelVLast(&LIST, &akhir);
+		printf("%d %d\n", awal, akhir);
+		PrintInfo(LIST);
+		printf("\n");
 	}
 	else{
 		printf("Daftar nilai kosong\n");
 	}
-
-	
-	
-	
+	DelFirst(&LIST, &P);
+	DelP(&LIST, 100);
+	PrintInfo(LIST);
 	return 0;
 }

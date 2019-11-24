@@ -1,4 +1,4 @@
-#include "../Tubesrevisi/point.h"
+#include "../Tubesrevisi/point.c"
 #include <stdio.h>
 
 void print_bool(boolean B){
@@ -9,21 +9,15 @@ void print_bool(boolean B){
     else {
         printf("false");
     }
-    }
-
-void print_point(POINT P){
-    printf("(%.2f,%.2f)", Absis(P), Ordinat(P));
-    }
-
-
+}
 int main(){
 
 
 
     POINT p2;
     float x,y;
-    
-    MakePOINT(x,y);
+    scanf("%f %f", &x, &y);
+    p2 = MakePOINT(x,y);
 
     TulisPOINT(p2);
 

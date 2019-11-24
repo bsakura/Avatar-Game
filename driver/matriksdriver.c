@@ -1,4 +1,4 @@
-#include "../Tubesrevisi/matriks.h"
+#include "../Tubesrevisi/matriks.c"
 #include <stdio.h>
 
 void print_bool(boolean B){
@@ -13,7 +13,14 @@ void print_bool(boolean B){
 
 int main(){
     MATRIKS M;
-    MakeMATRIKS(&M,3,3);
-    TulisMATRIKS(M);
+    int i, j, B, K;
+    scanf("%d %d", &B, &K);
+    MakeMATRIKS(B,K,&M);
+    for (i = GetFirstIdxBrs(M); i <= GetLastIdxBrs(M); i++) {
+        for (j = GetFirstIdxKol(M); j <= GetLastIdxKol(M); j++) {
+            printf("%d ", Elmt(M, i, j));
+        }
+        printf("\n");
+    }
     return 0;
 }
