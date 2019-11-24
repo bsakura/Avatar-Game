@@ -1,9 +1,9 @@
-#include "mesinkata.h"
-#include "../console/console.h"
+#include "mesinkata.c"
 #include "../boolean/boolean.h"
+#include "../console/console.c"
+#include "../input/input.c"
 #include <stdio.h>
 #include <stdlib.h>
-
 
 int main(){
 	//membaca kata pertama pada file newgame.txt dan mencetaknya langsung
