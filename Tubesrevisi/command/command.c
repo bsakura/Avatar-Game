@@ -435,7 +435,7 @@ void Save(){
         for(i=1; i<= K.Length; i++){
             fprintf(f, "%c", K.TabKata[i]);
         }  
-        fprintf(f, " ", K.TabKata[i]);  
+        fprintf(f, " ");  
     }
     fprintf(f, ".\n");
     if (IsAtkP(1)){
@@ -457,7 +457,7 @@ void Save(){
         for(i=1; i<= K.Length; i++){
             fprintf(f, "%c", K.TabKata[i]);
         }  
-        fprintf(f, " ", K.TabKata[i]);  
+        fprintf(f, " ");  
     }
     fprintf(f, ".\n");
     if (IsAtkP(2)){
