@@ -51,7 +51,6 @@ void ADV() {
           Jika  CC = MARK maka EOP akan menyala (true) */
     /* Algoritma */
     retval = fscanf(pita,"%c",&CC);
-    //EOP = retval;
     if (!useFile && CC=='\n'){
         EOP = -1;
     }else if(useFile) {

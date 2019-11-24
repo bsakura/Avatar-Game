@@ -1,7 +1,3 @@
-// Nama: Naufal Arfananda Ghifari
-// NIM : 13518096
-// Tanggal : 122-9 2019
-
 #include "mesinkata.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -75,7 +71,3 @@ void SalinKata(){
     CKata.Length = i-1;
 }
 
-// int main(){
-//     set(true);
-//     STARTKATA();
-// }

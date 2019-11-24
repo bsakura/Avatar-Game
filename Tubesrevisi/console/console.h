@@ -2,7 +2,7 @@
 #define CONSOLE_H
 
 #include "../mesinkata/mesinkata.h"
-
+#include "../boolean/boolean.h"
 extern int TURN;
 extern boolean ENDTURN, Extra_turn, ENDGAME,NEED, newG;
 
