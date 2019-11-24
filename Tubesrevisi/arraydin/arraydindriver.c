@@ -4,16 +4,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void print_bool(boolean B){
-
-    if (B) {
-        printf("true");
-    }
-    else {
-        printf("false");
-    }
-}
-
 int main(){
     TabInt T1, T2;
     int maxel, x, y;

@@ -2,16 +2,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void print_bool(boolean B){
-
-    if (B) {
-        printf("true");
-    }
-    else {
-        printf("false");
-    }
-}
-
 int main(){
     MATRIKS M;
     int i, j, B, K;
