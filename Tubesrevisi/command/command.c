@@ -219,21 +219,26 @@ void Level_up()
     NEED = true;
     address P = Searchindex(GetListP(TURN), x);
     y = Info(P);
-	if (Pasukan(Bangunan(A,y)) >= (Maksimum(Bangunan(A,y)) / 2)) {
-        TambahPasukanManual(&(Bangunan(A,y)), -1*(Maksimum(Bangunan(A,y)) / 2));
-		LevelUp(&(Bangunan(A,y)));
-		printf("Level ");
-        PrintJenisPoint(Bangunan(A,y));
-        printf(" -mu meningkat menjadi %d!", Level(Bangunan(A,y)));
-        outln();
+    if (Level(Bangunan(A,y))<4){
+        if (Pasukan(Bangunan(A,y)) >= (Maksimum(Bangunan(A,y)) / 2)) {
+            TambahPasukanManual(&(Bangunan(A,y)), -1*(Maksimum(Bangunan(A,y)) / 2));
+            LevelUp(&(Bangunan(A,y)));
+            printf("Level ");
+            PrintJenisPoint(Bangunan(A,y));
+            printf(" -mu meningkat menjadi %d!", Level(Bangunan(A,y)));
+            outln();
 
-	}
-	else{
-		printf("Jumlah pasukan ");
-        PrintJenisPoint(Bangunan(A,y));
-        printf(" kurang untuk level up");
+        }
+        else{
+            printf("Jumlah pasukan ");
+            PrintJenisPoint(Bangunan(A,y));
+            printf(" kurang untuk level up");
+            outln();
+        }
+    }else{
+        printf("Level bangunan sudah maksimum");
         outln();
-	}
+    }
     CopyList(&LA, LMove);
     CopyList(&LB, LAtk);
     CopyTab(A, &T);

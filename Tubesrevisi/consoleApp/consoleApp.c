@@ -267,9 +267,11 @@ void StartGame()
             NextTurn();
         }else{
             Extra_turn = false;
+            if (getShield(TURN)>0){
+                SetShieldP(TURN, getShield(TURN)+1);
+            }
         }
     }while(!ENDGAME);
-    //PrintListBangunan(L1);
 }
 
 void Load(){
@@ -335,6 +337,9 @@ void Load(){
         NextTurn();
     }else{
         Extra_turn = false;
+        if (getShield(TURN)>0){
+            SetShieldP(TURN, getShield(TURN)+1);
+        }
     }
     if(!ENDGAME){
         StartGame();
