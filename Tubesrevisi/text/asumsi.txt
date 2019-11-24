@@ -5,3 +5,5 @@
 5. Kalkulasi saat attack menggunakan pembulatan ke bawah, misalnya 10 pasykan dikerahkan untuk yang mempunyai pertahanan, maka musuh akan berkurang 7 pasukan. Sementara 41 pasukan menyerang 30 pasukan pertahanan maka bangunan akan terebut dengan sisa 0 pasukan.
 6. Jika saat shield aktif dan pemain menggunakan extra turn, maka saat dia mendapat giliran kembali shield belum berkurang kesempatannya
 7. Untuk loadgame diasumsikan nilai Maksimum , Pasukan Awal dan Level sudah sesuai satu sama lainnya
+8. Ketika pemain telah melakukan command yang memungkinkan undo, lalu save, lalu exit, saat kembali load game pemain tidak bisa undo command yang sebelumnya dilakukan sebelum save
+9. Undo juga tidak mungkin dilakukan jika giliran sudah selesai atau pemain sudah menggunakan skill. Namun jika pemain sudah menyerang dan menggunakan satu efek skill, undo masih dimungkinkan dengan efek skill yang kembali didapatkan
